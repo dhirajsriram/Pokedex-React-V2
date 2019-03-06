@@ -22,7 +22,7 @@ class Results extends React.Component {
     return (
       <div>
         {results ? (
-          <div className="card">
+          <div className="pokemon-data">
             {results.data !== "Error" ? (
               <div className="row">
                 <div className="col-sm-6 bg-dark">
@@ -33,7 +33,7 @@ class Results extends React.Component {
                     <Image data={results} />
                   </div>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-6 pokemon-info">
                   <div className="card-body">
                     <Type data={{ blockName: "Type", data: results }} />
                     <Blocks data={{ blockName: "Stats", data: results }} />

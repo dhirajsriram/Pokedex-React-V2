@@ -29,7 +29,7 @@ class Menu extends React.Component {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav">
             <li className="nav-item active">
               <Link className="text-light nav-link font-weight-bold" to="/">

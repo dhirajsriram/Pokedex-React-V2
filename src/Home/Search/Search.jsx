@@ -8,7 +8,7 @@ class Search extends React.Component {
     this.state = {
       number: "",
       name: "",
-      value: "",
+      value: 1,
       inProgress: false,
       error: false
     };
@@ -20,7 +20,7 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.setState({ error: false });
-    this.Surprise();
+    this.Search()
   }
 
   componentDidUpdate(prevProps, prevState) {}
@@ -85,7 +85,9 @@ class Search extends React.Component {
     this.setState({
       inProgress: true
     });
+    if(e){
     e.preventDefault();
+  }
     var self = this;
     axios
       .get("https://pokeapi.co/api/v2/pokemon/" + this.state.value + "/")
@@ -95,9 +97,7 @@ class Search extends React.Component {
           .then(resEv => {
             console.log(resEv);
           })
-          .catch(function(error) {
-
-          });
+          .catch(function(error) {});
         self.setState({
           inProgress: false,
           error: false
@@ -113,6 +113,8 @@ class Search extends React.Component {
       });
   };
 
+  
+
   Surprise = e => {
     if (e) {
       e.preventDefault();
@@ -124,12 +126,11 @@ class Search extends React.Component {
     let value = Math.round(Math.random() * range + 0);
     axios.get("https://pokeapi.co/api/v2/pokemon/" + value + "/").then(res => {
       axios
-      .get("https://pokeapi.co/api/v2/evolution-chain/" + res.data.id)
-      .then(resEv => {
-        console.log(resEv);
-      }).catch(function(error){
-        
-      })
+        .get("https://pokeapi.co/api/v2/evolution-chain/" + res.data.id)
+        .then(resEv => {
+          console.log(resEv);
+        })
+        .catch(function(error) {});
       this.getContent(res);
       this.setState({
         inProgress: false
