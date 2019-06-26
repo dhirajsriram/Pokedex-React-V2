@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Button from '@material-ui/core/Button';
 
 class Search extends React.Component {
   constructor(props) {
@@ -66,16 +67,15 @@ class Search extends React.Component {
               Enter the pokemon number to search with
             </small>
           </div>
-          <button
-            className="btn3d btn btn-danger"
+          <Button variant="contained" color="primary"
             disabled={!this.state.name && !this.state.number}
           >
             Submit
-          </button>{" "}
+          </Button>{" "}
           &nbsp;
-          <button className="btn3d btn btn-warning" onClick={this.Surprise}>
+          <Button variant="contained" color="primary" onClick={this.Surprise}>
             Surprise Me!
-          </button>
+          </Button>
         </form>
       </div>
     );
