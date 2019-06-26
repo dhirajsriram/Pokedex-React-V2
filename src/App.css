@@ -10,3 +10,12 @@
 		padding:10px 0px;
 	}
 }
+.default-text{
+	text-decoration: none;
+	color: inherit;
+	font-weight: inherit;
+}
+.MuiGrid-spacing-xs-4{
+	width: auto !important;
+   margin: auto !important;
+}
