@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Pokemon() {
+export default function Pokemon(props) {
   const classes = useStyles();
 
   return (
@@ -24,7 +24,7 @@ export default function Pokemon() {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={props.image}
           title="Contemplative Reptile"
         />
         <CardContent>
