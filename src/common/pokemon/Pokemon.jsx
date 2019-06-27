@@ -22,6 +22,12 @@ const useStyles = makeStyles({
   },
   capitalize : {
     textTransform: "capitalize"
+  },
+  image :{
+    padding:"16px",
+    display:"block",
+    margin:"auto",
+    width:"unset"
   }
 });
 
@@ -51,13 +57,14 @@ export default function Pokemon(props) {
       <SkeletonTheme color="#757575" highlightColor="#616161">
       <Card className={classes.card}>
         <CardActionArea>
+          <div className={classes.image}>
           {pokemon.name ?<CardMedia
             component="img"
             alt="Contemplative Reptile"
             height="300"
             image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
             title="Contemplative Reptile"
-          /> : <Skeleton height={300}></Skeleton>}
+          /> : <Skeleton height={300}></Skeleton>}</div>
           <CardContent className={classes.cardContent}>
             <Typography gutterBottom variant="subtitle2">
                {pokemon.name ? "#" + numberPadding(props.number, 3) : <Skeleton/>}
