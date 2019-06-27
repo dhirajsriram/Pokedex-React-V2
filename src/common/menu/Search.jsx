@@ -50,7 +50,7 @@ function renderInput(inputProps) {
 
   return (
     <InputBase
-      InputProps={{
+      inputProps={{
         inputRef: ref,
         ...InputProps,
       }}
@@ -185,7 +185,7 @@ export default function Search() {
                 fullWidth: true,
                 classes,
                 label: 'Country',
-                InputLabelProps: getLabelProps({ shrink: true }),
+                inputlabelprops: getLabelProps({ shrink: true }),
                 InputProps: { onBlur, onFocus },
                 inputProps,
               })}

@@ -39,7 +39,6 @@ function numberPadding(number, size) {
 
 
 const Pokemon = React.memo((props) => {
-  console.log(props)
   const classes = useStyles();
   const [pokemon, setPokemon] = useState({});
 
