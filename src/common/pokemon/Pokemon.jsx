@@ -38,7 +38,8 @@ function numberPadding(number, size) {
 }
 
 
-export default function Pokemon(props) {
+const Pokemon = React.memo((props) => {
+  console.log(props)
   const classes = useStyles();
   const [pokemon, setPokemon] = useState({});
 
@@ -83,4 +84,6 @@ export default function Pokemon(props) {
       </SkeletonTheme>
     </ThemeProvider>
   );
-}
+})
+
+export default Pokemon;
