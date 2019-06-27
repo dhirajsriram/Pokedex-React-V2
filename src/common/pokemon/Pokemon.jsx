@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Types from '../pokemon/Types'
 import { ThemeProvider } from '@material-ui/styles';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const theme = createMuiTheme({
   palette: {
@@ -47,30 +48,32 @@ export default function Pokemon(props) {
 
   return (
     <ThemeProvider theme={theme}>
+      <SkeletonTheme color="#757575" highlightColor="#616161">
       <Card className={classes.card}>
         <CardActionArea>
-          <CardMedia
+          {pokemon.name ?<CardMedia
             component="img"
             alt="Contemplative Reptile"
             height="300"
             image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
             title="Contemplative Reptile"
-          />
+          /> : <Skeleton height={300}></Skeleton>}
           <CardContent className={classes.cardContent}>
             <Typography gutterBottom variant="subtitle2">
-              # {numberPadding(props.number, 3)}
+               {pokemon.name ? "#" + numberPadding(props.number, 3) : <Skeleton/>}
             </Typography>
             <Typography gutterBottom variant="h5" component="h2" className={classes.capitalize}>
-              {pokemon.name}
+              {pokemon.name || <Skeleton height={25}/>}
             </Typography>
-            {pokemon.types && pokemon.types.map(function (val, i) {
+            {pokemon.types ? pokemon.types.map(function (val, i) {
               return (
                 <Types name={val.type.name} key={i}></Types>
               )
-            })}
+            }): <Skeleton height={25}></Skeleton>}
           </CardContent>
         </CardActionArea>
       </Card>
+      </SkeletonTheme>
     </ThemeProvider>
   );
 }
