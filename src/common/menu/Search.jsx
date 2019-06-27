@@ -5,7 +5,6 @@ import Downshift from 'downshift';
 import { makeStyles , fade } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import Chip from '@material-ui/core/Chip';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -50,23 +49,18 @@ function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
 
   return (
-    <div className={classes.search}>
-    <div className={classes.searchIcon}>
-      <SearchIcon />
-    </div>
     <InputBase
       InputProps={{
         inputRef: ref,
-        classes: {
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        },
         ...InputProps,
       }}
       {...other}
+      classes={{
+        root: classes.inputRoot,
+        input: classes.inputInput,
+      }}
       placeholder="Search…"
-      variant="filled"
-    /></div>
+    />
   );
 }
 
@@ -101,7 +95,6 @@ function getSuggestions(value, { showEmpty = false } = {}) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
-
   return inputLength === 0 && !showEmpty
     ? []
     : suggestions.filter(suggestion => {
@@ -116,110 +109,8 @@ function getSuggestions(value, { showEmpty = false } = {}) {
       });
 }
 
-function DownshiftMultiple(props) {
-  const { classes } = props;
-  const [inputValue, setInputValue] = React.useState('');
-  const [selectedItem, setSelectedItem] = React.useState([]);
-
-  function handleKeyDown(event) {
-    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
-      setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
-    }
-  }
-
-  function handleInputChange(event) {
-    setInputValue(event.target.value);
-  }
-
-  function handleChange(item) {
-    let newSelectedItem = [...selectedItem];
-    if (newSelectedItem.indexOf(item) === -1) {
-      newSelectedItem = [...newSelectedItem, item];
-    }
-    setInputValue('');
-    setSelectedItem(newSelectedItem);
-  }
-
-  const handleDelete = item => () => {
-    const newSelectedItem = [...selectedItem];
-    newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
-    setSelectedItem(newSelectedItem);
-  };
-
-  return (
-    <Downshift
-      id="downshift-multiple"
-      inputValue={inputValue}
-      onChange={handleChange}
-      selectedItem={selectedItem}
-    >
-      {({
-        getInputProps,
-        getItemProps,
-        getLabelProps,
-        isOpen,
-        inputValue: inputValue2,
-        selectedItem: selectedItem2,
-        highlightedIndex,
-      }) => {
-        const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
-          onKeyDown: handleKeyDown,
-          placeholder: 'Select multiple countries',
-        });
-
-        return (
-          <div className={classes.container}>
-            {renderInput({
-              label: 'Countries',
-              InputProps: {
-                startAdornment: selectedItem.map(item => (
-                  <Chip
-                    key={item}
-                    tabIndex={-1}
-                    label={item}
-                    className={classes.chip}
-                    onDelete={handleDelete(item)}
-                  />
-                )),
-                onBlur,
-                onChange: event => {
-                  handleInputChange(event);
-                  onChange(event);
-                },
-                onFocus,
-              },
-              inputProps,
-            })}
-
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue2).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem: selectedItem2,
-                  }),
-                )}
-              </Paper>
-            ) : null}
-          </div>
-        );
-      }}
-    </Downshift>
-  );
-}
-
-DownshiftMultiple.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  search: {
+const useStyles = makeStyles((theme) => ({
+	search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -242,9 +133,19 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  container: {
-    flexGrow: 1,
-    position: 'relative',
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 120,
+      '&:focus': {
+        width: 200,
+      },
+    },
   },
   paper: {
     position: 'absolute',
@@ -253,27 +154,13 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     right: 0,
   },
-  chip: {
-    margin: theme.spacing(0.5, 0.25),
-  },
-  inputRoot: {
-    flexWrap: 'wrap',
-  },
-  inputInput: {
-    width: 'auto',
-    flexGrow: 1,
-  },
-  divider: {
-    height: theme.spacing(2),
-  },
 }));
 
-
-export default function IntegrationDownshift() {
+export default function Search() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <Downshift id="downshift-simple">
         {({
           getInputProps,
@@ -286,11 +173,14 @@ export default function IntegrationDownshift() {
           selectedItem,
         }) => {
           const { onBlur, onFocus, ...inputProps } = getInputProps({
-            placeholder: 'Search for a country (start with a)',
+            placeholder: 'Search..',
           });
 
           return (
-            <div className={classes.container}>
+            <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
               {renderInput({
                 fullWidth: true,
                 classes,
@@ -319,6 +209,6 @@ export default function IntegrationDownshift() {
           );
         }}
       </Downshift>
-    </div>
+    </React.Fragment>
   );
 }
