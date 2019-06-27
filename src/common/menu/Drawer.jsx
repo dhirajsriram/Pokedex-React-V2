@@ -47,7 +47,7 @@ export default function TemporaryDrawer() {
     >
       <List>
         {['Home', 'Types'].map((text, index) => (
-          <Link className="default-text" to={"/" + text} key={text}>
+          <Link className="default-text" to={"/" + text} key={index}>
           <ListItem button>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <ListIcon />}</ListItemIcon>
             <ListItemText primary={text} />

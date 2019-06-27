@@ -1,25 +1,26 @@
 import React from "react";
 import Results from "./results/Results";
+import Fab from '@material-ui/core/Fab';
+import Grid from '@material-ui/core/Grid';
+import LoopIcon from '@material-ui/icons/Loop';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       number: 0,
-      arrRand:[],
-      data:{}
+      pokeArr: []
     };
   }
 
-  componentDidMount(){
-    let arr = Array.from({length: 16}, () => this.numberPadding(Math.floor(Math.random() * 808 ),3));
-    this.setState({"arrRand":arr})
+  componentDidMount() {
+    let initArr = Array.from(Array(24).keys(), x => (x + 1))
+    this.setState({ "pokeArr": initArr })
   }
 
-  numberPadding(number,size){
-  var s = String(number);
-  while (s.length < (size || 2)) {s = "0" + s;}
-  return s;
+  calculateRand = (e)=> {
+    let arr = Array.from({ length: 24 }, () => Math.floor(Math.random() * 808));
+    this.setState({ "pokeArr": arr })
   }
 
   SearchData(params) {
@@ -27,11 +28,26 @@ class Home extends React.Component {
       data: params
     });
   }
+
   render() {
     return (
-        <React.Fragment>
-            <Results data={this.state.data} arr={this.state.arrRand}/>
-        </React.Fragment>
+      <React.Fragment>
+        <Grid container spacing={4}>
+          <Grid container item xs={6} spacing={4}>
+            <Fab onClick={this.calculateRand} variant="extended" color="primary" aria-label="Add">
+              <LoopIcon />
+               Surprise Me!
+            </Fab>
+          </Grid>
+          <Grid container item xs={6} spacing={4}>
+            <Fab variant="extended" color="primary" aria-label="Add">
+              <LoopIcon />
+               Surprise Me!
+            </Fab>
+          </Grid>
+        </Grid>
+        <Results pokeArr={this.state.pokeArr} />
+      </React.Fragment>
     );
   }
 }

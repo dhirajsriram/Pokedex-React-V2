@@ -10,8 +10,8 @@ import { red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
 	palette: {
-		primary: { main: red[500] }, // Purple and green play nicely together.
-		secondary: { main: '#11cb5f' } // This is just green.A700 as hex.
+		primary: { main: red[500] }, 
+		secondary: { main: '#11cb5f' }
 	}
 });
 

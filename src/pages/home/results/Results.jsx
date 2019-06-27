@@ -7,10 +7,8 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1
 	},
-	paper: {
-		padding: theme.spacing(1),
-		textAlign: 'center',
-		color: theme.palette.text.secondary
+	pokemon: {
+		height: 300
 	}
 }));
 
@@ -20,11 +18,10 @@ export default function Results(props) {
 	function FormRow(props) {
 		return (
 			<React.Fragment>
-				{console.log(properties)}
-				{properties.arr.map(function(val, i) {
+				{properties.pokeArr.map(function (val, i) {
 					return (
 						<Grid item xs={12} sm={3} key={i}>
-							<Pokemon image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + val + ".png"}/>
+							<Pokemon name={"Lizard"} number={val} />
 						</Grid>
 					);
 				})}
@@ -34,11 +31,9 @@ export default function Results(props) {
 
 	return (
 		<div className={classes.root}>
-			<Grid container spacing={4}>
 				<Grid container item xs={12} spacing={4}>
 					<FormRow />
 				</Grid>
-			</Grid>
 		</div>
 	);
 }
