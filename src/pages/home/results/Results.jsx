@@ -1,39 +1,41 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Pokemon from '../../../common/pokemon/Pokemon';
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1
-	},
-	pokemon: {
-		height: 300
-	}
-}));
-
-export default function Results(props) {
-	const classes = useStyles();
-	let properties = props;
-	function FormRow(props) {
+const PokemonList = (props) =>{
 		return (
-			<React.Fragment>
-				{properties.pokeArr.map(function (val, i) {
-					return (
-						<Grid item xs={12} sm={3} key={i}>
-							<Pokemon name={"Lizard"} number={val} />
-						</Grid>
-					);
-				})}
-			</React.Fragment>
+			<Grid item xs={12} sm={3}>
+				<Pokemon number={props.number} />
+			</Grid>
+		);
+}
+
+class Results extends React.Component {
+	constructor(props) {
+		super();
+		this.state = {
+			pokeArr: []
+		};
+	}
+	componentDidMount(){
+		let initArr = Array.from(Array(24).keys(), (x) => x + 1);
+		this.setState({pokeArr : initArr})
+	}
+	
+	render() {
+		return (
+			<div>
+			<Grid container item xs={12} spacing={4}>
+			{this.props.pokeArr && this.props.pokeArr.map(function(val,i){
+				return(
+					<PokemonList number={val} key={i}></PokemonList>
+					)
+			})}
+			</Grid>
+		</div>
 		);
 	}
-
-	return (
-		<div className={classes.root}>
-				<Grid container item xs={12} spacing={4}>
-					<FormRow />
-				</Grid>
-		</div>
-	);
 }
+
+export default Results;
+

@@ -44,7 +44,7 @@ const Pokemon = React.memo((props) => {
 
   useEffect(() => {
     fetchPokemonData(props.number)
-  }, []);
+  }, [props.number]);
 
   async function fetchPokemonData(number) {
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/' + number)

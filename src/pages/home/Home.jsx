@@ -40,7 +40,7 @@ class Home extends React.Component {
             </Fab>
           </Grid>
           <Grid container item xs={6} spacing={4}>
-            
+          
           </Grid>
         </Grid>
         <Results pokeArr={this.state.pokeArr} />
