@@ -6,7 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Types from '../pokemon/Types'
+import Types from '../pokemon/Types';
+import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Link } from "react-router-dom";
@@ -29,6 +30,15 @@ const useStyles = makeStyles({
     display:"block",
     margin:"auto",
     width:"unset"
+  },
+  spacing4:{
+    margin : "-7px"
+  },
+  pokemonImage:{
+    width: "33%",
+    position: "absolute",
+    left: "64%",
+    top: "0px"
   }
 });
 
@@ -58,14 +68,8 @@ const Pokemon = React.memo((props) => {
       <Link className="default-text" to={"/description/" + props.number}>
       <Card className={classes.card}>
         <CardActionArea>
-          <div className={classes.image}>
-          {pokemon.name ?<CardMedia
-            component="img"
-            alt={pokemon.name + " image"}
-            height="300"
-            image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
-            title="Contemplative Reptile"
-          /> : <Skeleton height={300}></Skeleton>}</div>
+        <Grid container>
+        <Grid container item xs={8} spacing={4} className={classes.spacing4}>
           <CardContent className={classes.cardContent}>
             <Typography gutterBottom variant="subtitle2">
                {pokemon.name ? "#" + numberPadding(props.number, 3) : <Skeleton height={25}/>}
@@ -79,6 +83,19 @@ const Pokemon = React.memo((props) => {
               )
             }): <Skeleton height={30}></Skeleton>}
           </CardContent>
+          </Grid>
+          <Grid container item xs={4} spacing={4} className={classes.spacing4}>
+          <div className={classes.image}>
+          {pokemon.name ?<CardMedia
+            component="img"
+            className={classes.pokemonImage}
+            alt={pokemon.name + " image"}
+            height="150"
+            image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
+            title="Contemplative Reptile"
+          /> : <Skeleton height={100}></Skeleton>}</div>
+          </Grid>
+          </Grid>
         </CardActionArea>
       </Card></Link>
       </SkeletonTheme>

@@ -16,6 +16,6 @@
 	font-weight: inherit;
 }
 .MuiGrid-spacing-xs-4{
-	width: auto !important;
-   margin: auto !important;
+   width: auto !important;
+   margin: 0px !important;
 }
