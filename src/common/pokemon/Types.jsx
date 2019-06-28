@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,15 +59,11 @@ function pokemonType(type) {
 export default function Types(props) {
   const classes = useStyles();
 
-  function handleClick() {
-    alert('You clicked the Chip.');
-  }
-
   return (
+    <Link className="default-text" to={"/results/" +  props.name}>
     <Chip style={{backgroundColor: pokemonType(props.name)}}
       label={props.name}
-      onClick={handleClick}
       className={classes.chip}
-    />
+    /></Link>
   );
 }

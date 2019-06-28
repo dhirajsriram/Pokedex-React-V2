@@ -46,7 +46,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {['Home', 'Types'].map((text, index) => (
+        {['Home'].map((text, index) => (
           <Link className="default-text" to={"/" + text} key={index}>
           <ListItem button>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <ListIcon />}</ListItemIcon>

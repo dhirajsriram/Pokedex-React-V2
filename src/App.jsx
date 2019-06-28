@@ -7,6 +7,7 @@ import { Route , Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { red } from '@material-ui/core/colors';
+import { description } from './pages/description/description'
 
 const theme = createMuiTheme({
 	palette: {
@@ -30,6 +31,7 @@ class App extends Component {
 				<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/Home" component={Home} />
+				<Route exact path="/description/:id" component={description} />
 				<Route exact path="/About" component={About} />
 				</Switch>
 			</ThemeProvider>
