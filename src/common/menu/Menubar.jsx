@@ -8,9 +8,7 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Drawer from '../../common/menu/Drawer'
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from "react-router-dom";
 import Search from './Search';
@@ -169,7 +167,7 @@ export default function PrimarySearchAppBar() {
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							<img src={require("../../assets/pokeballSort.png")} width="35"></img>
+							<img src={require("../../assets/pokeballSort.png")} width="35" alt="pokeball-sort"></img>
 						</IconButton>
 					</div>
 					<div className={classes.sectionMobile}>
