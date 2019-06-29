@@ -113,8 +113,18 @@ export default function PrimarySearchAppBar() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
+			<MenuItem onClick={handleMenuClose}>Fire</MenuItem>
 			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 		</Menu>
 	);
 
@@ -137,25 +147,6 @@ export default function PrimarySearchAppBar() {
 				</IconButton>
 				<p>Messages</p>
 			</MenuItem>
-			<MenuItem>
-				<IconButton aria-label="Show 11 new notifications" color="inherit">
-					<Badge badgeContent={11} color="secondary">
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
-				<p>Notifications</p>
-			</MenuItem>
-			<MenuItem onClick={handleProfileMenuOpen}>
-				<IconButton
-					aria-label="Account of current user"
-					aria-controls="primary-search-account-menu"
-					aria-haspopup="true"
-					color="inherit"
-				>
-					<AccountCircle />
-				</IconButton>
-				<p>Profile</p>
-			</MenuItem>
 		</Menu>
 	);
 
@@ -163,22 +154,22 @@ export default function PrimarySearchAppBar() {
 		<div className={classes.grow}>
 			<AppBar position="static">
 				<Toolbar>
-				<Drawer></Drawer>
+					<Drawer></Drawer>
 					<Typography className={classes.title}>
 						<Link to="/home" className="default-text"><img src={require("../../assets/healthdex.png")} alt="logo" className="logo"></img></Link>
 					</Typography>
-						<Search></Search>
+					<Search></Search>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton
 							edge="end"
-							aria-label="Account of current user"
+							aria-label="Sort by types"
 							aria-controls={menuId}
 							aria-haspopup="true"
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							<AccountCircle />
+							<img src={require("../../assets/pokeballSort.png")} width="35"></img>
 						</IconButton>
 					</div>
 					<div className={classes.sectionMobile}>

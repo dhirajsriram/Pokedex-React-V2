@@ -8,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
@@ -47,6 +49,7 @@ function renderSuggestion(suggestionProps) {
         component="div"
         style={{
           fontWeight: isSelected ? 500 : 400,
+          borderRadius: "20px",
           textTransform: "capitalize"
         }}
       >
@@ -54,11 +57,11 @@ function renderSuggestion(suggestionProps) {
           width: "75px",
           marginRight: "10px"
         }} src={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(number, 3) + ".png"} alt={suggestion.name + " image"}></img>
-        <div style={{
-          color: "#9e9e9e",
-          display:"block",
-        }}>{"#" + numberPadding(number, 3)}</div>
-        <div>{suggestion.name}</div>
+        <Typography component="div">
+          <Box fontWeight="fontWeightRegular" m={1}>
+            {"#" + numberPadding(number, 3)}</Box>
+          <Box fontWeight="fontWeightMedium" m={1}>{suggestion.name}</Box>
+        </Typography>
       </MenuItem>
     </Link>
   );
@@ -133,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     left: 0,
     right: 0,
-    borderRadius:"20px"
+    borderRadius: "20px"
   },
 }));
 
