@@ -1,8 +1,5 @@
 import React from 'react';
 import Results from './results/Results';
-import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
-import LoopIcon from '@material-ui/icons/Loop';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -55,15 +52,6 @@ class Home extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Grid container spacing={4}>
-					<Grid container item xs={6} spacing={4}>
-						<Fab onClick={this.calculateRand} variant="extended" color="primary" aria-label="Add">
-							<LoopIcon />
-							Surprise Me!
-						</Fab>
-					</Grid>
-					<Grid container item xs={6} spacing={4} />
-				</Grid>
 				<Results pokeArr={this.state.pokeArr} />
 			</React.Fragment>
 		);

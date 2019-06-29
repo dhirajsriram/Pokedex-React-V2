@@ -10,37 +10,13 @@ import Types from '../pokemon/Types';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { withRouter} from 'react-router';
+import { withRouter } from 'react-router';
+import { TypeConsumer } from '../../common/context/typesContext';
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark'
   },
-});
-
-const useStyles = makeStyles({
-  card: {
-    maxWidth: "100%",
-  },
-  image: {
-    padding: "16px",
-    display: "block",
-    margin: "auto",
-    width: "unset"
-  },
-  text: {
-    paddingLeft: "8px",
-    textTransform: "capitalize"
-  },
-  spacing4: {
-    margin: "-7px"
-  },
-  pokemonImage: {
-    width: "33%",
-    position: "absolute",
-    left: "64%",
-    top: "0px"
-  }
 });
 
 function numberPadding(number, size) {
@@ -49,14 +25,46 @@ function numberPadding(number, size) {
   return s;
 }
 
-
-
-const Pokemon = withRouter((props,context) => {
-  const classes = useStyles();
+const Pokemon = withRouter((props, context) => {
+  
   const [pokemon, setPokemon] = useState({});
+  const useStyles = makeStyles({
+    card: {
+      maxWidth: "100%",
+    },
+    image: {
+      padding: "16px",
+      display: "block",
+      margin: "auto",
+      width: "unset"
+    },
+    text: {
+      paddingLeft: "8px",
+      textTransform: "capitalize"
+    },
+    spacing4: {
+      margin: "-7px"
+    },
+    pokemonImage: {
+      width:"22%",  
+      position: "absolute",
+      right: "0px",
+      top: "0px",
+      background: "rgba(255,255,255,0.5)",
+      borderTopLeftRadius: "70px",
+      borderBottomLeftRadius: "70px",
+    },
+    '@media (max-width: 600px)': {
+      pokemonImage: {
+        width:"44%",  
+      },
+    },
+  });
+
+  const classes = useStyles();
 
   useEffect(() => {
-    fetchPokemonData(props.number)
+    fetchPokemonData(props.number);
   }, [props.number]);
 
   async function fetchPokemonData(number) {
@@ -64,48 +72,48 @@ const Pokemon = withRouter((props,context) => {
     response = await response.json()
     setPokemon(response)
   }
-  
-  function redirect(target){
+
+  function redirect(target) {
     props.history.push('/dashboard/' + props.number)
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <TypeConsumer>{context => <ThemeProvider theme={theme}>
       <SkeletonTheme color="#757575" highlightColor="#616161">
-          {pokemon.name ? <Card className={classes.card} onClick={redirect}>
-            <CardActionArea>
-              <Grid container>
-                <Grid container item xs={8} spacing={4} className={classes.spacing4}>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="subtitle2" className={classes.text}>
-                      {pokemon.name && "#" + numberPadding(props.number, 3)}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                      {pokemon.name}
-                    </Typography>
-                    {pokemon.types && pokemon.types.map(function (val, i) {
-                      return (
-                        <Types name={val.type.name} key={i}></Types>
-                      )
-                    })}
-                  </CardContent>
-                </Grid>
-                <Grid container item xs={4} spacing={4} className={classes.spacing4}>
-                  <div className={classes.image}>
-                    {pokemon.name && <CardMedia
-                      component="img"
-                      className={classes.pokemonImage}
-                      alt={pokemon.name + " image"}
-                      height="150"
-                      image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
-                      title="Contemplative Reptile"
-                    />}</div>
-                </Grid>
+        {pokemon.name ? <Card className={classes.card} onClick={redirect}>
+          <CardActionArea style={{ background: context.findType(pokemon.types[1] ? pokemon.types[1].type.name : pokemon.types[0].type.name) }}>
+            <Grid container>
+              <Grid container item xs={8} spacing={4} className={classes.spacing4}>
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="subtitle2" className={classes.text}>
+                    {pokemon.name && "#" + numberPadding(props.number, 3)}
+                  </Typography>
+                  <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                    {pokemon.name}
+                  </Typography>
+                  {pokemon.types && pokemon.types.map(function (val, i) {
+                    return (
+                      <Types name={val.type.name} key={i}></Types>
+                    )
+                  })}
+                </CardContent>
               </Grid>
-            </CardActionArea>
-          </Card> : <Skeleton height={140}></Skeleton>}
+              <Grid container item xs={4} spacing={4} className={classes.spacing4}>
+                <div className={classes.image}>
+                  {pokemon.name && <CardMedia
+                    component="img"
+                    className={classes.pokemonImage}
+                    alt={pokemon.name + " image"}
+                    height="150"
+                    image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
+                    title="Contemplative Reptile"
+                  />}</div>
+              </Grid>
+            </Grid>
+          </CardActionArea>
+        </Card> : <Skeleton height={140}></Skeleton>}
       </SkeletonTheme>
-    </ThemeProvider>
+    </ThemeProvider>}</TypeConsumer>
   );
 })
 

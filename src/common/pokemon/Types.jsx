@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import { withRouter } from 'react-router';
-import { TypeConsumer } from "../../common/context/typesContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,14 +22,12 @@ const Types = withRouter((props) => {
     props.history.push("/results/" +  props.name)
   }
   return (
-    <TypeConsumer>{context=>
-    <Chip style={{backgroundColor: context.findType(props.name)}}
+      <Chip style={{border: "2px solid"}}
       label={props.name}
       className={classes.chip}
       onClick={redirect}
+      variant="outlined"
     />
-  }
-    </TypeConsumer>
   );
 })
 

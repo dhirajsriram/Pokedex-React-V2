@@ -19,3 +19,9 @@
    width: auto !important;
    margin: 0px !important;
 }
+.more-options{
+	position: fixed !important;
+	z-index: 99999999;
+	right:20px;
+	bottom: 20px;
+}
