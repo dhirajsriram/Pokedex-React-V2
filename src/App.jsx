@@ -8,6 +8,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
 import { description } from './pages/description/description'
 import { TypeProvider } from "./common/context/typesContext";
+import Listing from "./pages/listing/Listing"
 
 const theme = createMuiTheme({
 	palette: {
@@ -76,6 +77,7 @@ class App extends Component {
 				<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/Home" component={Home} />
+				<Route exact path="/results/:id" component={Listing} />
 				<Route exact path="/description/:id" component={description} />
 				</Switch>
 			</ThemeProvider>

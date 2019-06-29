@@ -1,5 +1,5 @@
 import React from 'react';
-import Results from './results/Results';
+import Results from '../../common/results/Results';
 import Fab from '@material-ui/core/Fab';
 
 class Home extends React.Component {
@@ -47,12 +47,6 @@ class Home extends React.Component {
 		this.handleClose()
 	};
 
-	SearchData(params) {
-		this.setState({
-			data: params
-		});
-	}
-
 	handleClick = (e) => {
 		this.setState({ "anchorEl": e.currentTarget });
 	}
@@ -65,7 +59,7 @@ class Home extends React.Component {
 		return (
 			<React.Fragment>
 				<Fab aria-controls="simple-menu" className="more-options" aria-haspopup="true" onClick={this.calculateRand}>
-					<img alt="randomise-icon" className={this.state.randToggle ? "transform-active transform": "transform"} src={require("../../assets/pokeball.png")} width="28"></img>
+					<img alt="randomise-icon" className={this.state.randToggle ? "transform-active transform": "transform"} src={require("../../assets/Pokeball.png")} width="28"></img>
 				</Fab>
 				<Results pokeArr={this.state.pokeArr}/>
 			</React.Fragment>

@@ -25,7 +25,6 @@ function numberPadding(number, size) {
 }
 
 const Pokemon = withRouter((props, context) => {
-  
   const [pokemon, setPokemon] = useState({});
   const useStyles = makeStyles({
     card: {
@@ -45,7 +44,7 @@ const Pokemon = withRouter((props, context) => {
       margin: "-7px"
     },
     pokemonImage: {
-      width:"22%",  
+      width: "22%",
       position: "absolute",
       right: "0px",
       top: "0px",
@@ -55,7 +54,7 @@ const Pokemon = withRouter((props, context) => {
     },
     '@media (max-width: 600px)': {
       pokemonImage: {
-        width:"37%",  
+        width: "37%",
       },
     },
   });
@@ -72,44 +71,50 @@ const Pokemon = withRouter((props, context) => {
     setPokemon(response)
   }
 
+  function onError(e){
+    e.target.onerror = null; 
+    e.target.src=(pokemon.sprites.front_default?pokemon.sprites.front_default:require("../../assets/unknown.png"))
+  }
+
   function redirect(target) {
     props.history.push('/dashboard/' + props.number)
   }
 
   return (
     <TypeConsumer>{context => <ThemeProvider theme={theme}>
-        {pokemon.name ? <Card className={classes.card} onClick={redirect}>
-          <CardActionArea style={{ background: context.findType(pokemon.types[1] ? pokemon.types[1].type.name : pokemon.types[0].type.name) }}>
-            <Grid container>
-              <Grid container item xs={9} spacing={4} className={classes.spacing4}>
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="subtitle2" className={classes.text}>
-                    {pokemon.name && "#" + numberPadding(props.number, 3)}
-                  </Typography>
-                  <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                    {pokemon.name}
-                  </Typography>
-                  {pokemon.types && pokemon.types.map(function (val, i) {
-                    return (
-                      <Types name={val.type.name} key={i}></Types>
-                    )
-                  })}
-                </CardContent>
-              </Grid>
-              <Grid container item xs={3} spacing={4} className={classes.spacing4}>
-                <div className={classes.image}>
-                  {pokemon.name && <CardMedia
-                    component="img"
-                    className={classes.pokemonImage}
-                    alt={pokemon.name + " image"}
-                    height="150"
-                    image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
-                    title="Contemplative Reptile"
-                  />}</div>
-              </Grid>
+      {pokemon.sprites ? <Card className={classes.card} onClick={redirect}>
+        <CardActionArea style={{ background: context.findType(props.match.params.id ? props.match.params.id : pokemon.types[1] ? pokemon.types[1].type.name : pokemon.types[0].type.name) }}>
+          <Grid container>
+            <Grid container item xs={9} spacing={4} className={classes.spacing4}>
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="subtitle2" className={classes.text}>
+                  {pokemon.name && "#" + numberPadding(props.number, 3)}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                  {pokemon.name}
+                </Typography>
+                {pokemon.types && pokemon.types.map(function (val, i) {
+                  return (
+                    <Types name={val.type.name} key={i}></Types>
+                  )
+                })}
+              </CardContent>
             </Grid>
-          </CardActionArea>
-        </Card> : <div className="loader static"></div>}
+            <Grid container item xs={3} spacing={4} className={classes.spacing4}>
+              <div className={classes.image}>
+                {pokemon.name && <CardMedia
+                  component="img"
+                  className={classes.pokemonImage}
+                  alt={pokemon.name + " image"}
+                  height="150"
+                  onError={onError}
+                  image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
+                  title="Contemplative Reptile"
+                />}</div>
+            </Grid>
+          </Grid>
+        </CardActionArea>
+      </Card> : <div className="loader static"></div>}
     </ThemeProvider>}</TypeConsumer>
   );
 })

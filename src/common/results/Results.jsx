@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Pokemon from '../../../common/pokemon/Pokemon';
+import Pokemon from '../pokemon/Pokemon';
 
 const PokemonList = (props) => {
 	return (

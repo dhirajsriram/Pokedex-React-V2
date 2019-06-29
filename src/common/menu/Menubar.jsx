@@ -13,6 +13,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from "react-router-dom";
 import Search from './Search';
 
+const Types = ["fire","water","grass","electric","fighting","psychic","normal","steel","dark","dragon","fairy"]
+
 const useStyles = makeStyles(theme => ({
 	grow: {
 		flexGrow: 1,
@@ -67,6 +69,12 @@ const useStyles = makeStyles(theme => ({
 			display: 'flex',
 		},
 	},
+	typeImages :{
+		filter : "saturate(2)"	
+	},
+	menuItems : {
+		display: "inline-flex"
+	},
 	sectionMobile: {
 		display: 'flex',
 		[theme.breakpoints.up('md')]: {
@@ -110,19 +118,11 @@ export default function PrimarySearchAppBar() {
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 			open={isMenuOpen}
 			onClose={handleMenuClose}
-		>
-			<MenuItem onClick={handleMenuClose}>Fire</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+		>{ Types.map(function(type,i){
+			return(
+				<Link to={"/results/" + type} key={i}><MenuItem onClick={handleMenuClose} className={classes.menuItems}><img className={classes.typeImages} src={require("../../assets/"+type+".png")} alt={type}></img></MenuItem></Link>
+			)
+		})}
 		</Menu>
 	);
 
