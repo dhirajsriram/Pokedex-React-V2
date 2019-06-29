@@ -1,5 +1,6 @@
 import React from 'react';
 import Results from './results/Results';
+import Fab from '@material-ui/core/Fab';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -7,7 +8,9 @@ class Home extends React.Component {
 		this.state = {
 			number: 0,
 			pokeArr: [],
-			randomized: false
+			randomized: false,
+			randToggle:false,
+			anchorEl: null
 		};
 	}
 
@@ -40,7 +43,8 @@ class Home extends React.Component {
 
 	calculateRand = (e) => {
 		let arr = Array.from({ length: 24 }, () => Math.floor(Math.random() * 808));
-		this.setState({ pokeArr: arr, randomized: true });
+		this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle});
+		this.handleClose()
 	};
 
 	SearchData(params) {
@@ -49,10 +53,21 @@ class Home extends React.Component {
 		});
 	}
 
+	handleClick = (e) => {
+		this.setState({ "anchorEl": e.currentTarget });
+	}
+
+	handleClose = (e) => {
+		this.setState({ "anchorEl": null });
+	}
+
 	render() {
 		return (
 			<React.Fragment>
-				<Results pokeArr={this.state.pokeArr} />
+				<Fab aria-controls="simple-menu" className="more-options" aria-haspopup="true" onClick={this.calculateRand}>
+					<img alt="randomise-icon" className={this.state.randToggle ? "transform-active transform": "transform"} src={require("../../assets/pokeball.png")} width="28"></img>
+				</Fab>
+				<Results pokeArr={this.state.pokeArr}/>
 			</React.Fragment>
 		);
 	}

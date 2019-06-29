@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Types from '../pokemon/Types';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { withRouter } from 'react-router';
 import { TypeConsumer } from '../../common/context/typesContext';
 
@@ -56,7 +55,7 @@ const Pokemon = withRouter((props, context) => {
     },
     '@media (max-width: 600px)': {
       pokemonImage: {
-        width:"44%",  
+        width:"37%",  
       },
     },
   });
@@ -79,11 +78,10 @@ const Pokemon = withRouter((props, context) => {
 
   return (
     <TypeConsumer>{context => <ThemeProvider theme={theme}>
-      <SkeletonTheme color="#757575" highlightColor="#616161">
         {pokemon.name ? <Card className={classes.card} onClick={redirect}>
           <CardActionArea style={{ background: context.findType(pokemon.types[1] ? pokemon.types[1].type.name : pokemon.types[0].type.name) }}>
             <Grid container>
-              <Grid container item xs={8} spacing={4} className={classes.spacing4}>
+              <Grid container item xs={9} spacing={4} className={classes.spacing4}>
                 <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="subtitle2" className={classes.text}>
                     {pokemon.name && "#" + numberPadding(props.number, 3)}
@@ -98,7 +96,7 @@ const Pokemon = withRouter((props, context) => {
                   })}
                 </CardContent>
               </Grid>
-              <Grid container item xs={4} spacing={4} className={classes.spacing4}>
+              <Grid container item xs={3} spacing={4} className={classes.spacing4}>
                 <div className={classes.image}>
                   {pokemon.name && <CardMedia
                     component="img"
@@ -111,8 +109,7 @@ const Pokemon = withRouter((props, context) => {
               </Grid>
             </Grid>
           </CardActionArea>
-        </Card> : <Skeleton height={140}></Skeleton>}
-      </SkeletonTheme>
+        </Card> : <div className="loader static"></div>}
     </ThemeProvider>}</TypeConsumer>
   );
 })

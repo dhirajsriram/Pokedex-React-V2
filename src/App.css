@@ -1,13 +1,9 @@
-.loader{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(255,255,255,0.6) url(./assets/pokeball.gif) center center no-repeat;z-index:5;}
-.loader.fullscreen{position:fixed;}
-.loader.static{position:relative;height:80px;border-radius:8px;}
+.loader{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(255,255,255,0.6) url(./assets/pokeball.gif) center center no-repeat;background-size: 15%;z-index:5;}
+.loader.static{position:relative;height:150px;border-radius:8px;}
 
 @media only screen and (max-width: 600px)  {
-	.pokemon-data{
-	   margin:10px 10px;  
-	}
-	.card-body{
-		padding:10px 0px;
+	.loader{
+		background-size: 20%
 	}
 }
 .default-text{
@@ -21,7 +17,21 @@
 }
 .more-options{
 	position: fixed !important;
-	z-index: 99999999;
+	background: "white";
+	color:"black";
+	z-index: 100;
 	right:20px;
 	bottom: 20px;
 }
+.transform {
+	-webkit-transition: all 1s ease;  
+	-moz-transition: all 1s ease;  
+	-o-transition: all 1s ease;  
+	-ms-transition: all 1s ease;  
+	transition: all 1s ease;
+ }
+ .transform-active {
+	transform: rotate(360deg);
+   -webkit-transform: rotate(360deg);
+   -ms-transform: rotate(360deg);
+ }

@@ -40,29 +40,26 @@ function renderSuggestion(suggestionProps) {
   var number = suggestion.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/", "")
   return (
     <Link className="default-text" to={"/description/" + number}>
-    <MenuItem
-      {...itemProps}
-      key={suggestion.name}
-      selected={isHighlighted}
-      component="div"
-      style={{
-        fontWeight: isSelected ? 500 : 400,
-        textTransform: "capitalize"
-      }}
-    >
-      <img style={{
-        width: "30px",
-        margin: "5px"
-      }} src={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(number, 3) + ".png"} alt={suggestion.name + " image"}></img>
-
-      <div>{suggestion.name}</div>
-      <div style={{
-        color: "#9e9e9e",
-        position: "absolute",
-        right: "11px",
-        top: "10.5px"
-      }}>{"#" + numberPadding(number, 3)}</div>
-    </MenuItem>
+      <MenuItem
+        {...itemProps}
+        key={suggestion.name}
+        selected={isHighlighted}
+        component="div"
+        style={{
+          fontWeight: isSelected ? 500 : 400,
+          textTransform: "capitalize"
+        }}
+      >
+        <img style={{
+          width: "75px",
+          marginRight: "10px"
+        }} src={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(number, 3) + ".png"} alt={suggestion.name + " image"}></img>
+        <div style={{
+          color: "#9e9e9e",
+          display:"block",
+        }}>{"#" + numberPadding(number, 3)}</div>
+        <div>{suggestion.name}</div>
+      </MenuItem>
     </Link>
   );
 }
@@ -93,16 +90,18 @@ function getSuggestions(value, pokemonlist, { showEmpty = false } = {}) {
 const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.black, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.black, 0.25),
     },
     marginLeft: 0,
+    margin: "0px 8px",
     width: '100%',
+    borderRadius: "20px",
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
+      margin: "0px 20px",
+      width: '100%',
+      borderRadius: "20px"
     },
   },
   searchIcon: {
@@ -134,6 +133,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     left: 0,
     right: 0,
+    borderRadius:"20px"
   },
 }));
 
