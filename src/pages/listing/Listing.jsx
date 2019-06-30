@@ -26,7 +26,7 @@ class Listing extends React.Component {
 	}
 
 	isBottom(el) {
-		return el.getBoundingClientRect().bottom - 400 <= window.innerHeight;
+		return el.getBoundingClientRect().bottom - 1 <= window.innerHeight;
 	}
 
 	trackScrolling = () => {

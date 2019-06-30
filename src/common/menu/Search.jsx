@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { withRouter } from 'react-router';
 
 function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
@@ -41,7 +42,7 @@ function renderSuggestion(suggestionProps) {
   const isSelected = (selectedItem || '').indexOf(suggestion.name) > -1;
   var number = suggestion.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/", "")
   return (
-    <Link className="default-text" to={"/description/" + number}>
+    <Link className="default-text" to={"/description/" + number} key={index}>
       <MenuItem
         {...itemProps}
         key={suggestion.name}
@@ -58,9 +59,9 @@ function renderSuggestion(suggestionProps) {
           marginRight: "10px"
         }} src={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(number, 3) + ".png"} alt={suggestion.name + " image"}></img>
         <Typography component="div">
-          <Box fontWeight="fontWeightRegular" m={1}>
-            {"#" + numberPadding(number, 3)}</Box>
-          <Box fontWeight="fontWeightMedium" m={1}>{suggestion.name}</Box>
+        <Box fontWeight="fontWeightMedium" m={1}>{suggestion.name}</Box>
+        <Box fontWeight="fontWeightRegular" m={1}>
+            {"#" + numberPadding(number, 3)}</Box>  
         </Typography>
       </MenuItem>
     </Link>
@@ -140,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Search() {
+const Search = withRouter((props, context) => {
   const classes = useStyles();
   const [pokemonList, setPokemonList] = useState("");
   useEffect(() => {
@@ -151,6 +152,11 @@ export default function Search() {
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=811')
     response = await response.json()
     setPokemonList(response.results)
+  }
+
+  function handleForm(e){
+    e.preventDefault();
+    props.history.push("/description/")
   }
   return (
     <React.Fragment>
@@ -176,6 +182,7 @@ export default function Search() {
                 <div className={classes.searchIcon}>
                   <SearchIcon />
                 </div>
+                <form onSubmit={handleForm}>
                 {renderInput({
                   fullWidth: true,
                   classes,
@@ -184,7 +191,7 @@ export default function Search() {
                   InputProps: { onBlur, onFocus },
                   inputProps,
                 })}
-
+                </form>
                 <div {...getMenuProps()}>
                   {isOpen ? (
                     <Paper className={classes.paper} square>
@@ -206,4 +213,6 @@ export default function Search() {
         </Downshift>}
     </React.Fragment>
   );
-}
+})
+
+export default Search;

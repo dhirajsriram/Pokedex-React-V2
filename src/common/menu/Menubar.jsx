@@ -4,11 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import Drawer from '../../common/menu/Drawer'
-import MailIcon from '@material-ui/icons/Mail';
+import Drawer from '../../common/menu/Drawer';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from "react-router-dom";
 import Search from './Search';
@@ -136,15 +134,13 @@ export default function PrimarySearchAppBar() {
 			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
+			className="mobileMenu"
 		>
-			<MenuItem>
-				<IconButton aria-label="Show 4 new mails" color="inherit">
-					<Badge badgeContent={4} color="secondary">
-						<MailIcon />
-					</Badge>
-				</IconButton>
-				<p>Messages</p>
-			</MenuItem>
+			{ Types.map(function(type,i){
+			return(
+				<Link to={"/results/" + type} key={i}><MenuItem onClick={handleMenuClose} className={classes.menuItems}><img className={classes.typeImages} src={require("../../assets/"+type+".png")} alt={type}></img></MenuItem></Link>
+			)
+		})}
 		</Menu>
 	);
 

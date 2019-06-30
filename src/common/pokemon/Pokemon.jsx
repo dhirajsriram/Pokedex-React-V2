@@ -26,6 +26,7 @@ function numberPadding(number, size) {
 
 const Pokemon = withRouter((props, context) => {
   const [pokemon, setPokemon] = useState({});
+  const [imageLoaded, setImageLoaded] = useState(false)
   const useStyles = makeStyles({
     card: {
       maxWidth: "100%",
@@ -34,7 +35,7 @@ const Pokemon = withRouter((props, context) => {
       padding: "16px",
       display: "block",
       margin: "auto",
-      width: "unset"
+      width: "unset",
     },
     text: {
       paddingLeft: "8px",
@@ -42,6 +43,17 @@ const Pokemon = withRouter((props, context) => {
     },
     spacing4: {
       margin: "-7px"
+    },
+    loaderImage:{
+      width: "18%",
+      height:"100%",
+      position: "absolute",
+      right: "0px",
+      top: "0px",
+      background: "rgba(255,255,255,0.5)",
+      borderTopLeftRadius: "70px",
+      borderBottomLeftRadius: "70px",
+      transition :"all 1s ease"
     },
     pokemonImage: {
       width: "22%",
@@ -51,6 +63,7 @@ const Pokemon = withRouter((props, context) => {
       background: "rgba(255,255,255,0.5)",
       borderTopLeftRadius: "70px",
       borderBottomLeftRadius: "70px",
+      transition :"all 1s ease"
     },
     '@media (max-width: 600px)': {
       pokemonImage: {
@@ -69,6 +82,10 @@ const Pokemon = withRouter((props, context) => {
     let response = await fetch('https://pokeapi.co/api/v2/pokemon/' + number)
     response = await response.json()
     setPokemon(response)
+  }
+
+  function handleImageLoaded(e){
+    setImageLoaded(true)
   }
 
   function onError(e){
@@ -102,11 +119,14 @@ const Pokemon = withRouter((props, context) => {
             </Grid>
             <Grid container item xs={3} spacing={4} className={classes.spacing4}>
               <div className={classes.image}>
+              {!imageLoaded && <img className={classes.loaderImage} src={require("../../assets/pokeball.gif")} height={125} alt="pokeball-img"/>}
                 {pokemon.name && <CardMedia
                   component="img"
                   className={classes.pokemonImage}
                   alt={pokemon.name + " image"}
                   height="150"
+                  style={imageLoaded ? {display: 'block'}: {display: 'none'}}
+                  onLoad={handleImageLoaded}
                   onError={onError}
                   image={"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + numberPadding(props.number, 3) + ".png"}
                   title="Contemplative Reptile"
