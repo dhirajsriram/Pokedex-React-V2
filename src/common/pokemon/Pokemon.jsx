@@ -124,7 +124,7 @@ const Pokemon = withRouter((props, context) => {
   }
 
   function redirect(target) {
-    props.history.push("/dashboard/" + props.number);
+    props.history.push("/description/" + pokemon.name);
   }
 
   return (
