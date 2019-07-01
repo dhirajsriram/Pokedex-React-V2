@@ -82,23 +82,6 @@ renderSuggestion.propTypes = {
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired
 };
 
-function getSuggestions(value, pokemonlist, { showEmpty = false } = {}) {
-  const inputValue = deburr(value.trim()).toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
-  return inputLength === 0 && !showEmpty
-    ? []
-    : pokemonlist.filter(suggestion => {
-        const keep =
-          count < 5 &&
-          suggestion.name.slice(0, inputLength).toLowerCase() === inputValue;
-        if (keep) {
-          count += 1;
-        }
-        return keep;
-      });
-}
-
 const useStyles = makeStyles(theme => ({
   search: {
     position: "relative",
@@ -164,6 +147,24 @@ const Search = withRouter((props, context) => {
     setPokemonList(response.results);
   }
 
+  function getSuggestions(value, pokemonlist, { showEmpty = false } = {}) {
+    setSearchVal(value);
+    const inputValue = deburr(value.trim()).toLowerCase();
+    const inputLength = inputValue.length;
+    let count = 0;
+    return inputLength === 0 && !showEmpty
+      ? []
+      : pokemonlist.filter(suggestion => {
+          const keep =
+            count < 5 &&
+            suggestion.name.slice(0, inputLength).toLowerCase() === inputValue;
+          if (keep) {
+            count += 1;
+          }
+          return keep;
+        });
+  }
+
   function renderInput(inputProps) {
     const { InputProps, classes, ref, ...other } = inputProps;
     return (
@@ -179,19 +180,13 @@ const Search = withRouter((props, context) => {
           input: classes.inputInput
         }}
         placeholder={"Search…"}
-        onChange={handleChange}
       />
     );
-  }
-  function handleChange(e) {
-    console.log(e.target.value);
-    setSearchVal(e.target.value)
   }
 
   function handleForm(e) {
     e.preventDefault();
-    console.log(e)
-    props.history.push("/description/" + searchVal);
+    props.history.push("/description/" + searchVal.toLowerCase());
   }
 
   return (
@@ -208,7 +203,7 @@ const Search = withRouter((props, context) => {
             isOpen,
             selectedItem
           }) => {
-            const { onBlur, onFocus,onChange, ...inputProps } = getInputProps({
+            const { onBlur, onFocus, ...inputProps } = getInputProps({
               pokemonlist: pokemonList,
               placeholder: "Search.."
             });

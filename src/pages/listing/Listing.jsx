@@ -45,7 +45,6 @@ class Listing extends React.Component {
 		let response = await fetch(`https://pokeapi.co/api/v2/type/` + type)
     	response = await response.json()
 		let pokemonArr = response.pokemon;
-		console.log(pokemonArr);
 		let initArr = pokemonArr.map(number => number.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/", ""));
 		this.setState({"pokeArr" : initArr.slice(0,24),"fullArr": initArr,"index":this.state.index + 24})
 	}
