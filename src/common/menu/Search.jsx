@@ -11,14 +11,7 @@ import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { withRouter } from "react-router";
-
-function numberPadding(number, size) {
-  var s = String(number);
-  while (s.length < (size || 2)) {
-    s = "0" + s;
-  }
-  return s;
-}
+import { PokemonConsumer } from "../context/pokemonContext";
 
 function renderSuggestion(suggestionProps) {
   const {
@@ -34,6 +27,7 @@ function renderSuggestion(suggestionProps) {
     .replace("https://pokeapi.co/api/v2/pokemon/", "")
     .replace("/", "");
   return (
+    <PokemonConsumer>{context=>(
     <Link
       className="default-text"
       to={"/description/" + suggestion.name}
@@ -57,7 +51,7 @@ function renderSuggestion(suggestionProps) {
           }}
           src={
             "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-            numberPadding(number, 3) +
+            context.numberPadding(number, 3) +
             ".png"
           }
           alt={suggestion.name + " image"}
@@ -67,11 +61,12 @@ function renderSuggestion(suggestionProps) {
             {suggestion.name}
           </Box>
           <Box fontWeight="fontWeightRegular" m={1}>
-            {"#" + numberPadding(number, 3)}
+            {"#" + context.numberPadding(number, 3)}
           </Box>
         </Typography>
       </MenuItem>
-    </Link>
+    </Link>)}
+    </PokemonConsumer>
   );
 }
 renderSuggestion.propTypes = {

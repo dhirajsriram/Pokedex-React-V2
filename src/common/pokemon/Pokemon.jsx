@@ -10,7 +10,7 @@ import Types from "../pokemon/Types";
 import Grid from "@material-ui/core/Grid";
 import { ThemeProvider } from "@material-ui/styles";
 import { withRouter } from "react-router";
-import { TypeConsumer } from "../../common/context/typesContext";
+import { PokemonConsumer } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const theme = createMuiTheme({
@@ -18,14 +18,6 @@ const theme = createMuiTheme({
     type: "dark"
   }
 });
-
-function numberPadding(number, size) {
-  var s = String(number);
-  while (s.length < (size || 2)) {
-    s = "0" + s;
-  }
-  return s;
-}
 
 const Pokemon = withRouter((props, context) => {
   const [pokemon, setPokemon] = useState({});
@@ -128,7 +120,7 @@ const Pokemon = withRouter((props, context) => {
   }
 
   return (
-    <TypeConsumer>
+    <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
           {!(pokemon && imageLoaded) &&<SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
@@ -170,7 +162,7 @@ const Pokemon = withRouter((props, context) => {
                         variant="subtitle2"
                         className={classes.text}
                       >
-                        {pokemon.name && "#" + numberPadding(props.number, 3)}
+                        {pokemon.name && "#" + context.numberPadding(props.number, 3)}
                       </Typography>
                       <Typography
                         gutterBottom
@@ -209,7 +201,7 @@ const Pokemon = withRouter((props, context) => {
                           onError={onError}
                           image={
                             "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-                            numberPadding(props.number, 3) +
+                            context.numberPadding(props.number, 3) +
                             ".png"
                           }
                           title="Contemplative Reptile"
@@ -223,7 +215,7 @@ const Pokemon = withRouter((props, context) => {
           )}
         </ThemeProvider>
       )}
-    </TypeConsumer>
+    </PokemonConsumer>
   );
 });
 

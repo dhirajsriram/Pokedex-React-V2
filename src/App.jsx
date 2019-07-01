@@ -7,7 +7,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
 import  Description  from "./pages/description/Description"
-import { TypeProvider } from "./common/context/typesContext";
+import { PokemonProvider } from "./common/context/pokemonContext";
 import Listing from "./pages/listing/Listing"
 
 const theme = createMuiTheme({
@@ -65,12 +65,20 @@ class App extends Component {
 		  default:
 		}
 	  }
+	 numberPadding(number, size) {
+		var s = String(number);
+		while (s.length < (size || 2)) {
+		  s = "0" + s;
+		}
+		return s;
+	  }
 
 	render() {
 		return (
-			<TypeProvider value={{
+			<PokemonProvider value={{
 				state: this.state,
 				findType: this.findType,
+				numberPadding:this.numberPadding
 			}}>
 			<ThemeProvider theme={theme}>
 				<Menubar/>
@@ -80,7 +88,7 @@ class App extends Component {
 				<Route exact path="/description/:id" component={Description} />
 				</Switch>
 			</ThemeProvider>
-			</TypeProvider>
+			</PokemonProvider>
 		);
 	}
 }
