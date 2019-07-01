@@ -9,6 +9,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
 import { PokemonConsumer } from '../../common/context/pokemonContext';
+import Types from '../../common/pokemon/Types';
+import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles({
 	container: {
@@ -42,10 +44,20 @@ export default function Description(props) {
 
 	return (
 		<PokemonConsumer>
-			{(context) => {
+			{(context) => (
 				<React.Fragment>
 					<Container className={classes.container}>
-						<Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
+						<Typography
+							component="div"
+							style={{
+								backgroundColor: context.findType(
+									props.match.params.id
+										? props.match.params.id
+										: pokemonData.types[1] ? pokemonData.types[1].type.name : pokemonData.types[0].type.name
+								)
+							}}
+						>
+							<Card className={classes.card}>
 							<Grid>
 								<img
 									xs={6}
@@ -56,7 +68,17 @@ export default function Description(props) {
 									}
 									alt={pokemonData.name + ' image'}
 								/>
+								<div xs={6}>
+									<Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+										{pokemonData.name}
+									</Typography>
+									{pokemonData.types &&
+										pokemonData.types.map(function(val, i) {
+											return <Types name={val.type.name} key={i} />;
+										})}
+								</div>
 							</Grid>
+							</Card>
 						</Typography>
 						<BottomNavigation
 							value={value}
@@ -71,8 +93,8 @@ export default function Description(props) {
 							<BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
 						</BottomNavigation>
 					</Container>
-				</React.Fragment>;
-			}}
+				</React.Fragment>
+			)}
 		</PokemonConsumer>
 	);
 }
