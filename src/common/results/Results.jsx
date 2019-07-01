@@ -18,7 +18,7 @@ class Results extends React.Component {
 		};
 	}
 	componentDidMount() {
-		let initArr = Array.from(Array(24).keys(), (x) => x + 1);
+		let initArr = Array.from(Array(12).keys(), (x) => x + 1);
 		this.setState({ pokeArr: initArr })
 	}
 

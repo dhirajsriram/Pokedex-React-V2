@@ -135,7 +135,6 @@ const useStyles = makeStyles(theme => ({
 const Search = withRouter((props, context) => {
   const classes = useStyles();
   const [pokemonList, setPokemonList] = useState("");
-  const [searchVal, setSearchVal] = useState("");
 
   useEffect(() => {
     fetchPokemonData();
@@ -148,7 +147,6 @@ const Search = withRouter((props, context) => {
   }
 
   function getSuggestions(value, pokemonlist, { showEmpty = false } = {}) {
-    setSearchVal(value);
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
@@ -186,7 +184,8 @@ const Search = withRouter((props, context) => {
 
   function handleForm(e) {
     e.preventDefault();
-    props.history.push("/description/" + searchVal.toLowerCase());
+    var search = document.querySelector("#downshift-simple-input").value;
+    props.history.push("/description/" + search.toLowerCase());
   }
 
   return (

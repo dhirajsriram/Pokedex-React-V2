@@ -150,7 +150,7 @@ export default function PrimarySearchAppBar() {
 				<Toolbar>
 					<Drawer></Drawer>
 					<Typography className={classes.title}>
-						<Link to="/home" className="default-text"><img src={require("../../assets/healthdex.png")} alt="logo" className="logo"></img></Link>
+						<Link to="/" className="default-text"><img src={require("../../assets/healthdex.png")} alt="logo" className="logo"></img></Link>
 					</Typography>
 					<Search></Search>
 					<div className={classes.grow} />

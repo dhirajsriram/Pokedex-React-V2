@@ -76,7 +76,6 @@ class App extends Component {
 				<Menubar/>
 				<Switch>
 				<Route exact path="/" component={Home} />
-				<Route exact path="/Home" component={Home} />
 				<Route exact path="/results/:id" component={Listing} />
 				<Route exact path="/description/:id" component={description} />
 				</Switch>

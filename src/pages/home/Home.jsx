@@ -15,7 +15,7 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		let initArr = Array.from(Array(24).keys(), (x) => x + 1);
+		let initArr = Array.from(Array(12).keys(), (x) => x + 1);
 		this.setState({ pokeArr: initArr });
 		document.addEventListener('scroll', this.trackScrolling);
 	}
@@ -32,17 +32,17 @@ class Home extends React.Component {
 		const wrappedElement = document.body;
 		if (this.isBottom(wrappedElement)) {
 			if (!this.state.randomized) {
-				let initArr = Array.from(Array(this.state.pokeArr.length + 24).keys(), (x) => x + 1);
+				let initArr = Array.from(Array(this.state.pokeArr.length + 12).keys(), (x) => x + 1);
 				this.setState({ pokeArr: initArr });
 			} else {
-				let arr = Array.from({ length: 24 }, () => Math.floor(Math.random() * 808));
+				let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
 				this.setState({ pokeArr: this.state.pokeArr.concat(arr) });
 			}
 		}
 	};
 
 	calculateRand = (e) => {
-		let arr = Array.from({ length: 24 }, () => Math.floor(Math.random() * 808));
+		let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
 		this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle});
 		this.handleClose()
 	};

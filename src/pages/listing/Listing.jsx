@@ -32,7 +32,7 @@ class Listing extends React.Component {
 	trackScrolling = () => {
 		const wrappedElement = document.body;
 		if (this.isBottom(wrappedElement)) {
-			this.setState({"index":this.state.index + 24})
+			this.setState({"index":this.state.index + 12})
 			if(this.state.index < this.state.fullArr.length){
 				let initArr = this.state.fullArr.slice(0,this.state.index);
 				this.setState({ pokeArr: initArr });
@@ -46,7 +46,7 @@ class Listing extends React.Component {
     	response = await response.json()
 		let pokemonArr = response.pokemon;
 		let initArr = pokemonArr.map(number => number.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/", ""));
-		this.setState({"pokeArr" : initArr.slice(0,24),"fullArr": initArr,"index":this.state.index + 24})
+		this.setState({"pokeArr" : initArr.slice(0,12),"fullArr": initArr,"index":this.state.index + 12})
 	}
 
 	render() {
