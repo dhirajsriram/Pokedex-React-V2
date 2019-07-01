@@ -77,15 +77,26 @@ const Pokemon = withRouter((props, context) => {
       width: "80%"
     },
     skeletonImage: {
-      width: "20%",
-      padding: "0px 18px",
+      width: "8%",
+      padding: "0px 20px",
       display: "inline-block",
       position: "absolute"
     },
-    "@media (max-width: 600px)": {
+    "@media (max-width: 800px)": {
       pokemonImage: {
-        width: "37%"
-      }
+        width: "40%"
+      },
+      skeletonText:{
+        width: "60%"
+      },
+      skeletonImage : {
+        width: "15%",
+      },
+    },
+      "@media (max-width: 600px)": {
+        skeletonImage : {
+          width: "30%",
+        },
     }
   });
 
@@ -128,7 +139,7 @@ const Pokemon = withRouter((props, context) => {
                 <Skeleton height={25} />
               </div>
               <div className = {classes.skeletonImage}>
-                <Skeleton height={124} width={145} />
+                <Skeleton height={130}/>
               </div>
             </div>
           </SkeletonTheme>}
@@ -149,7 +160,7 @@ const Pokemon = withRouter((props, context) => {
                   <Grid
                     container
                     item
-                    xs={9}
+                    xs={10}
                     spacing={4}
                     className={classes.spacing4}
                   >
@@ -178,7 +189,7 @@ const Pokemon = withRouter((props, context) => {
                   <Grid
                     container
                     item
-                    xs={3}
+                    xs={2}
                     spacing={4}
                     className={classes.spacing4}
                   >
