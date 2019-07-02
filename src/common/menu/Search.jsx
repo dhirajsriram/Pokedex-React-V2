@@ -27,11 +27,10 @@ function renderSuggestion(suggestionProps) {
     .replace("https://pokeapi.co/api/v2/pokemon/", "")
     .replace("/", "");
   return (
-    <PokemonConsumer>{context=>(
+    <PokemonConsumer key={index}>{context=>(
     <Link
       className="default-text"
       to={"/description/" + suggestion.name}
-      key={index}
     >
       <MenuItem
         {...itemProps}

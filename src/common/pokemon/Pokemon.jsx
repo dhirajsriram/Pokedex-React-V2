@@ -51,7 +51,7 @@ const Pokemon = withRouter((props, context) => {
       transition: "all 1s ease"
     },
     pokemonImage: {
-      width: "30%",
+      width: "20%",
       position: "absolute",
       right: "0px",
       top: "0px",
@@ -66,10 +66,10 @@ const Pokemon = withRouter((props, context) => {
     },
     skeletonText: {
       display: "inline-block",
-      width: "70%"
+      width: "80%"
     },
     skeletonImage: {
-      width: "12%",
+      width: "8%",
       padding: "0px 20px",
       display: "inline-block",
       position: "absolute"
@@ -78,24 +78,28 @@ const Pokemon = withRouter((props, context) => {
       pokemonImage: {
         width: "40%"
       },
-      skeletonText:{
+      skeletonText: {
         width: "60%"
       },
-      skeletonImage : {
-        width: "15%",
-      },
+      skeletonImage: {
+        width: "10%"
+      }
     },
-      "@media (max-width: 600px)": {
-        skeletonImage : {
-          width: "30%",
-        },
+    "@media (max-width: 600px)": {
+      skeletonImage: {
+        width: "30%"
+      }
     }
   });
 
   const classes = useStyles();
 
   useEffect(() => {
-    fetchPokemonData(props.number);
+    if (!props.descriptionPage) {
+      fetchPokemonData(props.number);
+    } else {
+      setPokemon(props.pokemonData)
+    }
   }, [props.number]);
 
   async function fetchPokemonData(number) {
@@ -123,26 +127,32 @@ const Pokemon = withRouter((props, context) => {
     <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
-          {!(pokemon && imageLoaded) &&<SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
-            <div className = {classes.skeletonContainer}>
-              <div className = {classes.skeletonText}>
-                <Skeleton height={25} />
-                <Skeleton height={25} />
-                <Skeleton height={25} />
+          {!(pokemon && imageLoaded) && (
+            <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
+              <div className={classes.skeletonContainer}>
+                <div className={classes.skeletonText}>
+                  <Skeleton height={25} />
+                  <Skeleton height={25} />
+                  <Skeleton height={25} />
+                </div>
+                <div className={classes.skeletonImage}>
+                  <Skeleton height={130} />
+                </div>
               </div>
-              <div className = {classes.skeletonImage}>
-                <Skeleton height={130}/>
-              </div>
-            </div>
-          </SkeletonTheme>}
+            </SkeletonTheme>
+          )}
           {pokemon.sprites && (
-            <Card className={classes.card} style={{display : (pokemon && imageLoaded ? "block" : "none")}} onClick={redirect}>
+            <Card
+              className={classes.card}
+              style={{ display: pokemon && imageLoaded ? "block" : "none" }}
+              onClick={redirect}
+            >
               <CardActionArea
                 style={{
                   background: context.findType(
-                    props.match.params.id
-                      ? props.match.params.id
-                      : pokemon.types[1]
+                    props.match.params.id && !props.descriptionPage
+                      ? (props.match.params.id)
+                      : (pokemon.types[1])
                       ? pokemon.types[1].type.name
                       : pokemon.types[0].type.name
                   )
@@ -162,7 +172,8 @@ const Pokemon = withRouter((props, context) => {
                         variant="subtitle2"
                         className={classes.text}
                       >
-                        {pokemon.name && "#" + context.numberPadding(props.number, 3)}
+                        {pokemon.name &&
+                          "#" + context.numberPadding(props.number, 3)}
                       </Typography>
                       <Typography
                         gutterBottom
