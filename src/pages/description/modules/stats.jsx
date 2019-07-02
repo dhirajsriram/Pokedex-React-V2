@@ -1,47 +1,59 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
-import StatsBlock from "../../../common/pokemon/StatsBlock";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import { createMuiTheme } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import { ThemeProvider } from '@material-ui/styles';
 
 export default function Stats(props) {
-  const useStyles = makeStyles({
-    card: {},
-    media: {
-      height: 140
-    },
-    heading: {
-      color: props.color
-    }
-  });
-  const classes = useStyles();
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+            main: props.color,
+            contrastText: '#fff' },
+            secondary: { A400: "#ffffff" , contrastText: props.color} // custom color in hex
+        }
+    });
+    
+	const useStyles = makeStyles((theme) => ({
+		chip: {
+			margin: theme.spacing(1),
+			width: '100%'
+		},
+		heading: {
+			color: props.color
+		},
+    })
+    );
 
-  return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardContent>
-          <Grid>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <StatsBlock
-                  title={"Height"}
-                  textcolor={props.color}
-                  content={props.pokemonData.height * 10 + " cm"}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <StatsBlock
-                  title={"Weight"}
-                  textcolor={props.color}
-                  content={props.pokemonData.weight / 10 + " kg"}
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
+	const classes = useStyles();
+
+	return (
+        <ThemeProvider theme={theme}>
+		<Card className={classes.card}>
+			<CardContent>
+				<Typography variant="h6" align="center" className={classes.heading}>
+					Base Stats
+				</Typography>
+				<Grid container>
+					{props.pokemonData.stats.map(function(val, i) {
+						return (
+							<React.Fragment key={i}>
+								<Grid item xs={4} sm={2}>
+									<Chip label={val.stat.name} className={classes.chip} color="primary"/>
+								</Grid>
+                                <Grid item xs={8} sm={10}>
+									<Chip label={val.base_stat} className={classes.chip} color="secondary"/>
+								</Grid>
+							</React.Fragment>
+						);
+					})}
+				</Grid>
+			</CardContent>
+		</Card>
+        </ThemeProvider>
+	);
 }

@@ -1,80 +1,12 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import deburr from "lodash/deburr";
 import Downshift from "downshift";
 import { makeStyles, fade } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import MenuItem from "@material-ui/core/MenuItem";
-import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import { withRouter } from "react-router";
-import { PokemonConsumer } from "../context/pokemonContext";
-
-function renderSuggestion(suggestionProps) {
-  const {
-    suggestion,
-    index,
-    itemProps,
-    highlightedIndex,
-    selectedItem
-  } = suggestionProps;
-  const isHighlighted = highlightedIndex === index;
-  const isSelected = (selectedItem || "").indexOf(suggestion.name) > -1;
-  var number = suggestion.url
-    .replace("https://pokeapi.co/api/v2/pokemon/", "")
-    .replace("/", "");
-  return (
-    <PokemonConsumer key={index}>{context=>(
-    <Link
-      className="default-text"
-      to={"/description/" + suggestion.name}
-    >
-      <MenuItem
-        {...itemProps}
-        key={suggestion.name}
-        selected={isHighlighted}
-        component="div"
-        style={{
-          fontWeight: isSelected ? 500 : 400,
-          borderRadius: "20px",
-          textTransform: "capitalize"
-        }}
-      >
-        <img
-          style={{
-            width: "75px",
-            marginRight: "10px"
-          }}
-          src={
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-            context.numberPadding(number, 3) +
-            ".png"
-          }
-          alt={suggestion.name + " image"}
-        />
-        <Typography component="div">
-          <Box fontWeight="fontWeightMedium" m={1}>
-            {suggestion.name}
-          </Box>
-          <Box fontWeight="fontWeightRegular" m={1}>
-            {"#" + context.numberPadding(number, 3)}
-          </Box>
-        </Typography>
-      </MenuItem>
-    </Link>)}
-    </PokemonConsumer>
-  );
-}
-renderSuggestion.propTypes = {
-  highlightedIndex: PropTypes.number,
-  index: PropTypes.number,
-  itemProps: PropTypes.object,
-  selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired
-};
+import Suggestion from "./Suggestion";
+import SearchInput from "./SearchInput";
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -85,11 +17,11 @@ const useStyles = makeStyles(theme => ({
     },
     marginLeft: 0,
     margin: "0px 8px",
-    width: "100%",
+    width: "80%",
     borderRadius: "20px",
     [theme.breakpoints.up("sm")]: {
       margin: "0px 20px",
-      width: "100%",
+      width: "82%",
       borderRadius: "20px"
     }
   },
@@ -126,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Search = withRouter((props, context) => {
+const SearchContainer = withRouter((props, context) => {
   const classes = useStyles();
   const [pokemonList, setPokemonList] = useState("");
 
@@ -155,25 +87,6 @@ const Search = withRouter((props, context) => {
           }
           return keep;
         });
-  }
-
-  function renderInput(inputProps) {
-    const { InputProps, classes, ref, ...other } = inputProps;
-    return (
-      <InputBase
-        name="Search-pokemon"
-        inputProps={{
-          inputRef: ref,
-          ...InputProps
-        }}
-        {...other}
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput
-        }}
-        placeholder={"Search…"}
-      />
-    );
   }
 
   function handleForm(e) {
@@ -207,27 +120,14 @@ const Search = withRouter((props, context) => {
                   <SearchIcon />
                 </div>
                 <form onSubmit={handleForm}>
-                  {renderInput({
-                    fullWidth: true,
-                    classes,
-                    label: "Pokemon",
-                    inputlabelprops: getLabelProps({ shrink: true }),
-                    InputProps: { onBlur, onFocus },
-                    inputProps
-                  })}
+                  <SearchInput fullWidth={true} inputProps={inputProps} classes={classes} label={"Pokemon"} inputlabelprops={getLabelProps({ shrink: true })} inputproperties={{ onBlur, onFocus }}></SearchInput>
                 </form>
                 <div {...getMenuProps()}>
                   {isOpen ? (
                     <Paper className={classes.paper} square>
                       {getSuggestions(inputValue, pokemonList).map(
                         (suggestion, index) =>
-                          renderSuggestion({
-                            suggestion,
-                            index,
-                            itemProps: getItemProps({ item: suggestion.name }),
-                            highlightedIndex,
-                            selectedItem
-                          })
+                          <Suggestion key={index} suggestion={suggestion} index={index} itemProps={getItemProps({ item: suggestion.name })} highlightedIndex={highlightedIndex} selectedItem={selectedItem}></Suggestion>
                       )}
                     </Paper>
                   ) : null}
@@ -241,4 +141,4 @@ const Search = withRouter((props, context) => {
   );
 });
 
-export default Search;
+export default SearchContainer;

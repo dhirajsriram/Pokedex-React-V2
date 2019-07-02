@@ -45,9 +45,6 @@ export default function Abilities(props) {
     heading: {
       color: props.color
     },
-    pos: {
-      marginBottom: 12
-    }
   });
   const classes = useStyles();
 

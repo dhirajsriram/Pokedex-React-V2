@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Home from './pages/home/Home';
-import Menubar from './common/menu/Menubar';
-import { Route , Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
-import  Description  from "./pages/description/Description"
-import { PokemonProvider } from "./common/context/pokemonContext";
-import Listing from "./pages/listing/Listing"
+import Description from './pages/description/Description';
+import { PokemonProvider, PokemonConsumer , numberPadding , findType } from './common/context/pokemonContext';
+import Listing from './pages/listing/Listing';
+import Menubar from './common/menu/Menubar';
 
 const theme = createMuiTheme({
 	palette: {
-		primary: { main: grey[50] }, 
-		secondary: { main: '#11cb5f' }
+		primary: { main: grey[50] }
 	}
 });
 
@@ -24,70 +23,30 @@ class App extends Component {
 			data: ''
 		};
 	}
-	
-	findType(type) {
-		switch (type) {
-		  case "normal":
-			return "#A8A878"
-		  case "fighting":
-			return "#C03028"
-		  case "flying":
-			return "#A890F0"
-		  case "poison":
-			return "#b97fc9"
-		  case "ground":
-			return "#E0C068"
-		  case "rock":
-			return "#705848"
-		  case "ghost":
-			return "#705898"
-		  case "steel":
-			return "#B8B8D0"
-		  case "fire":
-			return "#fd7d24"
-		  case "water":
-			return "#4592c4"
-		  case "grass":
-		  case "bug":
-			return "#729f3f"
-		  case "electric":
-			return "#F8D030"
-		  case "psychic":
-			return "#F85888"
-		  case "ice":
-			return "#37EDF1";
-		  case "dragon":
-			return "#B8A038"
-		  case "dark":
-			return "#3a3a3a";
-		  case "fairy":
-			return "#EE99AC"
-		  default:
-		}
-	  }
-	 numberPadding(number, size) {
-		var s = String(number);
-		while (s.length < (size || 2)) {
-		  s = "0" + s;
-		}
-		return s;
-	  }
 
 	render() {
 		return (
-			<PokemonProvider value={{
-				state: this.state,
-				findType: this.findType,
-				numberPadding:this.numberPadding
-			}}>
-			<ThemeProvider theme={theme}>
-				<Menubar/>
-				<Switch>
-				<Route exact path="/" component={Home} />
-				<Route exact path="/results/:id" component={Listing} />
-				<Route exact path="/description/:id" component={Description} />
-				</Switch>
-			</ThemeProvider>
+			<PokemonProvider
+				value={{
+					state: this.state,
+					findType: findType,
+					numberPadding: numberPadding
+				}}
+			>
+				<ThemeProvider theme={theme}>
+					<PokemonConsumer>
+						{(context) => (
+							<React.Fragment>
+								<Menubar contextProvide={context} />
+								<Switch>
+									<Route exact path="/" component={Home} />
+									<Route exact path="/results/:id" component={Listing} />
+									<Route exact path="/description/:id" component={Description} />
+								</Switch>
+							</React.Fragment>
+						)}
+					</PokemonConsumer>
+				</ThemeProvider>
 			</PokemonProvider>
 		);
 	}

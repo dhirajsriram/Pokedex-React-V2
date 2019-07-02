@@ -1,33 +1,14 @@
-.loader {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.6) url(./assets/pokeball.gif) center center
-    no-repeat;
-  background-size: 20%;
-  z-index: 5;
-}
-.static {
-  position: relative;
-  height: 150px;
-  border-radius: 8px;
-}
-@media only screen and (max-width: 600px) {
-  .loader {
-    background-size: 20%;
-  }
-}
 .default-text {
   text-decoration: none;
   color: inherit;
   font-weight: inherit;
 }
+
 .MuiGrid-spacing-xs-4 {
   width: auto !important;
   margin: 0px !important;
 }
+
 .more-options {
   position: fixed !important;
   background: "white";
@@ -49,5 +30,5 @@
   -ms-transform: rotate(360deg);
 }
 .mobileMenu div.MuiPaper-rounded {
-  width: 50%;
+  width: 53%;
 }
