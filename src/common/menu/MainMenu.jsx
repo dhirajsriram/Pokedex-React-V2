@@ -29,7 +29,7 @@ const MainMenu = (props) => {
         {Types.map(function(type, i) {
             return (
                 <Link to={'/results/' + type} key={i}>
-                    <MenuItem onClick={() =>props.handleMenuClose(type)} className={classes.menuItems}>
+                    <MenuItem onClick={() =>props.handleMenuClose} className={classes.menuItems}>
                         <img
                             className={classes.typeImages}
                             src={require('../../assets/' + type + '.png')}

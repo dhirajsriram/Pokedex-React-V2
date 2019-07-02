@@ -5,13 +5,13 @@ import Grid from '@material-ui/core/Grid';
 import Pokemon from '../../common/pokemon/Pokemon';
 import { PokemonConsumer } from '../../common/context/pokemonContext';
 import Bio from './modules/Bio';
-import Stats from './modules/Stats'
+import Stats from './modules/Stats';
 import Abilities from './modules/Abilities';
 import BottomNavigation from './modules/BottomNavigation';
-import Sprites from './modules/Sprites'
+import Sprites from './modules/Sprites';
 
 export default function Description(props) {
-  const [ pokemonData, setPokemonData ] = React.useState({});
+	const [ pokemonData, setPokemonData ] = React.useState({});
 	const useStyles = makeStyles({
 		container: {
 			margin: '0',
@@ -27,7 +27,7 @@ export default function Description(props) {
 			width: '50%',
 			margin: 'auto',
 			display: 'block',
-			marginBottom:70
+			marginBottom: 70
 		},
 		BottomNavigation: {
 			width: '100%',
@@ -59,6 +59,11 @@ export default function Description(props) {
 		response = await response.json();
 		setPokemonData(response);
 	}
+
+	function returnType(context) {
+		return context.findType(pokemonData.types[1] ? pokemonData.types[1].type.name : pokemonData.types[0].type.name);
+	}
+
 	return (
 		<PokemonConsumer>
 			{(context) => (
@@ -67,12 +72,7 @@ export default function Description(props) {
 						<Container
 							className={classes.container}
 							style={{
-								background:
-									context.findType(
-										pokemonData.types[1]
-											? pokemonData.types[1].type.name
-											: pokemonData.types[0].type.name
-									) + '80'
+								background: returnType(context)
 							}}
 							spacing={8}
 						>
@@ -83,52 +83,33 @@ export default function Description(props) {
 								<div className={classes.pokemonBlocks}>
 									<Bio
 										pokemonData={pokemonData}
-										color={context.findType(
-											pokemonData.types[1]
-												? pokemonData.types[1].type.name
-												: pokemonData.types[0].type.name
-										)}
+										color={returnType(context)}
 									/>
 								</div>
 								<div className={classes.pokemonBlocks}>
 									<Abilities
 										pokemonData={pokemonData}
-										color={context.findType(
-											pokemonData.types[1]
-												? pokemonData.types[1].type.name
-												: pokemonData.types[0].type.name
-										)}
-									/>
-								</div>
-                <div className={classes.pokemonBlocks}>
-									<Stats
-										pokemonData={pokemonData}
-										color={context.findType(
-											pokemonData.types[1]
-												? pokemonData.types[1].type.name
-												: pokemonData.types[0].type.name
-										)}
+										color={returnType(context)}
 									/>
 								</div>
 								<div className={classes.pokemonBlocks}>
 									<Sprites
 										pokemonData={pokemonData}
-										color={context.findType(
-											pokemonData.types[1]
-												? pokemonData.types[1].type.name
-												: pokemonData.types[0].type.name
-										)}
+										color={returnType(context)}
+									/>
+								</div>
+								<div className={classes.pokemonBlocks}>
+									<Stats
+										pokemonData={pokemonData}
+										color={returnType(context)}
 									/>
 								</div>
 							</Grid>
 							<footer>
-							<BottomNavigation
-								color={context.findType(
-									pokemonData.types[1]
-										? pokemonData.types[1].type.name
-										: pokemonData.types[0].type.name
-								)}
-							/></footer>
+								<BottomNavigation
+									color={returnType(context)}
+								/>
+							</footer>
 						</Container>
 					)}
 				</React.Fragment>

@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import { withRouter } from 'react-router';
-import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,9 +13,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     textTransform: "capitalize",
   },
-  types : {
+  black : {
     color: "black",
-    background:"white"
+    margin: theme.spacing(1),
+    textTransform: "capitalize",
   }
 }));
 
@@ -27,10 +27,10 @@ const Types = withRouter((props) => {
     props.history.push("/results/" +  props.name)
   }
   return (
+    
       <Chip style={{border: "2px solid"}}
-      avatar={<Avatar className={classes.types}></Avatar>}
       label={props.name}
-      className={classes.chip}
+      className={props.descriptionPage ? classes.black:classes.chip}
       onClick={redirect}
       variant="outlined"
     />

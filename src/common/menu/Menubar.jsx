@@ -75,9 +75,7 @@ const Menubar = withRouter((props) => {
 	function handleProfileMenuOpen(event) {
 		setAnchorEl(event.currentTarget);
 	}
-	function handleMenuClose(type = null) {
-		if(type){
-		setpokemonType(type)}
+	function handleMenuClose() {
 		setAnchorEl(null);
 		handleMobileMenuClose();
 	}

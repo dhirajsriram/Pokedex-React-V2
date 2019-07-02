@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
-import PropTypes from "prop-types";
 
 const Suggestion = function(suggestionProps) {
     const {
@@ -71,10 +70,3 @@ const Suggestion = function(suggestionProps) {
 
   export default Suggestion
   
-  Suggestion.propTypes = {
-    highlightedIndex: PropTypes.number,
-    index: PropTypes.number,
-    itemProps: PropTypes.object,
-    selectedItem: PropTypes.string,
-    suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired
-  };
