@@ -12,7 +12,7 @@
 .more-options {
   position: fixed !important;
   background: "white";
-  color: "black";
+  color: "#3a3a3ac7";
   z-index: 100;
   right: 20px;
   bottom: 20px;

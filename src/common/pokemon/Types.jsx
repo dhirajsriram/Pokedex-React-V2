@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     textTransform: "capitalize",
   },
   black : {
-    color: "black",
+    color: "#3a3a3ac7",
     margin: theme.spacing(1),
     textTransform: "capitalize",
   }
