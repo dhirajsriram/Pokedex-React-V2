@@ -8,6 +8,7 @@ import Bio from './modules/Bio';
 import Stats from './modules/Stats'
 import Abilities from './modules/Abilities';
 import BottomNavigation from './modules/BottomNavigation';
+import Sprites from './modules/Sprites'
 
 export default function Description(props) {
   const [ pokemonData, setPokemonData ] = React.useState({});
@@ -25,7 +26,8 @@ export default function Description(props) {
 		pokemon: {
 			width: '50%',
 			margin: 'auto',
-			diplay: 'block'
+			display: 'block',
+			marginBottom:70
 		},
 		BottomNavigation: {
 			width: '100%',
@@ -108,14 +110,25 @@ export default function Description(props) {
 										)}
 									/>
 								</div>
+								<div className={classes.pokemonBlocks}>
+									<Sprites
+										pokemonData={pokemonData}
+										color={context.findType(
+											pokemonData.types[1]
+												? pokemonData.types[1].type.name
+												: pokemonData.types[0].type.name
+										)}
+									/>
+								</div>
 							</Grid>
+							<footer>
 							<BottomNavigation
 								color={context.findType(
 									pokemonData.types[1]
 										? pokemonData.types[1].type.name
 										: pokemonData.types[0].type.name
 								)}
-							/>
+							/></footer>
 						</Container>
 					)}
 				</React.Fragment>

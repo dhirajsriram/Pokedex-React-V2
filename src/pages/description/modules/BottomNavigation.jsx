@@ -14,7 +14,8 @@ export default function SimpleBottomNavigation(props) {
             position:"fixed",
             bottom:0,
             left:0,
-            width:"100%"
+            width:"100%",
+            height:50
         },
         selected: {
             backgroundColor:props.color
