@@ -10,7 +10,7 @@ export default function StatsBlock(props) {
         },
         border: {
           border: "1px solid "+props.textcolor,
-          color : "#3a3a3ac7",
+          color : "#3a3a3a",
           padding: 10,
           borderRadius:"5px",
           lineHeight: 1.5

@@ -157,7 +157,7 @@ const Pokemon = withRouter((props, context) => {
 							className={classes.card}
 							style={
 								props.descriptionPage ? (
-									{ background: returnType(context) , color : "#3a3a3ac7" }
+									{ background: returnType(context) , color : "#3a3a3a" }
 								) : (
 									{ display: pokemon && imageLoaded ? 'block' : 'none' }
 								)

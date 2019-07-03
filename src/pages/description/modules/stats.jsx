@@ -10,6 +10,7 @@ import { ThemeProvider } from '@material-ui/styles';
 
 export default function Stats(props) {
 	const [maxvalue,setmaxValue] = useState(0)
+	const [totalValue,setTotalValue] = useState(0)
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
@@ -29,7 +30,8 @@ export default function Stats(props) {
 			borderBottomRightRadius: 0
 		},
 		heading: {
-			color: props.color
+			color: props.color,
+			padding:4
 		},
 		statsValue: {
 			margin: '8px 0px',
@@ -46,6 +48,8 @@ export default function Stats(props) {
 	useEffect(()=>{
 		var maxval =Math.max.apply(Math, props.pokemonData.stats.map(function(o) { return o.base_stat; }))
 		setmaxValue(maxval)
+		var totalVal = props.pokemonData.stats.reduce((a, b) => a + (b["base_stat"] || 0), 0);
+		setTotalValue(totalVal)
 		},[])
 
 	return (
@@ -76,6 +80,9 @@ export default function Stats(props) {
 							);
 						})}
 					</Grid>
+					<Typography variant="subtitle2" align="center" className={classes.heading}>
+						Total: {totalValue}
+					</Typography>
 				</CardContent>
 			</Card>
 		</ThemeProvider>
