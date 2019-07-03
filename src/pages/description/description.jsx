@@ -3,7 +3,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import Grid from "@material-ui/core/Grid";
-import PropTypes from "prop-types";
 import Pokemon from "../../common/pokemon/Pokemon";
 import { PokemonConsumer } from "../../common/context/pokemonContext";
 import Bio from "./modules/Bio";
@@ -14,7 +13,8 @@ import Tab from "@material-ui/core/Tab";
 import Sprites from "./modules/Sprites";
 import { findType } from "../../common/context/pokemonContext";
 import Icon from "@material-ui/core/Icon";
-import Typography from "@material-ui/core/Typography";
+import TabContainer from "./modules/TabContainer";
+import Evolutions from "./modules/Evolutions";
 
 export default function Description(props) {
   const [pokemonData, setPokemonData] = React.useState({});
@@ -27,19 +27,6 @@ export default function Description(props) {
   function handleChangeIndex(index) {
     setValue(index);
   }
-
-  function TabContainer({ children, dir }) {
-    return (
-      <Typography className={classes.pokemon} component="div" dir={dir}>
-        {children}
-      </Typography>
-    );
-  }
-
-  TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-    dir: PropTypes.string.isRequired
-  };
 
   const useStyles = makeStyles(theme => ({
     container: {
@@ -147,7 +134,8 @@ export default function Description(props) {
                     <Abilities pokemonData={pokemonData} color={returnType()} />
                   </div>
                 </TabContainer>
-                <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                <TabContainer dir={theme.direction}><div>
+                  <Evolutions pokemonData={pokemonData} color={returnType()}/></div></TabContainer>
                 <TabContainer dir={theme.direction}>Item Three</TabContainer>
               </SwipeableViews>
               <footer>
