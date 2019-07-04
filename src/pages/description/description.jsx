@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import SwipeableViews from "react-swipeable-views";
 import Grid from "@material-ui/core/Grid";
 import Pokemon from "../../common/pokemon/Pokemon";
 import { PokemonConsumer } from "../../common/context/pokemonContext";
@@ -14,6 +13,7 @@ import { findType } from "../../common/context/pokemonContext";
 import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
+import Moves from "./modules/Moves";
 
 export default function Description(props) {
   const [pokemonData, setPokemonData] = React.useState({});
@@ -22,6 +22,7 @@ export default function Description(props) {
 
   function handleChange(event, newValue) {
     setValue(newValue);
+    window.scrollTo(0, 0);
   }
   function handleChangeIndex(index) {
     setValue(index);
@@ -44,7 +45,7 @@ export default function Description(props) {
     pokemon: {
       width: "50%",
       margin: "auto",
-      display: "block",
+      display: "block"
     },
     BottomNavigation: {
       width: "100%",
@@ -82,7 +83,7 @@ export default function Description(props) {
     setPokemonData(response);
   }
 
-  function resetPage(){
+  function resetPage() {
     setValue(0);
   }
 
@@ -116,26 +117,34 @@ export default function Description(props) {
                   />
                 </div>
               </Grid>
-              <SwipeableViews
-                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-                index={value}
-                onChangeIndex={handleChangeIndex}
-              >
-                <TabContainer dir={theme.direction}>
-                  <div>
-                    <Bio pokemonData={pokemonData} color={returnType()} />
-                  </div>
-                  <div className={classes.pokemonBlocks}>
-                    <Stats pokemonData={pokemonData} color={returnType()} />
-                  </div>
-                  <div className={classes.pokemonBlocks}>
-                    <Sprites pokemonData={pokemonData} color={returnType()} />
-                  </div>
-                </TabContainer>
-                <TabContainer dir={theme.direction}><div>
-                  <Evolutions pokemonData={pokemonData} color={returnType()}/></div></TabContainer>
-                <TabContainer dir={theme.direction}>Item Three</TabContainer>
-              </SwipeableViews>
+                {value === 0 && (
+                  <TabContainer dir={theme.direction}>
+                    <div>
+                      <Bio pokemonData={pokemonData} color={returnType()} />
+                    </div>
+                    <div className={classes.pokemonBlocks}>
+                      <Stats pokemonData={pokemonData} color={returnType()} />
+                    </div>
+                    <div className={classes.pokemonBlocks}>
+                      <Sprites pokemonData={pokemonData} color={returnType()} />
+                    </div>
+                  </TabContainer>
+                )}
+                {value === 1 && (
+                  <TabContainer dir={theme.direction}>
+                    <div>
+                      <Evolutions
+                        pokemonData={pokemonData}
+                        color={returnType()}
+                      />
+                    </div>
+                  </TabContainer>
+                )}
+                {value === 2 && (
+                  <TabContainer dir={theme.direction}>
+                    <Moves pokemonData={pokemonData} color={returnType()} />
+                  </TabContainer>
+                )}
               <footer>
                 <Tabs
                   className={classes.BottomNavigation}

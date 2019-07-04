@@ -140,7 +140,7 @@ const Pokemon = withRouter((props, context) => {
     else {
       fetchPokemonData(props.number);
     }
-  }, []);
+  }, [props.pokemonData]);
 
   function mockPokemonData(data){
     return {
@@ -178,14 +178,15 @@ const Pokemon = withRouter((props, context) => {
         return context.findType(props.match.params.id ? props.match.params.id : pokemon.types[1]
         ? pokemon.types[1].type.name
         : pokemon.types[0].type.name)
-        break;
       case "evolution":
         return props.color
-        break;
       case "description":
+        console.log(pokemon)
           return context.findType(pokemon.types[1]
             ? pokemon.types[1].type.name
             : pokemon.types[0].type.name)
+      default:
+      return 0
     }
   }
   function Lengthwise(props) {
@@ -316,7 +317,7 @@ const Pokemon = withRouter((props, context) => {
         <ThemeProvider theme={theme}>
           {!(pokemon && imageLoaded) && (
             <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
-              <div className={classes.skeletonContainer}>
+             {!(props.evolution && <div className={classes.skeletonContainer}>
                 <div className={classes.skeletonText}>
                   <Skeleton height={25} />
                   <Skeleton height={25} />
@@ -325,7 +326,7 @@ const Pokemon = withRouter((props, context) => {
                 <div className={classes.skeletonImage}>
                   <Skeleton height={130} />
                 </div>
-              </div>
+              </div>)} 
             </SkeletonTheme>
           )}
           {pokemon.sprites && (

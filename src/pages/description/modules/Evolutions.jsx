@@ -6,6 +6,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Pokemon from "../../../common/pokemon/Pokemon";
 import Grid from "@material-ui/core/Grid";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function Evolutions(props) {
   const theme = createMuiTheme({
@@ -24,8 +25,11 @@ export default function Evolutions(props) {
     heading: {
       padding: 4
     },
-    pokemon:{
-      maxWidth:"unset"
+    skeleton: {
+      padding: 8
+    },
+    pokemon: {
+      maxWidth: "unset"
     },
     card: {
       padding: 16
@@ -65,7 +69,7 @@ export default function Evolutions(props) {
     }
   }
 
-  const Evolution = (props) => {
+  const Evolution = props => {
     return (
       <React.Fragment>
         <Grid xs={12 / stages} item className={classes.pokemon}>
@@ -82,14 +86,28 @@ export default function Evolutions(props) {
         {props.evolution.evolves_to.length > 1 && (
           <Grid>
             {props.evolution.evolves_to.map(function(val, i) {
-              return <Evolution key={i} evolution={val} first={false} color={props.color}/>;
+              return (
+                <Evolution
+                  key={i}
+                  evolution={val}
+                  first={false}
+                  color={props.color}
+                />
+              );
             })}
           </Grid>
         )}
 
         {props.evolution.evolves_to.length === 1 &&
           props.evolution.evolves_to.map(function(val, i) {
-            return <Evolution key={i} evolution={val} first={false} color={props.color}/>;
+            return (
+              <Evolution
+                key={i}
+                evolution={val}
+                first={false}
+                color={props.color}
+              />
+            );
           })}
       </React.Fragment>
     );
@@ -102,7 +120,7 @@ export default function Evolutions(props) {
         <Typography variant="h6" align="center" className={classes.heading}>
           Evolution
         </Typography>
-        {evolutionData.chain && (
+        {evolutionData.chain ? (
           <Grid
             container
             direction="row"
@@ -110,8 +128,16 @@ export default function Evolutions(props) {
             alignItems="center"
             className={classes.parentGrid}
           >
-            <Evolution evolution={evolutionData.chain} first={true} color={props.color}/>
+            <Evolution
+              evolution={evolutionData.chain}
+              first={true}
+              color={props.color}
+            />
           </Grid>
+        ) : (
+          <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
+        <Skeleton height={300}/>
+        </SkeletonTheme>
         )}
       </Card>
     </ThemeProvider>
