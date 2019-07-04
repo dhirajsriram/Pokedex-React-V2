@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Drawer from './Drawer';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom';
 import Searchcontainer from './Searchcontainer';
 import { withRouter } from "react-router";

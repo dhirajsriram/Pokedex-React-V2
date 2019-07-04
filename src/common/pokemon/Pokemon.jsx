@@ -315,9 +315,9 @@ const Pokemon = withRouter((props, context) => {
     <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
-          {!(pokemon && imageLoaded) && (
+          {!props.evolution && !(pokemon && imageLoaded) && (
             <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
-             {!(props.evolution && <div className={classes.skeletonContainer}>
+              <div className={classes.skeletonContainer}>
                 <div className={classes.skeletonText}>
                   <Skeleton height={25} />
                   <Skeleton height={25} />
@@ -326,7 +326,7 @@ const Pokemon = withRouter((props, context) => {
                 <div className={classes.skeletonImage}>
                   <Skeleton height={130} />
                 </div>
-              </div>)} 
+              </div>
             </SkeletonTheme>
           )}
           {pokemon.sprites && (
