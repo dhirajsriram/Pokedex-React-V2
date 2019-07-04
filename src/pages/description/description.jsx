@@ -71,6 +71,7 @@ export default function Description(props) {
 
   useEffect(() => {
     fetchPokemonData();
+    resetPage();
   }, [props.match.params.id]);
 
   async function fetchPokemonData() {
@@ -79,6 +80,10 @@ export default function Description(props) {
     );
     response = await response.json();
     setPokemonData(response);
+  }
+
+  function resetPage(){
+    setValue(0);
   }
 
   function returnType() {
@@ -106,6 +111,7 @@ export default function Description(props) {
                   <Pokemon
                     number={pokemonData.id}
                     pokemonData={pokemonData}
+                    page={"description"}
                     descriptionPage={true}
                   />
                 </div>

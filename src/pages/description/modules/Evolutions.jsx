@@ -7,7 +7,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import Pokemon from "../../../common/pokemon/Pokemon";
 import Grid from "@material-ui/core/Grid";
 
-export default function Sprites(props) {
+export default function Evolutions(props) {
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -65,30 +65,31 @@ export default function Sprites(props) {
     }
   }
 
-  const Evolution = props => {
+  const Evolution = (props) => {
     return (
       <React.Fragment>
-        {console.log(stages)}
         <Grid xs={12 / stages} item className={classes.pokemon}>
           <Pokemon
             first={props.first}
             number={getNumber(props.evolution.species.url)}
             evolution={true}
             descriptionPage={false}
+            page={"evolution"}
             evolutionData={props.evolution}
+            color={props.color}
           />
         </Grid>
         {props.evolution.evolves_to.length > 1 && (
           <Grid>
             {props.evolution.evolves_to.map(function(val, i) {
-              return <Evolution key={i} evolution={val} first={false} />;
+              return <Evolution key={i} evolution={val} first={false} color={props.color}/>;
             })}
           </Grid>
         )}
 
         {props.evolution.evolves_to.length === 1 &&
           props.evolution.evolves_to.map(function(val, i) {
-            return <Evolution key={i} evolution={val} first={false} />;
+            return <Evolution key={i} evolution={val} first={false} color={props.color}/>;
           })}
       </React.Fragment>
     );
@@ -109,7 +110,7 @@ export default function Sprites(props) {
             alignItems="center"
             className={classes.parentGrid}
           >
-            <Evolution evolution={evolutionData.chain} first={true} />
+            <Evolution evolution={evolutionData.chain} first={true} color={props.color}/>
           </Grid>
         )}
       </Card>

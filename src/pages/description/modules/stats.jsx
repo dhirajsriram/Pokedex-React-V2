@@ -49,7 +49,7 @@ export default function Stats(props) {
 		setmaxValue(maxval)
 		var totalVal = props.pokemonData.stats.reduce((a, b) => a + (b["base_stat"] || 0), 0);
 		setTotalValue(totalVal)
-		},[])
+		},[props.pokemonData.id])
 
 	return (
 		<ThemeProvider theme={theme}>

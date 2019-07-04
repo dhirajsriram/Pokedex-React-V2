@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "20px",
     [theme.breakpoints.up("sm")]: {
       margin: "0px 20px",
-      width: "82%",
+      width: "80%",
       borderRadius: "20px"
     }
   },

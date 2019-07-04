@@ -71,7 +71,7 @@ const Pokemon = withRouter((props, context) => {
     },
     evolutionImage: {
       objectFit: "scale-down",
-      height: "100px",
+      height: "150px",
       margin: "auto"
     },
     evolutionText: {
@@ -93,7 +93,7 @@ const Pokemon = withRouter((props, context) => {
     evolutionContent: {
       padding: 0
     },
-    evolutionType : {
+    evolutionType: {
       textTransform: "capitalize"
     },
     arrow: {
@@ -131,12 +131,25 @@ const Pokemon = withRouter((props, context) => {
   const classes = useStyles();
 
   useEffect(() => {
-    if (!props.descriptionPage) {
-      fetchPokemonData(props.number);
-    } else {
+    if (props.descriptionPage) {
       setPokemon(props.pokemonData);
+    } 
+    else if(props.evolution){
+      setPokemon(mockPokemonData(props.evolutionData))
     }
-  }, [props.number]);
+    else {
+      fetchPokemonData(props.number);
+    }
+  }, []);
+
+  function mockPokemonData(data){
+    return {
+      "sprites" : [],
+      "types":[],
+      "id":data.species.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/", ""),
+      "name":data.species.name
+    }
+  }
 
   async function fetchPokemonData(number) {
     let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number);
@@ -160,13 +173,20 @@ const Pokemon = withRouter((props, context) => {
   }
 
   function returnType(context) {
-    return context.findType(
-      props.match.params.id && !props.descriptionPage && !props.evolution
-        ? props.match.params.id
-        : pokemon.types[1]
+    switch (props.page){
+      case "Listing":
+        return context.findType(props.match.params.id ? props.match.params.id : pokemon.types[1]
         ? pokemon.types[1].type.name
-        : pokemon.types[0].type.name
-    );
+        : pokemon.types[0].type.name)
+        break;
+      case "evolution":
+        return props.color
+        break;
+      case "description":
+          return context.findType(pokemon.types[1]
+            ? pokemon.types[1].type.name
+            : pokemon.types[0].type.name)
+    }
   }
   function Lengthwise(props) {
     return (
@@ -196,7 +216,7 @@ const Pokemon = withRouter((props, context) => {
           >
             {pokemon.name}
           </Typography>
-          <div style={{ color: returnType(props.context) }}>
+          <div style={{ color: props.color }}>
             <Typography
               gutterBottom
               variant="subtitle2"
@@ -294,7 +314,7 @@ const Pokemon = withRouter((props, context) => {
     <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
-          {!props.evolution && !(pokemon && imageLoaded) && (
+          {!(pokemon && imageLoaded) && (
             <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
               <div className={classes.skeletonContainer}>
                 <div className={classes.skeletonText}>
@@ -314,7 +334,7 @@ const Pokemon = withRouter((props, context) => {
                 props.evolution ? classes.evolutionParentCard : classes.card
               }
               style={
-                props.descriptionPage
+                props.descriptionPage && !props.evolution
                   ? { background: returnType(context) }
                   : { display: pokemon && imageLoaded ? "block" : "none" }
               }
