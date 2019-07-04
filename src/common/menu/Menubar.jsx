@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,21 +23,6 @@ const Menubar = withRouter((props) => {
 			display: 'none',
 			[theme.breakpoints.up('sm')]: {
 				display: 'block'
-			}
-		},
-		search: {
-			position: 'relative',
-			borderRadius: theme.shape.borderRadius,
-			backgroundColor: fade(theme.palette.common.white, 0.15),
-			'&:hover': {
-				backgroundColor: fade(theme.palette.common.white, 0.25)
-			},
-			marginRight: theme.spacing(2),
-			marginLeft: 0,
-			width: '80%',
-			[theme.breakpoints.up('sm')]: {
-				marginLeft: theme.spacing(3),
-				width: '80%'
 			}
 		},
 		sectionDesktop: {
@@ -110,7 +95,8 @@ const Menubar = withRouter((props) => {
 							aria-controls={menuId}
 							aria-haspopup="true"
 							onClick={handleProfileMenuOpen}
-							className={(pokemonType !== "All types") ? classes.typeTheme : ""}
+							variant="contained"
+							className={(pokemonType !== "All types") ? classes.typeTheme : "filter-button"}
 						>
 							{pokemonType}
 						</Button>

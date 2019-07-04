@@ -24,10 +24,7 @@ export default function Description(props) {
     setValue(newValue);
     window.scrollTo(0, 0);
   }
-  function handleChangeIndex(index) {
-    setValue(index);
-  }
-
+  
   const useStyles = makeStyles(theme => ({
     container: {
       margin: "0",

@@ -17,11 +17,10 @@ const useStyles = makeStyles(theme => ({
     },
     marginLeft: 0,
     margin: "0px 8px",
-    width: "80%",
     borderRadius: "20px",
     [theme.breakpoints.up("sm")]: {
       margin: "0px 20px",
-      width: "80%",
+      flexGrow: 100,
       borderRadius: "20px"
     }
   },

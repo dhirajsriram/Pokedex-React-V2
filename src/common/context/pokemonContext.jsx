@@ -61,5 +61,6 @@ export const Types = [
 	'steel',
 	'dark',
 	'dragon',
-	'fairy'
+    'fairy',
+    'reset'
 ];
