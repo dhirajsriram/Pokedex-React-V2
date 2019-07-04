@@ -6,7 +6,6 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Pokemon from "../../../common/pokemon/Pokemon";
 import Grid from "@material-ui/core/Grid";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function Evolutions(props) {
   const theme = createMuiTheme({
@@ -135,9 +134,7 @@ export default function Evolutions(props) {
             />
           </Grid>
         ) : (
-          <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
-        <Skeleton height={300}/>
-        </SkeletonTheme>
+          <div className="loader-evolution"></div>
         )}
       </Card>
     </ThemeProvider>

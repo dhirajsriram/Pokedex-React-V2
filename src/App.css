@@ -19,11 +19,9 @@
 }
 
 .loader-evolution{
-  height: 100%;
-  position: relative;
-  top: -10%;
+  height:200px;
   background: url(./assets/evolution.gif) center center no-repeat;
-  background-size: 20%;
+  background-size: 50%;
 }
 
 .MuiGrid-spacing-xs-4 {
@@ -57,4 +55,12 @@
 
 .filter-button:hover {
   color: black;
+}
+@media screen and (max-width: 600px) {
+  .main-container {
+    margin-top: 55px;
+  }
+  .loader-evolution{
+    height:100px;
+  }
 }
