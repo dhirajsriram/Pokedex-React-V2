@@ -12,6 +12,7 @@ import { withRouter } from "react-router";
 import Button from '@material-ui/core/Button';
 import MainMenu from "./MainMenu";
 import MobileMenu from "./MobileMenu";
+import Icon from "@material-ui/core/Icon";
 
 const Menubar = withRouter((props) => {
 	const [ pokemonType, setpokemonType ] = React.useState("All Types");
@@ -109,7 +110,7 @@ const Menubar = withRouter((props) => {
 							onClick={handleMobileMenuOpen}
 							color="inherit"
 						>
-							<MoreIcon />
+							<Icon>invert_colors</Icon>
 						</IconButton>
 					</div>
 				</Toolbar>
