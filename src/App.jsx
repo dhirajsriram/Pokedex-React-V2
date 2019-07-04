@@ -38,11 +38,13 @@ class App extends Component {
 						{(context) => (
 							<React.Fragment>
 								<Menubar contextProvide={context} />
+								<div className="main-container">
 								<Switch>
 									<Route exact path="/" component={Home} />
 									<Route exact path="/results/:id" component={Listing} />
 									<Route exact path="/description/:id" component={Description} />
 								</Switch>
+								</div>
 							</React.Fragment>
 						)}
 					</PokemonConsumer>

@@ -78,7 +78,7 @@ const Menubar = withRouter((props) => {
 
 	return (
 		<div className={classes.grow}>
-			<AppBar position="static">
+			<AppBar position="fixed">
 				<Toolbar>
 					<Drawer />
 					<Typography className={classes.title}>

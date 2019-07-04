@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0,
     margin: "0px 8px",
     borderRadius: "20px",
+    flexGrow: 100,
     [theme.breakpoints.up("sm")]: {
       margin: "0px 20px",
       flexGrow: 100,

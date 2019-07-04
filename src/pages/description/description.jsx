@@ -24,7 +24,7 @@ export default function Description(props) {
     setValue(newValue);
     window.scrollTo(0, 0);
   }
-  
+
   const useStyles = makeStyles(theme => ({
     container: {
       margin: "0",
@@ -96,7 +96,7 @@ export default function Description(props) {
     <PokemonConsumer>
       {context => (
         <React.Fragment>
-          {pokemonData.name && (
+          {pokemonData.name ? (
             <Container
               className={classes.container}
               style={{
@@ -114,34 +114,34 @@ export default function Description(props) {
                   />
                 </div>
               </Grid>
-                {value === 0 && (
-                  <TabContainer dir={theme.direction}>
-                    <div>
-                      <Bio pokemonData={pokemonData} color={returnType()} />
-                    </div>
-                    <div className={classes.pokemonBlocks}>
-                      <Stats pokemonData={pokemonData} color={returnType()} />
-                    </div>
-                    <div className={classes.pokemonBlocks}>
-                      <Sprites pokemonData={pokemonData} color={returnType()} />
-                    </div>
-                  </TabContainer>
-                )}
-                {value === 1 && (
-                  <TabContainer dir={theme.direction}>
-                    <div>
-                      <Evolutions
-                        pokemonData={pokemonData}
-                        color={returnType()}
-                      />
-                    </div>
-                  </TabContainer>
-                )}
-                {value === 2 && (
-                  <TabContainer dir={theme.direction}>
-                    <Moves pokemonData={pokemonData} color={returnType()} />
-                  </TabContainer>
-                )}
+              {value === 0 && (
+                <TabContainer dir={theme.direction}>
+                  <div>
+                    <Bio pokemonData={pokemonData} color={returnType()} />
+                  </div>
+                  <div className={classes.pokemonBlocks}>
+                    <Stats pokemonData={pokemonData} color={returnType()} />
+                  </div>
+                  <div className={classes.pokemonBlocks}>
+                    <Sprites pokemonData={pokemonData} color={returnType()} />
+                  </div>
+                </TabContainer>
+              )}
+              {value === 1 && (
+                <TabContainer dir={theme.direction}>
+                  <div>
+                    <Evolutions
+                      pokemonData={pokemonData}
+                      color={returnType()}
+                    />
+                  </div>
+                </TabContainer>
+              )}
+              {value === 2 && (
+                <TabContainer dir={theme.direction}>
+                  <Moves pokemonData={pokemonData} color={returnType()} />
+                </TabContainer>
+              )}
               <footer>
                 <Tabs
                   className={classes.BottomNavigation}
@@ -173,6 +173,10 @@ export default function Description(props) {
                 </Tabs>
               </footer>
             </Container>
+          ) : (
+            <div className="loader-container">
+              <div className="loader" />
+            </div>
           )}
         </React.Fragment>
       )}

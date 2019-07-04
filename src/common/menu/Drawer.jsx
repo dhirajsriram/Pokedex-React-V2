@@ -12,11 +12,18 @@ import HomeIcon from '@material-ui/icons/Home'
 import ListIcon from '@material-ui/icons/List';
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
+import { Typography } from '@material-ui/core';
+import { Types } from '../context/pokemonContext';
 
 const useStyles = makeStyles({
   list: {
     width: 250,
   },
+  menuItems: {
+    textTransform:"capitalize",
+    paddingLeft:24,
+  }
 });
 
 export default function TemporaryDrawer() {
@@ -43,6 +50,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
+        
         {['Home'].map((text, index) => (
           <Link className="default-text" to={"/"} key={index}>
           <ListItem button>
@@ -53,6 +61,22 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
+      <List>
+        {Types.map((type, i) => (
+           <React.Fragment key={i}>{type !== "reset"&& (<Link to={"/results/" + type} key={i} className="default-text">
+           <MenuItem
+           >
+             <img
+               className={classes.typeImages}
+               src={require("../../assets/" + type + ".png")}
+               alt={type}
+             />
+             <Typography className={classes.menuItems}>{type}</Typography>
+           </MenuItem>
+         </Link>)}</React.Fragment>
+        ))}
+      </List>
+      <Divider />  
       <List>
         {['About'].map((text, index) => (
            <Link className="default-text" to={"/" + text} key={text}>

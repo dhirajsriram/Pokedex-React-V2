@@ -4,6 +4,28 @@
   font-weight: inherit;
 }
 
+.loader-container {
+  width: 100%;
+  height: calc(100vh);
+  background:rgb(213, 213, 213);
+}
+
+.loader{
+  height: 100%;
+  position: relative;
+  top: -10%;
+  background: url(./assets/loader_pika.gif) center center no-repeat;
+  background-size: 20%;
+}
+
+.loader-evolution{
+  height: 100%;
+  position: relative;
+  top: -10%;
+  background: url(./assets/evolution.gif) center center no-repeat;
+  background-size: 20%;
+}
+
 .MuiGrid-spacing-xs-4 {
   width: auto !important;
   margin: 0px !important;
@@ -33,6 +55,6 @@
   width: 53%;
 }
 
-.filter-button:hover{
-  color:black;
+.filter-button:hover {
+  color: black;
 }
