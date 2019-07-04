@@ -7,7 +7,6 @@ import Pokemon from "../../common/pokemon/Pokemon";
 import { PokemonConsumer } from "../../common/context/pokemonContext";
 import Bio from "./modules/Bio";
 import Stats from "./modules/Stats";
-import Abilities from "./modules/Abilities";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Sprites from "./modules/Sprites";
@@ -45,7 +44,7 @@ export default function Description(props) {
     pokemon: {
       width: "50%",
       margin: "auto",
-      display: "block"
+      display: "block",
     },
     BottomNavigation: {
       width: "100%",
@@ -69,10 +68,6 @@ export default function Description(props) {
   }));
 
   const classes = useStyles();
-
-  useEffect(() => {
-    fetchPokemonData();
-  }, []);
 
   useEffect(() => {
     fetchPokemonData();
@@ -125,13 +120,10 @@ export default function Description(props) {
                     <Bio pokemonData={pokemonData} color={returnType()} />
                   </div>
                   <div className={classes.pokemonBlocks}>
-                    <Sprites pokemonData={pokemonData} color={returnType()} />
-                  </div>
-                  <div className={classes.pokemonBlocks}>
                     <Stats pokemonData={pokemonData} color={returnType()} />
                   </div>
                   <div className={classes.pokemonBlocks}>
-                    <Abilities pokemonData={pokemonData} color={returnType()} />
+                    <Sprites pokemonData={pokemonData} color={returnType()} />
                   </div>
                 </TabContainer>
                 <TabContainer dir={theme.direction}><div>

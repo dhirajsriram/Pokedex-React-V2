@@ -24,8 +24,7 @@ export default function Sprites(props) {
 
   const useStyles = makeStyles(theme => ({
     heading: {
-      color: props.color,
-      padding:8
+      padding:4
 	},
 	spriteImage : {
     minHeight:"125px",

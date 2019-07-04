@@ -12,6 +12,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import { withRouter } from "react-router";
 import { PokemonConsumer } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Icon from "@material-ui/core/Icon";
 
 const theme = createMuiTheme({
   palette: {
@@ -69,29 +70,36 @@ const Pokemon = withRouter((props, context) => {
       width: "80%"
     },
     evolutionImage: {
-      width: "unset",
-      margin: "auto",
-      background: "rgba(255,255,255,0.5)",
-      borderBottomLeftRadius: "70px",
-      borderBottomRightRadius: "70px"
+      objectFit: "scale-down",
+      height: "100px",
+      margin: "auto"
     },
-    evolutionCard: {
-	  margin: "auto"
-	},
-	evolutionParentCard : {
-		background :"#ffffff",
-		boxShadow : "none",
-	},
-	evolutionCardAction:{
-		margin:"auto",
-		width:"unset",
-		borderRadius:8
-	},
+    evolutionText: {
+      padding: 0,
+      textTransform: "capitalize",
+      color: "#3a3a3a"
+    },
+    evolutionParentCard: {
+      background: "#ffffff",
+      boxShadow: "none"
+    },
+    evolutionCardAction: {
+      margin: "auto",
+      borderRadius: 8
+    },
     grid: {
       borderRadius: 5
     },
     evolutionContent: {
       padding: 0
+    },
+    evolutionType : {
+      textTransform: "capitalize"
+    },
+    arrow: {
+      color: "#3a3a3a",
+      position: "absolute",
+      top: "25%"
     },
     skeletonImage: {
       width: "8%",
@@ -113,6 +121,9 @@ const Pokemon = withRouter((props, context) => {
     "@media (max-width: 600px)": {
       skeletonImage: {
         width: "30%"
+      },
+      evolutionImage: {
+        height: "50px"
       }
     }
   });
@@ -159,36 +170,56 @@ const Pokemon = withRouter((props, context) => {
   }
   function Lengthwise(props) {
     return (
-        <div
-          className={classes.evolutionCard}
-        >
-          <CardMedia
-            component="img"
-            className={classes.evolutionImage}
-            alt={pokemon.name + " image"}
-            height="75"
-            style={imageLoaded ? { display: "block" } : { display: "none" }}
-            onLoad={handleImageLoaded}
-            onError={onError}
-            image={
-              "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-              props.context.numberPadding(props.number, 3) +
-              ".png"
-            }
-            title="Contemplative Reptile"
-          />
-          <CardContent className={classes.evolutionContent}>
+      <div className={classes.evolutionCard}>
+        <CardMedia
+          component="img"
+          className={classes.evolutionImage}
+          alt={pokemon.name + " image"}
+          style={imageLoaded ? { display: "block" } : { display: "none" }}
+          onLoad={handleImageLoaded}
+          onError={onError}
+          image={
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
+            props.context.numberPadding(props.number, 3) +
+            ".png"
+          }
+          title="Contemplative Reptile"
+        />
+
+        <CardContent className={classes.evolutionContent}>
+          <Typography
+            gutterBottom
+            variant="subtitle2"
+            component="h2"
+            align="center"
+            className={classes.evolutionText}
+          >
+            {pokemon.name}
+          </Typography>
+          <div style={{ color: returnType(props.context) }}>
             <Typography
               gutterBottom
               variant="subtitle2"
               component="h2"
               align="center"
-              className={classes.text}
+              className={classes.evolutionType}
             >
-              {pokemon.name}
+              {props.evolutionData.evolution_details.length > 0 &&
+                props.evolutionData.evolution_details[0].trigger.name}
             </Typography>
-          </CardContent>
-        </div>
+            <Typography
+              gutterBottom
+              variant="subtitle2"
+              component="h2"
+              align="center"
+              className={classes.evolutionType}
+            >
+              {props.evolutionData.evolution_details.length > 0 &&
+                props.evolutionData.evolution_details[0]["min_level"]}
+            </Typography>
+          </div>
+        </CardContent>
+      </div>
     );
   }
 
@@ -263,7 +294,7 @@ const Pokemon = withRouter((props, context) => {
     <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
-          {!(pokemon && imageLoaded) && (
+          {!props.evolution && !(pokemon && imageLoaded) && (
             <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
               <div className={classes.skeletonContainer}>
                 <div className={classes.skeletonText}>
@@ -279,32 +310,40 @@ const Pokemon = withRouter((props, context) => {
           )}
           {pokemon.sprites && (
             <Card
-			  className={props.evolution ? classes.evolutionParentCard : classes.card}
+              className={
+                props.evolution ? classes.evolutionParentCard : classes.card
+              }
               style={
                 props.descriptionPage
-                  ? { background: returnType(context), color: "#3a3a3a" }
+                  ? { background: returnType(context) }
                   : { display: pokemon && imageLoaded ? "block" : "none" }
               }
               onClick={redirect}
             >
               <CardActionArea
                 style={
-                  props.descriptionPage
+                  props.descriptionPage || props.evolution
                     ? { background: "rgb(255,255,255,0.5)" }
                     : {
                         background: returnType(context)
-					  }	  
-				}
-				className={props.evolution && classes.evolutionCardAction}
+                      }
+                }
+                className={props.evolution && classes.evolutionCardAction}
               >
                 {props.evolution ? (
-                 <Lengthwise
-                    context={context}
-                    classes={classes}
-                    descriptionPage={props.descriptionPage}
-                    number={props.number}
-                    color={returnType(context)}
-                  />
+                  <React.Fragment>
+                    {!props.first && (
+                      <Icon className={classes.arrow}>arrow_forward</Icon>
+                    )}
+                    <Lengthwise
+                      context={context}
+                      classes={classes}
+                      evolutionData={props.evolutionData}
+                      descriptionPage={props.descriptionPage}
+                      number={props.number}
+                      color={returnType(context)}
+                    />
+                  </React.Fragment>
                 ) : (
                   <Widthwise
                     number={props.number}

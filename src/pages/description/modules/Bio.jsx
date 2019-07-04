@@ -12,9 +12,6 @@ export default function Bio(props) {
     media: {
       height: 140
     },
-    heading: {
-      color: props.color
-    }
   });
   const classes = useStyles();
 

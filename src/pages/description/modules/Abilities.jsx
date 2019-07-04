@@ -20,7 +20,6 @@ export default function Abilities(props) {
     },
     border: {
       border: "1px solid " + props.color,
-      color:props.color,
       padding: 5,
       margin:"10px 0px",
       borderRadius: "20px",

@@ -8,7 +8,8 @@ function TabContainer({ children, dir }) {
     pokemon: {
       width: "50%",
       margin: "auto",
-      display: "block"
+      display: "block",
+      marginBottom:"90px"
     },
     "@media (max-width: 800px)": {
       pokemon: {

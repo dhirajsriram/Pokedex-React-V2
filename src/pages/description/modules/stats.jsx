@@ -30,7 +30,6 @@ export default function Stats(props) {
 			borderBottomRightRadius: 0
 		},
 		heading: {
-			color: props.color,
 			padding:4
 		},
 		statsValue: {

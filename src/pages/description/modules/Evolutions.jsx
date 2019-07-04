@@ -17,22 +17,24 @@ export default function Sprites(props) {
       secondary: { A400: "#ffffff", contrastText: props.color } // custom color in hex
     }
   });
-
+  var stagesCount = 1;
   const [evolutionData, setEveolutionData] = useState({});
+  const [stages, setstages] = useState(0);
   const useStyles = makeStyles(theme => ({
     heading: {
-      color: props.color,
-      padding:8,
+      padding: 4
     },
-    card : {
-      padding :16
+    pokemon:{
+      maxWidth:"unset"
+    },
+    card: {
+      padding: 16
     }
-    
   }));
 
   useEffect(() => {
     fetchPokemonData(props.pokemonData.id);
-  }, []);
+  }, [props.pokemonData.id]);
 
   async function fetchPokemonData(number) {
     let response = await fetch(
@@ -41,28 +43,53 @@ export default function Sprites(props) {
     response = await response.json();
     let evolutionResponse = await fetch(response.evolution_chain.url);
     evolutionResponse = await evolutionResponse.json();
+    printValues(evolutionResponse);
+    setstages(stagesCount);
     setEveolutionData(evolutionResponse);
   }
   function getNumber(url) {
     var number = url
-    .replace("https://pokeapi.co/api/v2/pokemon-species/", "")
-    .replace("/", "");
-    return number
+      .replace("https://pokeapi.co/api/v2/pokemon-species/", "")
+      .replace("/", "");
+    return number;
+  }
+
+  function printValues(obj) {
+    for (var key in obj) {
+      if (typeof obj[key] === "object") {
+        if (key === "evolves_to" && obj[key].length > 0) {
+          stagesCount = stagesCount + 1;
+        }
+        printValues(obj[key]);
+      }
+    }
   }
 
   const Evolution = props => {
     return (
       <React.Fragment>
-        {console.log(props.evolution.species.url)}
-        <Grid xs={4} className={classes.pokemon}><Pokemon
-                    number={getNumber(props.evolution.species.url)}
-                    evolution = {true}
-                    descriptionPage={false}
-                  /></Grid>
-        {props.evolution.evolves_to.length > 0 && props.evolution.evolves_to.map(function(val,i){
-          return(<Evolution key={i} evolution={val} />)
-        })
-        }
+        {console.log(stages)}
+        <Grid xs={12 / stages} item className={classes.pokemon}>
+          <Pokemon
+            first={props.first}
+            number={getNumber(props.evolution.species.url)}
+            evolution={true}
+            descriptionPage={false}
+            evolutionData={props.evolution}
+          />
+        </Grid>
+        {props.evolution.evolves_to.length > 1 && (
+          <Grid>
+            {props.evolution.evolves_to.map(function(val, i) {
+              return <Evolution key={i} evolution={val} first={false} />;
+            })}
+          </Grid>
+        )}
+
+        {props.evolution.evolves_to.length === 1 &&
+          props.evolution.evolves_to.map(function(val, i) {
+            return <Evolution key={i} evolution={val} first={false} />;
+          })}
       </React.Fragment>
     );
   };
@@ -72,9 +99,19 @@ export default function Sprites(props) {
     <ThemeProvider theme={theme}>
       <Card className={classes.card}>
         <Typography variant="h6" align="center" className={classes.heading}>
-          Evolution Chain
+          Evolution
         </Typography>
-        {evolutionData.chain && <Grid container><Evolution evolution={evolutionData.chain} /></Grid>}
+        {evolutionData.chain && (
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+            className={classes.parentGrid}
+          >
+            <Evolution evolution={evolutionData.chain} first={true} />
+          </Grid>
+        )}
       </Card>
     </ThemeProvider>
   );
