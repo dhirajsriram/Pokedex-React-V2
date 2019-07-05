@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Icon from "@material-ui/core/Icon";
 import { Types } from "../context/pokemonContext";
 
-
-const RenderMenuItems = React.forwardRef((props,ref) => {
+const RenderMenuItems = React.forwardRef((props, ref) => {
   const useStyles = makeStyles(theme => ({
     typeImages: {
       filter: "saturate(2)"
@@ -22,14 +21,18 @@ const RenderMenuItems = React.forwardRef((props,ref) => {
         return (
           <span key={i}>
             {type === "reset" ? (
-              <Link to={"/"} key={i} className="default-text"> 
-                <MenuItem
-                  onClick={props.handleMenuClose}
-                  className={classes.menuItems}
-                >
-                  <Icon>close</Icon>
-                </MenuItem>
-              </Link>
+              <React.Fragment>
+                {window.location.pathname.indexOf("results") > -1 && (
+                  <Link to={"/"} key={i} className="default-text">
+                    <MenuItem
+                      onClick={props.handleMenuClose}
+                      className={classes.menuItems}
+                    >
+                      <Icon>close</Icon>
+                    </MenuItem>
+                  </Link>
+                )}
+              </React.Fragment>
             ) : (
               <Link to={"/results/" + type} key={i}>
                 <MenuItem
