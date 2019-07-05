@@ -53,7 +53,10 @@ export default function Description(props) {
       position: "fixed",
       bottom: "0",
       left: "0",
-      background: "white"
+      background:"white"
+    },
+    tabs:{
+      padding:0
     },
     "@media (max-width: 800px)": {
       pokemon: {

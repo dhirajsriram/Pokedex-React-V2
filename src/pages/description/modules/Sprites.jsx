@@ -30,7 +30,12 @@ export default function Sprites(props) {
     minHeight:"125px",
     width:"auto",
     height:"auto"
-	}
+  },
+  "@media (max-width: 600px)": {
+    spriteImage : {
+      minHeight:"75px",
+    }
+  }
   }));
 
   function onError(e,url) {
