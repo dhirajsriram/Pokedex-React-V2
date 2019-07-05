@@ -10,7 +10,7 @@ import Types from "../pokemon/Types";
 import Grid from "@material-ui/core/Grid";
 import { ThemeProvider } from "@material-ui/styles";
 import { withRouter } from "react-router";
-import { PokemonConsumer } from "../context/pokemonContext";
+import { PokemonConsumer, findTypeColor , numberPadding } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Icon from "@material-ui/core/Icon";
 
@@ -176,13 +176,13 @@ const Pokemon = withRouter((props, context) => {
   function returnType(context) {
     switch (props.page){
       case "Listing":
-        return context.findType(props.match.params.id ? props.match.params.id : pokemon.types[1]
+        return findTypeColor(props.match.params.id ? props.match.params.id : pokemon.types[1]
         ? pokemon.types[1].type.name
         : pokemon.types[0].type.name)
       case "evolution":
         return props.color
       case "description":
-          return context.findType(pokemon.types[1]
+          return findTypeColor(pokemon.types[1]
             ? pokemon.types[1].type.name
             : pokemon.types[0].type.name)
       default:
@@ -201,7 +201,7 @@ const Pokemon = withRouter((props, context) => {
           onError={onError}
           image={
             "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-            props.context.numberPadding(props.number, 3) +
+            numberPadding(props.number, 3) +
             ".png"
           }
           title="Contemplative Reptile"
@@ -263,8 +263,9 @@ const Pokemon = withRouter((props, context) => {
               variant="subtitle2"
               className={classes.text}
             >
+
               {pokemon.name &&
-                "#" + props.context.numberPadding(props.number, 3)}
+                "#" + numberPadding(props.number, 3)}
             </Typography>
             <Typography
               gutterBottom
@@ -299,7 +300,7 @@ const Pokemon = withRouter((props, context) => {
                 onError={onError}
                 image={
                   "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-                  props.context.numberPadding(props.number, 3) +
+                  numberPadding(props.number, 3) +
                   ".png"
                 }
                 title="Contemplative Reptile"

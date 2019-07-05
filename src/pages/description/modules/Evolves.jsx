@@ -10,7 +10,7 @@ import Types from '../pokemon/Types';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
 import { withRouter } from 'react-router';
-import { PokemonConsumer } from '../context/pokemonContext';
+import { PokemonConsumer , numberPadding , findTypeColor} from '../context/pokemonContext';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const theme = createMuiTheme({
@@ -127,7 +127,7 @@ const Pokemon = withRouter((props, context) => {
 	}
 
 	function returnType(context) {
-		return context.findType(
+		return findTypeColor(
 			props.match.params.id && !props.descriptionPage
 				? props.match.params.id
 				: pokemon.types[1] ? pokemon.types[1].type.name : pokemon.types[0].type.name
@@ -179,7 +179,7 @@ const Pokemon = withRouter((props, context) => {
 									<Grid container item xs={10} spacing={4} className={classes.spacing4}>
 										<CardContent className={classes.cardContent}>
 											<Typography gutterBottom variant="subtitle2" className={classes.text}>
-												{pokemon.name && '#' + context.numberPadding(props.number, 3)}
+												{pokemon.name && '#' + numberPadding(props.number, 3)}
 											</Typography>
 											<Typography
 												gutterBottom
@@ -208,7 +208,7 @@ const Pokemon = withRouter((props, context) => {
 													onError={onError}
 													image={
 														'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' +
-														context.numberPadding(props.number, 3) +
+														numberPadding(props.number, 3) +
 														'.png'
 													}
 													title="Contemplative Reptile"

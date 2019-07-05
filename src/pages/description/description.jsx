@@ -9,7 +9,7 @@ import Stats from "./modules/Stats";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Sprites from "./modules/Sprites";
-import { findType } from "../../common/context/pokemonContext";
+import { findTypeColor } from "../../common/context/pokemonContext";
 import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
@@ -95,7 +95,7 @@ export default function Description(props) {
   }
 
   function returnType() {
-    return findType(
+    return findTypeColor(
       pokemonData.types[1]
         ? pokemonData.types[1].type.name
         : pokemonData.types[0].type.name

@@ -6,7 +6,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
 import Description from './pages/description/Description';
-import { PokemonProvider, PokemonConsumer , numberPadding , findType } from './common/context/pokemonContext';
+import { PokemonProvider, PokemonConsumer } from './common/context/pokemonContext';
 import Listing from './pages/listing/Listing';
 import Menubar from './common/menu/Menubar';
 import FourZeroFour from './pages/404/FourZeroFour';
@@ -29,16 +29,14 @@ class App extends Component {
 		return (
 			<PokemonProvider
 				value={{
-					state: this.state,
-					findType: findType,
-					numberPadding: numberPadding
+					state: this.state
 				}}
 			>
 				<ThemeProvider theme={theme}>
 					<PokemonConsumer>
 						{(context) => (
 							<React.Fragment>
-								<Menubar contextProvide={context} />
+								<Menubar/>
 								<div className="main-container">
 								<Switch>
 									<Route exact path="/" component={Home} />

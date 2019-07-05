@@ -1,20 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home'
-import ListIcon from '@material-ui/icons/List';
-import InfoIcon from '@material-ui/icons/Info';
-import { Link } from "react-router-dom";
-import MenuItem from "@material-ui/core/MenuItem";
-import { Typography } from '@material-ui/core';
-import { Types } from '../context/pokemonContext';
+import IconButton from '@material-ui/core/IconButton';
+import Sidelist from "./Sidelist"
+
 
 const useStyles = makeStyles({
   list: {
@@ -28,67 +18,19 @@ const useStyles = makeStyles({
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
+  
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
-
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, [side]: open });
   };
-
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        
-        {['Home'].map((text, index) => (
-          <Link className="default-text" to={"/"} key={index}>
-          <ListItem button>
-            <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <ListIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-          </Link>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {Types.map((type, i) => (
-           <React.Fragment key={i}>{type !== "reset"&& (<Link to={"/results/" + type} key={i} className="default-text">
-           <MenuItem
-           >
-             <img
-               className={classes.typeImages}
-               src={require("../../assets/" + type + ".png")}
-               alt={type}
-             />
-             <Typography className={classes.menuItems}>{type}</Typography>
-           </MenuItem>
-         </Link>)}</React.Fragment>
-        ))}
-      </List>
-      <Divider />  
-      <List>
-        {['About'].map((text, index) => (
-           <Link className="default-text" to={"/" + text} key={text}>
-          <ListItem button>
-            <ListItemIcon><InfoIcon/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-          </Link>
-        ))}
-      </List>
-    </div>
-  );
 
   return (
     <div>
@@ -102,7 +44,7 @@ export default function TemporaryDrawer() {
 						<MenuIcon />
 					</IconButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
+      <Sidelist classes={classes} toggleDrawer={toggleDrawer} side="left"></Sidelist>
       </Drawer>
     </div>
   );

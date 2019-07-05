@@ -12,9 +12,9 @@ import Button from '@material-ui/core/Button';
 import MainMenu from "./MainMenu";
 import MobileMenu from "./MobileMenu";
 import Icon from "@material-ui/core/Icon";
+import {findTypeColor} from "../context/pokemonContext"
 
 const Menubar = withRouter((props) => {
-	const [ pokemonType, setpokemonType ] = React.useState("All Types");
 	const useStyles = makeStyles((theme) => ({
 		grow: {
 			flexGrow: 1
@@ -39,11 +39,11 @@ const Menubar = withRouter((props) => {
 		},
 		typeTheme:{
 			color:"white",
-			backgroundColor:props.contextProvide.findType(pokemonType)
+			backgroundColor:findTypeColor(pokemonType)
 		}
 	}));
-
 	const classes = useStyles();
+	const [ pokemonType, setpokemonType ] = React.useState("All Types");
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const [ mobileMoreAnchorEl, setMobileMoreAnchorEl ] = React.useState(null);
 

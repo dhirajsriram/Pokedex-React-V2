@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonConsumer } from "../context/pokemonContext";
+import { PokemonConsumer,numberPadding } from "../context/pokemonContext";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -49,7 +49,7 @@ const Suggestion = function(suggestionProps) {
             }}
             src={
               "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-              context.numberPadding(number, 3) +
+              numberPadding(number, 3) +
               ".png"
             }
             alt={suggestion.name + " image"}
@@ -59,7 +59,7 @@ const Suggestion = function(suggestionProps) {
               {suggestion.name}
             </Box>
             <Box fontWeight="fontWeightRegular" m={1}>
-              {"#" + context.numberPadding(number, 3)}
+              {"#" + numberPadding(number, 3)}
             </Box>
           </Typography>
         </MenuItem>
