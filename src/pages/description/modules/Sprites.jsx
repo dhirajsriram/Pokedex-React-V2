@@ -33,10 +33,18 @@ export default function Sprites(props) {
 	}
   }));
 
+  function onError(e,url) {
+    console.log(url)
+    e.target.onerror = null;
+    e.target.src = props.pokemonData.sprites.front_default
+      ? props.pokemonData.sprites.front_default
+      : require("../../../assets/unknown.png");
+  }
+
   const SpriteImg = props => {
     return (
       <img
-        src={Spritebase + props.url + props.pokemonData.name + ".gif"}
+        src={Spritebase + props.url + props.pokemonData.name + ".gif"} onError={(e)=>onError(e,props.url)}
         alt={props.pokemonData.name + props.url} className={classes.spriteImage} width="400" height="400"
       />
     );

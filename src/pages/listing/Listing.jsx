@@ -31,10 +31,11 @@ class Listing extends React.Component {
   }
 
   trackScrolling = () => {
+    console.log(this.state.index ,this.state.fullArr.length)
     const wrappedElement = document.body;
     if (this.isBottom(wrappedElement)) {
-      this.setState({ index: this.state.index + 12 });
       if (this.state.index < this.state.fullArr.length) {
+        this.setState({ index: this.state.index + 12 });
         let initArr = this.state.fullArr.slice(0, this.state.index);
         this.setState({ pokeArr: initArr });
       }
