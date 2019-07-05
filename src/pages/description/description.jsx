@@ -14,6 +14,7 @@ import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
 import Moves from "./modules/Moves";
+import FourZeroFour from "../404/FourZeroFour"
 
 export default function Description(props) {
   const [pokemonData, setPokemonData] = React.useState({});
@@ -73,11 +74,15 @@ export default function Description(props) {
   }, [props.match.params.id]);
 
   async function fetchPokemonData() {
-    let response = await fetch(
-      "https://pokeapi.co/api/v2/pokemon/" + props.match.params.id
-    );
-    response = await response.json();
-    setPokemonData(response);
+    try {
+      let response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon/" + props.match.params.id
+      );
+      response = await response.json();
+      setPokemonData(response);
+    } catch (err) {
+      setPokemonData({ error: "true" }); // TypeError: failed to fetch
+    }
   }
 
   function resetPage() {
@@ -174,9 +179,15 @@ export default function Description(props) {
               </footer>
             </Container>
           ) : (
-            <div className="loader-container">
-              <div className="loader" />
-            </div>
+            <React.Fragment>
+              {pokemonData.error ? (
+                <FourZeroFour></FourZeroFour>
+              ) : (
+                <div className="loader-container loader-background">
+                  <div className="loader" />
+                </div>
+              )}
+            </React.Fragment>
           )}
         </React.Fragment>
       )}

@@ -9,6 +9,7 @@ import Description from './pages/description/Description';
 import { PokemonProvider, PokemonConsumer , numberPadding , findType } from './common/context/pokemonContext';
 import Listing from './pages/listing/Listing';
 import Menubar from './common/menu/Menubar';
+import FourZeroFour from './pages/404/FourZeroFour';
 
 const theme = createMuiTheme({
 	palette: {
@@ -43,6 +44,7 @@ class App extends Component {
 									<Route exact path="/" component={Home} />
 									<Route exact path="/results/:id" component={Listing} />
 									<Route exact path="/description/:id" component={Description} />
+									<Route component={FourZeroFour} />
 								</Switch>
 								</div>
 							</React.Fragment>

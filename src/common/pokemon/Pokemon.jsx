@@ -129,18 +129,18 @@ const Pokemon = withRouter((props, context) => {
   });
 
   const classes = useStyles();
-
   useEffect(() => {
+    console.log(props.page)
     if (props.descriptionPage) {
       setPokemon(props.pokemonData);
     } 
     else if(props.evolution){
       setPokemon(mockPokemonData(props.evolutionData))
     }
-    else {
+    else if(props.page === "Listing"){
       fetchPokemonData(props.number);
     }
-  }, [props.pokemonData]);
+  }, [props]);
 
   function mockPokemonData(data){
     return {
@@ -152,9 +152,10 @@ const Pokemon = withRouter((props, context) => {
   }
 
   async function fetchPokemonData(number) {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number);
+    let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number)
+    if(response.status === 200){
     response = await response.json();
-    setPokemon(response);
+    setPokemon(response);}
   }
 
   function handleImageLoaded(e) {
@@ -181,7 +182,6 @@ const Pokemon = withRouter((props, context) => {
       case "evolution":
         return props.color
       case "description":
-        console.log(pokemon)
           return context.findType(pokemon.types[1]
             ? pokemon.types[1].type.name
             : pokemon.types[0].type.name)

@@ -6,8 +6,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Pokemon from "../../../common/pokemon/Pokemon";
 import Grid from "@material-ui/core/Grid";
+import { withRouter } from "react-router";
 
-export default function Evolutions(props) {
+const Evolutions = withRouter((props) =>{
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -36,8 +37,9 @@ export default function Evolutions(props) {
   }));
 
   useEffect(() => {
-    fetchPokemonData(props.pokemonData.id);
-  }, [props.pokemonData.id]);
+    if(!evolutionData.chain){
+    fetchPokemonData(props.pokemonData.id);}
+  }, [window.location.pathname]);
 
   async function fetchPokemonData(number) {
     let response = await fetch(
@@ -139,4 +141,6 @@ export default function Evolutions(props) {
       </Card>
     </ThemeProvider>
   );
-}
+})
+
+export default Evolutions;
