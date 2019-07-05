@@ -31,7 +31,6 @@ class Listing extends React.Component {
   }
 
   trackScrolling = () => {
-    console.log(this.state.index ,this.state.fullArr.length)
     const wrappedElement = document.body;
     if (this.isBottom(wrappedElement)) {
       if (this.state.index < this.state.fullArr.length) {

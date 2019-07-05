@@ -1,52 +1,41 @@
-import React from 'react';
-import { PokemonConsumer,numberPadding } from "../context/pokemonContext";
+import React from "react";
+import { numberPadding, getNumber } from "../context/pokemonContext";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 
+const useStyles = makeStyles({
+  menuItems: {
+    borderRadius: "20px",
+    textTransform: "capitalize"
+  },
+  image: {
+    width: "75px",
+    marginRight: "10px"
+  }
+});
+
+
 const Suggestion = function(suggestionProps) {
-    const {
-      suggestion,
-      index,
-      itemProps,
-      highlightedIndex,
-      selectedItem
-    } = suggestionProps;
-  
-    function getNumber(url) {
-      var number = url
-      .replace("https://pokeapi.co/api/v2/pokemon/", "")
-      .replace("/", "");
-      return number
-    }
-  
-    const isHighlighted = highlightedIndex === index;
-    const isSelected = (selectedItem || "").indexOf(suggestion.name) > -1;
-    var number = getNumber(suggestion.url)
-    
-    return (
-      <PokemonConsumer key={index}>{context=>(
-      <Link
-        className="default-text"
-        to={"/description/" + suggestion.name}
-      >
+  const classes = useStyles();
+  const { suggestion, index, itemProps, highlightedIndex } = suggestionProps;
+  const isHighlighted = highlightedIndex === index;
+  var number = getNumber(suggestion.url);
+
+  return (
+    <React.Fragment>
+      <Link className="default-text" to={"/description/" + suggestion.name}>
         <MenuItem
           {...itemProps}
           key={suggestion.name}
           selected={isHighlighted}
           component="div"
-          style={{
-            fontWeight: isSelected ? 500 : 400,
-            borderRadius: "20px",
-            textTransform: "capitalize"
-          }}
+          className={classes.menuItems}
         >
           <img
-            style={{
-              width: "75px",
-              marginRight: "10px"
-            }}
+            className={classes.image}
             src={
               "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
               numberPadding(number, 3) +
@@ -63,10 +52,9 @@ const Suggestion = function(suggestionProps) {
             </Box>
           </Typography>
         </MenuItem>
-      </Link>)}
-      </PokemonConsumer>
-    );
-  }
+      </Link>
+    </React.Fragment>
+  );
+};
 
-  export default Suggestion
-  
+export default Suggestion;

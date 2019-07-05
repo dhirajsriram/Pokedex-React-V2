@@ -34,7 +34,6 @@ export default function Sprites(props) {
   }));
 
   function onError(e,url) {
-    console.log(url)
     e.target.onerror = null;
     e.target.src = props.pokemonData.sprites.front_default
       ? props.pokemonData.sprites.front_default

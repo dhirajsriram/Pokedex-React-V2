@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
+    textTransform:"capitalize",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: 200,
@@ -59,14 +60,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchContainer = withRouter((props, context) => {
+
   const classes = useStyles();
   const [pokemonList, setPokemonList] = useState("");
-
   useEffect(() => {
-    fetchPokemonData();
+    fetchPokemonList();
   }, []);
 
-  async function fetchPokemonData() {
+  async function fetchPokemonList() {
     let response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=811");
     response = await response.json();
     setPokemonList(response.results);
@@ -106,8 +107,7 @@ const SearchContainer = withRouter((props, context) => {
             getMenuProps,
             highlightedIndex,
             inputValue,
-            isOpen,
-            selectedItem
+            isOpen
           }) => {
             const { onBlur, onFocus, ...inputProps } = getInputProps({
               pokemonlist: pokemonList,
@@ -127,7 +127,7 @@ const SearchContainer = withRouter((props, context) => {
                     <Paper className={classes.paper} square>
                       {getSuggestions(inputValue, pokemonList).map(
                         (suggestion, index) =>
-                          <Suggestion key={index} suggestion={suggestion} index={index} itemProps={getItemProps({ item: suggestion.name })} highlightedIndex={highlightedIndex} selectedItem={selectedItem}></Suggestion>
+                          <Suggestion key={index} suggestion={suggestion} index={index} itemProps={getItemProps({ item: suggestion.name })} highlightedIndex={highlightedIndex}></Suggestion>
                       )}
                     </Paper>
                   ) : null}

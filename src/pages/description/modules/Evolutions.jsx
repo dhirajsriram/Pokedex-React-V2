@@ -43,7 +43,6 @@ const Evolutions = withRouter((props) =>{
   const Evolution = props => {
     return (
       <React.Fragment>
-        {console.log(props.evolution.species.url)}
         <Grid xs={12 / props.stages} item className={classes.pokemon}>
           <Pokemon
             first={props.first}

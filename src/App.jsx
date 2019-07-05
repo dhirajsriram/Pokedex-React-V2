@@ -6,7 +6,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
 import Description from './pages/description/Description';
-import { PokemonProvider, PokemonConsumer } from './common/context/pokemonContext';
+import { PokemonProvider } from './common/context/pokemonContext';
 import Listing from './pages/listing/Listing';
 import Menubar from './common/menu/Menubar';
 import FourZeroFour from './pages/404/FourZeroFour';
@@ -33,8 +33,6 @@ class App extends Component {
 				}}
 			>
 				<ThemeProvider theme={theme}>
-					<PokemonConsumer>
-						{(context) => (
 							<React.Fragment>
 								<Menubar/>
 								<div className="main-container">
@@ -47,7 +45,6 @@ class App extends Component {
 								</div>
 							</React.Fragment>
 						)}
-					</PokemonConsumer>
 				</ThemeProvider>
 			</PokemonProvider>
 		);

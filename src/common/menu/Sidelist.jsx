@@ -44,14 +44,12 @@ const sideList = props => (
       </List>
       <Divider />  
       <List>
-        {['About'].map((text, index) => (
-           <Link className="default-text" to={"/" + text} key={text}>
+           <Link className="default-text" to={"https://github.com/dhirajsriram/Healthdex"}>
           <ListItem button>
             <ListItemIcon><InfoIcon/></ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={"About"} />
           </ListItem>
           </Link>
-        ))}
       </List>
     </div>
   );

@@ -130,7 +130,6 @@ const Pokemon = withRouter((props, context) => {
 
   const classes = useStyles();
   useEffect(() => {
-    console.log(props.page)
     if (props.descriptionPage) {
       setPokemon(props.pokemonData);
     } 

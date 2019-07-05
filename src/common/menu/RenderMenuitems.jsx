@@ -17,8 +17,7 @@ const RenderMenuItems = React.forwardRef((props,ref) => {
   }));
   const classes = useStyles();
   return (
-    <React.Fragment
-    >
+    <React.Fragment>
       {Types.map(function(type, i) {
         return (
           <span key={i}>

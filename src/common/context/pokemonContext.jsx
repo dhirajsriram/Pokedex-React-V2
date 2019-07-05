@@ -13,6 +13,13 @@ export const numberPadding = function(number, size) {
   return s;
 };
 
+export const getNumber =function(url) {
+  var number = url
+  .replace("https://pokeapi.co/api/v2/pokemon/", "")
+  .replace("/", "");
+  return number
+}
+
 export const findTypeColor = function(type) {
   switch (type) {
     case "normal":
