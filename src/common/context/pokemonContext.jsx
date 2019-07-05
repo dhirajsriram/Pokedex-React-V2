@@ -13,12 +13,12 @@ export const numberPadding = function(number, size) {
   return s;
 };
 
-export const getNumber =function(url) {
+export const getNumber = function(url) {
   var number = url
-  .replace("https://pokeapi.co/api/v2/pokemon/", "")
-  .replace("/", "");
-  return number
-}
+    .replace("https://pokeapi.co/api/v2/pokemon/", "")
+    .replace("/", "");
+  return number;
+};
 
 export const findTypeColorLighter = function(type) {
   switch (type) {
@@ -29,19 +29,21 @@ export const findTypeColorLighter = function(type) {
     case "flying":
       return "#A890F0";
     case "poison":
-      return "#b97fc9";
+      return "#E5CFEB";
     case "ground":
-      return "#E0C068";
+      return "#CFC7C2";
     case "rock":
-      return "#705848";
+      return "#CFC7C2";
     case "ghost":
-      return "#705898";
+      return "#CAC1D9";
     case "steel":
       return "#B8B8D0";
     case "fire":
       return "#febe91";
     case "water":
       return "#BAD6E9";
+    case "ice":
+      return "#B4F9FA";
     case "grass":
     case "bug":
       return "#CADBB7";
@@ -49,8 +51,6 @@ export const findTypeColorLighter = function(type) {
       return "#FDEEB2";
     case "psychic":
       return "#FDC1D3";
-    case "ice":
-      return "#37EDF1";
     case "dragon":
       return "#B8A038";
     case "dark":
@@ -60,7 +60,6 @@ export const findTypeColorLighter = function(type) {
     default:
   }
 };
-
 
 export const findTypeColor = function(type) {
   switch (type) {
@@ -115,5 +114,10 @@ export const Types = [
   "dark",
   "dragon",
   "fairy",
+  "poison",
+  "ghost",
+  "ice",
+  "rock",
+  "ground",
   "reset"
 ];
