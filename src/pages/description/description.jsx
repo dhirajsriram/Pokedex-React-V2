@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -14,12 +14,15 @@ import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
 import Moves from "./modules/Moves";
-import FourZeroFour from "../404/FourZeroFour"
+import FourZeroFour from "../404/FourZeroFour";
 
 export default function Description(props) {
   const [pokemonData, setPokemonData] = React.useState({});
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
+  var stagesCount = 1;
+  const [evolutionData, setEveolutionData] = useState({});
+  const [stages, setstages] = useState(0);
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -70,10 +73,12 @@ export default function Description(props) {
 
   useEffect(() => {
     fetchPokemonData();
+    fetchSpeciesData(props.match.params.id);
     resetPage();
   }, [props.match.params.id]);
 
   async function fetchPokemonData() {
+    setPokemonData({})
     try {
       let response = await fetch(
         "https://pokeapi.co/api/v2/pokemon/" + props.match.params.id
@@ -95,6 +100,29 @@ export default function Description(props) {
         ? pokemonData.types[1].type.name
         : pokemonData.types[0].type.name
     );
+  }
+
+  async function fetchSpeciesData(number) {
+    let response = await fetch(
+      "https://pokeapi.co/api/v2/pokemon-species/" + number
+    );
+    response = await response.json();
+    let evolutionResponse = await fetch(response.evolution_chain.url);
+    evolutionResponse = await evolutionResponse.json();
+    printValues(evolutionResponse);
+    setstages(stagesCount);
+    setEveolutionData(evolutionResponse);
+  }
+
+  function printValues(obj) {
+    for (var key in obj) {
+      if (typeof obj[key] === "object") {
+        if (key === "evolves_to" && obj[key].length > 0) {
+          stagesCount = stagesCount + 1;
+        }
+        printValues(obj[key]);
+      }
+    }
   }
 
   return (
@@ -138,6 +166,8 @@ export default function Description(props) {
                     <Evolutions
                       pokemonData={pokemonData}
                       color={returnType()}
+                      stages={stages}
+                      evolutionData={evolutionData}
                     />
                   </div>
                 </TabContainer>
@@ -181,7 +211,7 @@ export default function Description(props) {
           ) : (
             <React.Fragment>
               {pokemonData.error ? (
-                <FourZeroFour></FourZeroFour>
+                <FourZeroFour />
               ) : (
                 <div className="loader-container loader-background">
                   <div className="loader" />

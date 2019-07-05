@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
@@ -18,9 +18,6 @@ const Evolutions = withRouter((props) =>{
       secondary: { A400: "#ffffff", contrastText: props.color } // custom color in hex
     }
   });
-  var stagesCount = 1;
-  const [evolutionData, setEveolutionData] = useState({});
-  const [stages, setstages] = useState(0);
   const useStyles = makeStyles(theme => ({
     heading: {
       padding: 4
@@ -36,22 +33,6 @@ const Evolutions = withRouter((props) =>{
     }
   }));
 
-  useEffect(() => {
-    if(!evolutionData.chain){
-    fetchPokemonData(props.pokemonData.id);}
-  }, [window.location.pathname]);
-
-  async function fetchPokemonData(number) {
-    let response = await fetch(
-      "https://pokeapi.co/api/v2/pokemon-species/" + number
-    );
-    response = await response.json();
-    let evolutionResponse = await fetch(response.evolution_chain.url);
-    evolutionResponse = await evolutionResponse.json();
-    printValues(evolutionResponse);
-    setstages(stagesCount);
-    setEveolutionData(evolutionResponse);
-  }
   function getNumber(url) {
     var number = url
       .replace("https://pokeapi.co/api/v2/pokemon-species/", "")
@@ -59,21 +40,11 @@ const Evolutions = withRouter((props) =>{
     return number;
   }
 
-  function printValues(obj) {
-    for (var key in obj) {
-      if (typeof obj[key] === "object") {
-        if (key === "evolves_to" && obj[key].length > 0) {
-          stagesCount = stagesCount + 1;
-        }
-        printValues(obj[key]);
-      }
-    }
-  }
-
   const Evolution = props => {
     return (
       <React.Fragment>
-        <Grid xs={12 / stages} item className={classes.pokemon}>
+        {console.log(props.evolution.species.url)}
+        <Grid xs={12 / props.stages} item className={classes.pokemon}>
           <Pokemon
             first={props.first}
             number={getNumber(props.evolution.species.url)}
@@ -121,7 +92,7 @@ const Evolutions = withRouter((props) =>{
         <Typography variant="h6" align="center" className={classes.heading}>
           Evolution
         </Typography>
-        {evolutionData.chain ? (
+        {props.evolutionData.chain ? (
           <Grid
             container
             direction="row"
@@ -130,7 +101,7 @@ const Evolutions = withRouter((props) =>{
             className={classes.parentGrid}
           >
             <Evolution
-              evolution={evolutionData.chain}
+              evolution={props.evolutionData.chain}
               first={true}
               color={props.color}
             />
