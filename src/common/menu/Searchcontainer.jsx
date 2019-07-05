@@ -98,7 +98,7 @@ const SearchContainer = withRouter((props, context) => {
 
   return (
     <React.Fragment>
-      {pokemonList.length > 0 && (
+      { (
         <Downshift id="downshift-simple">
           {({
             getInputProps,

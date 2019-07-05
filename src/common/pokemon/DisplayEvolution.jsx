@@ -7,7 +7,6 @@ import { numberPadding } from "../context/pokemonContext";
 const DisplayEvolution = function(props) {
     return (
       <div className={props.classes.evolutionCard}>
-        {console.log(props)}
         <CardMedia
           component="img"
           className={props.classes.evolutionImage}
