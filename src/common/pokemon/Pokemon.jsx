@@ -5,7 +5,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import { ThemeProvider } from "@material-ui/styles";
 import { withRouter } from "react-router";
-import { PokemonConsumer, findTypeColor } from "../context/pokemonContext";
+import { findTypeColor } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Icon from "@material-ui/core/Icon";
 import DisplayEvolution from "./DisplayEvolution";
@@ -172,7 +172,7 @@ const Pokemon = withRouter((props, context) => {
     props.history.push("/description/" + pokemon.name);
   }
 
-  function returnType(context) {
+  function returnType() {
     switch (props.page){
       case "Listing":
         return findTypeColor(props.match.params.id ? props.match.params.id : pokemon.types[1]
@@ -190,8 +190,6 @@ const Pokemon = withRouter((props, context) => {
   }
 
   return (
-    <PokemonConsumer>
-      {context => (
         <ThemeProvider theme={theme}>
 
           {/* Loader for listing pages */}
@@ -269,8 +267,6 @@ const Pokemon = withRouter((props, context) => {
             </Card>
           )}
         </ThemeProvider>
-      )}
-    </PokemonConsumer>
   );
 });
 

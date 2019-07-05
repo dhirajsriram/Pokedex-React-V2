@@ -1,10 +1,3 @@
-import React from "react";
-
-const PokemonContext = React.createContext({});
-
-export const PokemonProvider = PokemonContext.Provider;
-export const PokemonConsumer = PokemonContext.Consumer;
-
 export const numberPadding = function(number, size) {
   var s = String(number);
   while (s.length < (size || 2)) {

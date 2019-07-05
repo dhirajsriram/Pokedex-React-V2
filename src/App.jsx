@@ -6,7 +6,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { grey } from '@material-ui/core/colors';
 import Description from './pages/description/Description';
-import { PokemonProvider } from './common/context/pokemonContext';
 import Listing from './pages/listing/Listing';
 import Menubar from './common/menu/Menubar';
 import FourZeroFour from './pages/404/FourZeroFour';
@@ -27,11 +26,6 @@ class App extends Component {
 
 	render() {
 		return (
-			<PokemonProvider
-				value={{
-					state: this.state
-				}}
-			>
 				<ThemeProvider theme={theme}>
 							<React.Fragment>
 								<Menubar/>
@@ -45,7 +39,6 @@ class App extends Component {
 								</div>
 							</React.Fragment>
 				</ThemeProvider>
-			</PokemonProvider>
 		);
 	}
 }
