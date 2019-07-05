@@ -5,7 +5,7 @@ import Pokemon from '../pokemon/Pokemon';
 const PokemonList = (props) => {
 	return (
 		<Grid item xs={12} sm={6}>
-			<Pokemon number={props.number} descriptionPage={false} page={"Listing"}/>
+			<Pokemon number={props.number} descriptionPage={false} page={"Listing"} Listing={true}/>
 		</Grid>
 	);
 }

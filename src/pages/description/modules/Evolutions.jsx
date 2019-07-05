@@ -77,6 +77,7 @@ const Evolutions = withRouter((props) =>{
                 evolution={val}
                 first={false}
                 color={props.color}
+                stages={props.stages}
               />
             );
           })}
@@ -103,6 +104,7 @@ const Evolutions = withRouter((props) =>{
               evolution={props.evolutionData.chain}
               first={true}
               color={props.color}
+              stages={props.stages}
             />
           </Grid>
         ) : (

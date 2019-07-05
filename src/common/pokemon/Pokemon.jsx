@@ -3,26 +3,24 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import { createMuiTheme } from "@material-ui/core/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Types from "../pokemon/Types";
-import Grid from "@material-ui/core/Grid";
 import { ThemeProvider } from "@material-ui/styles";
 import { withRouter } from "react-router";
-import { PokemonConsumer, findTypeColor , numberPadding } from "../context/pokemonContext";
+import { PokemonConsumer, findTypeColor } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Icon from "@material-ui/core/Icon";
-
-const theme = createMuiTheme({
-  palette: {
-    type: "dark"
-  }
-});
+import DisplayEvolution from "./DisplayEvolution";
+import DisplayFull from "./DisplayFull"
 
 const Pokemon = withRouter((props, context) => {
   const [pokemon, setPokemon] = useState({});
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: "dark"
+    }
+  });
+
   const useStyles = makeStyles({
     card: {
       maxWidth: "100%"
@@ -129,17 +127,6 @@ const Pokemon = withRouter((props, context) => {
   });
 
   const classes = useStyles();
-  useEffect(() => {
-    if (props.descriptionPage) {
-      setPokemon(props.pokemonData);
-    } 
-    else if(props.evolution){
-      setPokemon(mockPokemonData(props.evolutionData))
-    }
-    else if(props.page === "Listing"){
-      fetchPokemonData(props.number);
-    }
-  }, [props]);
 
   function mockPokemonData(data){
     return {
@@ -149,6 +136,18 @@ const Pokemon = withRouter((props, context) => {
       "name":data.species.name
     }
   }
+
+  useEffect(() => {
+    if (props.descriptionPage) {
+      setPokemon(props.pokemonData);
+    } 
+    else if(props.evolution){
+      setPokemon(mockPokemonData(props.evolutionData))
+    }
+    else if(props.Listing){
+      fetchPokemonData(props.number);
+    }
+  }, [props]);
 
   async function fetchPokemonData(number) {
     let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number)
@@ -188,133 +187,13 @@ const Pokemon = withRouter((props, context) => {
       return 0
     }
   }
-  function Lengthwise(props) {
-    return (
-      <div className={classes.evolutionCard}>
-        <CardMedia
-          component="img"
-          className={classes.evolutionImage}
-          alt={pokemon.name + " image"}
-          style={imageLoaded ? { display: "block" } : { display: "none" }}
-          onLoad={handleImageLoaded}
-          onError={onError}
-          image={
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-            numberPadding(props.number, 3) +
-            ".png"
-          }
-          title="Contemplative Reptile"
-        />
-
-        <CardContent className={classes.evolutionContent}>
-          <Typography
-            gutterBottom
-            variant="subtitle2"
-            component="h2"
-            align="center"
-            className={classes.evolutionText}
-          >
-            {pokemon.name}
-          </Typography>
-          <div style={{ color: props.color }}>
-            <Typography
-              gutterBottom
-              variant="subtitle2"
-              component="h2"
-              align="center"
-              className={classes.evolutionType}
-            >
-              {props.evolutionData.evolution_details.length > 0 &&
-                props.evolutionData.evolution_details[0].trigger.name}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="subtitle2"
-              component="h2"
-              align="center"
-              className={classes.evolutionType}
-            >
-              {props.evolutionData.evolution_details.length > 0 &&
-                props.evolutionData.evolution_details[0]["min_level"]}
-            </Typography>
-          </div>
-        </CardContent>
-      </div>
-    );
-  }
-
-  function Widthwise(props) {
-    return (
-      <Grid
-        container
-        style={
-          props.descriptionPage
-            ? { background: "rgb(255,255,255,0.5)" }
-            : {
-                background: returnType(props.context) + "80"
-              }
-        }
-      >
-        <Grid container item xs={10} spacing={4} className={classes.spacing4}>
-          <CardContent className={classes.cardContent}>
-            <Typography
-              gutterBottom
-              variant="subtitle2"
-              className={classes.text}
-            >
-
-              {pokemon.name &&
-                "#" + numberPadding(props.number, 3)}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="h2"
-              className={classes.text}
-            >
-              {pokemon.name}
-            </Typography>
-            {pokemon.types &&
-              pokemon.types.map(function(val, i) {
-                return (
-                  <Types
-                    name={val.type.name}
-                    key={i}
-                    descriptionPage={props.descriptionPage}
-                  />
-                );
-              })}
-          </CardContent>
-        </Grid>
-        <Grid container item xs={2} spacing={4} className={classes.spacing4}>
-          <div className={classes.image}>
-            {pokemon.name && (
-              <CardMedia
-                component="img"
-                className={classes.pokemonImage}
-                alt={pokemon.name + " image"}
-                height="150"
-                style={imageLoaded ? { display: "block" } : { display: "none" }}
-                onLoad={handleImageLoaded}
-                onError={onError}
-                image={
-                  "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-                  numberPadding(props.number, 3) +
-                  ".png"
-                }
-                title="Contemplative Reptile"
-              />
-            )}
-          </div>
-        </Grid>
-      </Grid>
-    );
-  }
 
   return (
     <PokemonConsumer>
       {context => (
         <ThemeProvider theme={theme}>
+
+          {/* Loader for listing pages */}
           {!props.evolution && !(pokemon && imageLoaded) && (
             <SkeletonTheme color="#bdbdbd" highlightColor="#e0e0e0">
               <div className={classes.skeletonContainer}>
@@ -356,20 +235,33 @@ const Pokemon = withRouter((props, context) => {
                     {!props.first && (
                       <Icon className={classes.arrow}>arrow_forward</Icon>
                     )}
-                    <Lengthwise
+                    {/* Display Evolution data */}
+                    <DisplayEvolution
                       context={context}
                       classes={classes}
                       evolutionData={props.evolutionData}
                       descriptionPage={props.descriptionPage}
                       number={props.number}
                       color={returnType(context)}
+                      pokemon={pokemon}
+                      firs={props.first}
+                      imageLoaded={imageLoaded}
+                      handleImageLoaded={handleImageLoaded}
+                      first={props.first}
+                      evolution={true}
                     />
                   </React.Fragment>
                 ) : (
-                  <Widthwise
+                  //  Display all data in descriptionPage
+                  <DisplayFull
+                    handleImageLoaded={handleImageLoaded}
+                    returnType={returnType}
                     number={props.number}
                     classes={classes}
                     context={context}
+                    onError={onError}
+                    pokemon={pokemon}
+                    imageLoaded={imageLoaded}
                   />
                 )}
               </CardActionArea>
