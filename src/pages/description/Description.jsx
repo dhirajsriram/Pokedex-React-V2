@@ -14,6 +14,7 @@ import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
 import Moves from "./modules/Moves";
 import FourZeroFour from "../404/FourZeroFour";
+import fetch from 'isomorphic-fetch';
 
 export default function Description(props) {
   const [pokemonData, setPokemonData] = React.useState({});

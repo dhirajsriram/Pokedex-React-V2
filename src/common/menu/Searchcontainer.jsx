@@ -7,6 +7,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { withRouter } from "react-router";
 import Suggestion from "./Suggestion";
 import SearchInput from "./SearchInput";
+import fetch from 'isomorphic-fetch';
 
 const useStyles = makeStyles(theme => ({
   search: {

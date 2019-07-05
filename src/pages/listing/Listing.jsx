@@ -1,6 +1,7 @@
 import React from "react";
 import Results from "../../common/results/Results";
-import FourZeroFour from "../../pages/404/FourZeroFour"
+import FourZeroFour from "../../pages/404/FourZeroFour";
+import fetch from 'isomorphic-fetch';
 
 class Listing extends React.Component {
   constructor(props) {

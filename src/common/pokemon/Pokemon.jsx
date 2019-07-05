@@ -9,7 +9,8 @@ import { PokemonConsumer, findTypeColor } from "../context/pokemonContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Icon from "@material-ui/core/Icon";
 import DisplayEvolution from "./DisplayEvolution";
-import DisplayFull from "./DisplayFull"
+import DisplayFull from "./DisplayFull";
+import fetch from 'isomorphic-fetch';
 
 const Pokemon = withRouter((props, context) => {
   const [pokemon, setPokemon] = useState({});
