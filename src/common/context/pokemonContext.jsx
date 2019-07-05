@@ -20,6 +20,48 @@ export const getNumber =function(url) {
   return number
 }
 
+export const findTypeColorLighter = function(type) {
+  switch (type) {
+    case "normal":
+      return "#DFDFCD";
+    case "fighting":
+      return "#E9B6B3";
+    case "flying":
+      return "#A890F0";
+    case "poison":
+      return "#b97fc9";
+    case "ground":
+      return "#E0C068";
+    case "rock":
+      return "#705848";
+    case "ghost":
+      return "#705898";
+    case "steel":
+      return "#B8B8D0";
+    case "fire":
+      return "#febe91";
+    case "water":
+      return "#BAD6E9";
+    case "grass":
+    case "bug":
+      return "#CADBB7";
+    case "electric":
+      return "#FDEEB2";
+    case "psychic":
+      return "#FDC1D3";
+    case "ice":
+      return "#37EDF1";
+    case "dragon":
+      return "#B8A038";
+    case "dark":
+      return "#B5B5B5";
+    case "fairy":
+      return "#F9D9E0";
+    default:
+  }
+};
+
+
 export const findTypeColor = function(type) {
   switch (type) {
     case "normal":

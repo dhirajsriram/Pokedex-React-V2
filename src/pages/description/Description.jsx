@@ -8,7 +8,7 @@ import Stats from "./modules/Stats";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Sprites from "./modules/Sprites";
-import { findTypeColor } from "../../common/context/pokemonContext";
+import { findTypeColor , findTypeColorLighter } from "../../common/context/pokemonContext";
 import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
@@ -53,7 +53,7 @@ export default function Description(props) {
       position: "fixed",
       bottom: "0",
       left: "0",
-      background:"white"
+      background:pokemonData.types ? returnType("lighter-shade") : "white"
     },
     tabs:{
       padding:0
@@ -96,12 +96,21 @@ export default function Description(props) {
     setValue(0);
   }
 
-  function returnType() {
+  function returnType(shade) {
+    if(shade === "lighter-shade"){
+      return findTypeColorLighter(
+        pokemonData.types[1]
+          ? pokemonData.types[1].type.name
+          : pokemonData.types[0].type.name
+      );
+    }
+    else{
     return findTypeColor(
       pokemonData.types[1]
         ? pokemonData.types[1].type.name
         : pokemonData.types[0].type.name
     );
+  }
   }
 
   async function fetchSpeciesData(number) {
