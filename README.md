@@ -2,6 +2,13 @@
 
 An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
 
+## Architecture
+
+A high level architecture diagram of the application is given below.
+
+<p aling="center"><img src="/docs/Architecture.jpg"></p>
+
+
 ## Installation
 
 Kindly do an npm install to install the required packages for the web application. Following are the libraries that are used
@@ -199,4 +206,6 @@ Although there is no specific search results page, the search bar provides an in
 Unmatched routes are taken to the 404 page. 
 
 ![alt text](/docs/404.jpg "Design")
+
+
 
