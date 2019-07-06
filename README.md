@@ -4,7 +4,7 @@ An application designed to provide information regarding the various species of 
 
 ## Architecture
 
-A high level architecture diagram of the application is given below.
+A high level **architecture** diagram of the application is given below.
 
 <p aling="center"><img src="/docs/Architecture.jpg"></p>
 
@@ -45,11 +45,11 @@ serve -s build
 ### Deployment Stratergy
 
 - The application has been deployed in the following domain (https://healthdex.netlify.com/)
-- The server follows continuous deployment. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
+- The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
 
 ## Design
 
-The entire application follows the material design standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
+The entire application follows the **Material design** standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
 
 ## Pages
 
@@ -64,7 +64,7 @@ The home page gives us a list view of all the pokemon sorted in an ascending ord
 
 ![alt text](/docs/Home.jpg "Design")
 
-- The user may use the filter button to the top right to filter pokemon based on their types.
+- The user may use the **filter** button to the top right to filter pokemon based on their types.
 
 ![alt text](/docs/Filter.jpg "Design")
 
@@ -72,7 +72,7 @@ The home page gives us a list view of all the pokemon sorted in an ascending ord
 
 <p align="center"><img src="/docs/Sidenav.jpg"></p>
 
-- There is also a randomise button at the bottom of the page which randomises the result based on their numbers.
+- There is also a **randomise** button at the bottom of the page which randomises the result based on their numbers.
 
 ![alt text](/docs/Randomise.jpg "Design")
 
@@ -108,23 +108,25 @@ isBottom(el) {
 ### Listing
 
 The listing pages follow the follwing url: /results/(type) where type may be any of the following
-- fire,
-- water,
-- grass,
-- electric,
-- fighting,
-- psychic,
-- normal,
-- steel,
-- dark,
-- dragon,
-- fairy,
-- poison,
-- ghost,
-- ice,
-- rock,
-- ground,
-- reset
+
+| Type        | 
+| ------------- |
+| Fire      | 
+| Water      | 
+| grass |
+| electric      | 
+| fighting      | 
+| psychic      | 
+| normal      | 
+| steel      | 
+| dark      | 
+| dragon      | 
+| fairy      | 
+| poison      | 
+| ghost      | 
+| ice      | 
+| rock      | 
+| ground      | 
 
 The user may also clear the type filter by using the close icon at the end of the filter menu.The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
