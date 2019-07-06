@@ -19,18 +19,10 @@ export default function Abilities(props) {
       fontSize: 14
     },
     border: {
-      border: "1px solid " + props.color,
+      border: "1.5px solid " + props.color,
       padding: 5,
       margin:12,
-      borderRadius: "20px",
-      textTransform: "capitalize"
-    },
-    filled: {
-      background: props.color,
-      color: "#ffffff",
-      margin:"10px 0px",
-      padding: 5,
-      borderRadius: "20px",
+      borderRadius: "10px",
       textTransform: "capitalize"
     },
     hidden:{
