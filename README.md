@@ -36,7 +36,7 @@ Run `npm start` to host the application locally. Navigate to `http://localhost:3
 
 ## Running unit tests
 
-Run `ng run test` to execute the unit tests.
+Run `npm run test` to execute the unit tests.
 
 ## Build & Deployment
 
