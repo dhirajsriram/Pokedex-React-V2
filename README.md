@@ -9,6 +9,7 @@ Kindly do an npm install to install the required packages for the web applicatio
 - Material UI v4.2.1
 - isomorphic-fetch v2.2.1
 - enzyme v3.10
+- react-router v4.3.1
 
 ```
 npm install 
@@ -37,25 +38,25 @@ serve -s build
 ### Deployment Stratergy
 
 - The application has been deployed in the following domain (https://healthdex.netlify.com/)
-- 
-
-
-
-## Description
-
-The application works over the following pages
-
-- Home
-- Lising
-- Description
+- The server follows continuous deployment. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
 
 ## Design
 
-The entire application follows the 
+The entire application follows the material design standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
+
+## Pages
+
+The application follows a page wise approach to display the content. The pages are routed in an SPA fashion using React-router. Following are the list of pages in the application
+- Home
+- Listing
+- Description
 
 ### Home
 
-The home page gives us a list view of all the pokemon sorted in an ascending order based on their number. There is also an All types button on the top right corner that helps us filter the pokemon based on their types.
+The home page gives us a list view of all the pokemon sorted in an ascending order based on their number. Following are the features it provides
+- The user may use the filter button to the top right to filter pokemon based on their types.
+- The user may click on the hamburger icon to the top left to open up the side navigation.
+- 
 
 **Following is a code snippet related to the functionality**
 ```js

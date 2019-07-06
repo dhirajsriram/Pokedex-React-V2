@@ -44,12 +44,12 @@ const sideList = props => (
       </List>
       <Divider />  
       <List>
-           <Link className="default-text" to={"https://github.com/dhirajsriram/Healthdex"}>
+           <a className="default-text" href={"https://github.com/dhirajsriram/Healthdex"}>
           <ListItem button>
             <ListItemIcon><InfoIcon/></ListItemIcon>
             <ListItemText primary={"About"} />
           </ListItem>
-          </Link>
+          </a>
       </List>
     </div>
   );
