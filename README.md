@@ -105,7 +105,7 @@ The home page gives us a list view of all the Pokémon sorted in an ascending or
 
 - The user may click on the hamburger icon to the top left to open up the side navigation.
 
-- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p><img src="/docs/Randomise.jpg"></p>
+- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p><img src="/docs/Randomisebutton.jpg"></p>
 
 **Following is a code snippet related to the functionality**
 
