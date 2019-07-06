@@ -14,7 +14,8 @@ A high level **architecture** diagram of the application is given below.
 
 ### Prerequisites
 
-The application requires node to spin up a server to host the files.
+- node v7 and above
+- yarn / npm (Dependency management)
 
 ### Installing
 
