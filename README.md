@@ -1,5 +1,4 @@
 # Healthdex 
-(https://img.shields.io/npm/v/react.svg?style=flat)(https://img.shields.io/travis/rexxars/react-markdown/master.svg?style=flat-square)]
 
 An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
 
