@@ -83,7 +83,7 @@ The application follows a page wise approach to display the content. The pages a
 - Listing
 - Description
 
-### Home
+## Home
 
 The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
 
@@ -126,7 +126,7 @@ isBottom(el) {
 		}
   };
 ```
-### Listing
+## Listing
 
 The listing pages follow the following url: */results/(type)* where type may be any of the following.
 
@@ -166,7 +166,7 @@ The listing pages follow the following url: */results/(type)* where type may be 
 
 ![alt text](/docs/Listing.jpg "Design")
 
-### Description
+## Description
 
 The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
 - Pokémon **name, number and image**
@@ -231,13 +231,13 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
 ``` 
 ![alt text](/docs/Evolution.jpg "Design")
 
-### Search
+## Search
 
 Although there is no specific search results page, the search bar provides an intuitive experience to the user looking for a specific Pokémon. The search bar provides **autosuggest** to help the user easily find the Pokémon that they are looking for. The suggestion list provides the name number and image of the Pokémon.
 
 ![alt text](/docs/Suggestion.jpg "Design")
 
-### 404
+## 404
 
 Unmatched routes are taken to the 404 page. 
 
@@ -245,4 +245,5 @@ Unmatched routes are taken to the 404 page.
 
 ## Credits
 
-A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project wouldn’t be possible. 
+A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project wouldn’t be possible.
+ 
