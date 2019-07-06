@@ -2,7 +2,7 @@
 
 An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end. 
 
-`https://healthdex.netlify.com/`
+**https://healthdex.netlify.com/**
 
 ## Architecture
 
