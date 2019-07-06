@@ -2,29 +2,33 @@
 
 An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end.
 
-## Requirements
-
-- node v8 and above
-
 ## Architecture
 
 A high level **architecture** diagram of the application is given below.
 
   <p align="center"><img src="/docs/Architecture.jpg"></p>
 
-## Installation
+## Getting Started
 
-Kindly do an npm install to install the required packages for the web application. Following are the libraries that are used
+### Prerequisites
+
+The application requires node to spin up a server to host the files.
+
+### Installing
+
+Kindly do an npm install to install the required packages for the web application. 
+
+```
+npm install
+```
+
+Following are the libraries that are used
 
 - react v16.8
 - Material UI v4.2.1
 - isomorphic-fetch v2.2.1
 - enzyme v3.10
 - react-router v4.3.1
-
-```
-npm install
-```
 
 ## Development server
 
@@ -78,10 +82,6 @@ Contains the Pokémon component which is the integral part of the application an
 #### `src/pages/`
 
 Contains the components that acts as the skeleton of the application. The common components are imported into pages to display the content based on the page type.
-
-#### `src/stylesheets/`
-
-Contains application stylesheets.
 
 ## Pages
 
