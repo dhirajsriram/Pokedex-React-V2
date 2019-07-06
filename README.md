@@ -87,9 +87,9 @@ Contains application stylesheets.
 
 The application follows a page wise approach to display the content. The pages are routed in an SPA fashion using React-router. Following are the list of pages in the application
 
-`Home`
-`Listing`
-`Description`
+**`Home`**
+**`Listing`**
+**`Description`**
 
 ## Home
 
@@ -189,9 +189,9 @@ The description page gives the user the a detailed description of the Pokémon. 
 
 The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 
-`Stats`
-`Evolution`
-`Moves`
+**`Stats`**
+**`Evolution`**
+**`Moves`**
 
 There is a tab navigation affixed to the bottom of the page that helps us switch between the tabs.
 
