@@ -1,134 +1,150 @@
-  # Healthdex 
+# Healthdex
 
-  An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end.
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end.
 
-  ## Architecture
+## Requirements
 
-  A high level **architecture** diagram of the application is given below.
+- node v8 and above
+
+## Architecture
+
+A high level **architecture** diagram of the application is given below.
 
   <p align="center"><img src="/docs/Architecture.jpg"></p>
 
+## Installation
 
-  ## Installation
+Kindly do an npm install to install the required packages for the web application. Following are the libraries that are used
 
-  Kindly do an npm install to install the required packages for the web application. Following are the libraries that are used
-  - react v16.8
-  - Material UI v4.2.1
-  - isomorphic-fetch v2.2.1
-  - enzyme v3.10
-  - react-router v4.3.1
+- react v16.8
+- Material UI v4.2.1
+- isomorphic-fetch v2.2.1
+- enzyme v3.10
+- react-router v4.3.1
 
-  ```
-  npm install 
-  ```
+```
+npm install
+```
 
-  ## Development server
+## Development server
 
-  Run `npm start` to host the application locally. Navigate to `http://localhost:3000/`. 
+Run `npm start` to host the application locally. Navigate to `http://localhost:3000/`.
 
-  ## Running unit tests
+## Running unit tests
 
-  Run `ng run test` to execute the unit tests.
+Run `ng run test` to execute the unit tests.
 
-  ## Build & Deployment
+## Build & Deployment
 
-  ### Build
+### Build
 
-  Run `npm run build` to create a production optimized build of the application. We can approach deployment in two ways.
-  - You can serve the build folder with a static server by doing the following commands from the root directory.
-  ```
-  yarn global add serve
-  serve -s build
-  ```
-  - The build folder already has all the assets (JavaScript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may in turn serve the files over the web.
+Run `npm run build` to create a production optimized build of the application. We can approach deployment in two ways.
 
-  ### Deployment Strategy
+- You can serve the build folder with a static server by doing the following commands from the root directory.
 
-  The application has been deployed in the following domain (https://healthdex.netlify.com/). The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
+```
+yarn global add serve
+serve -s build
+```
 
-  ## Design
+- The build folder already has all the assets (JavaScript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may in turn serve the files over the web.
 
-  The entire application follows the **Material design** standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
+### Deployment Strategy
 
-  ## Directory structure
+The application has been deployed in the following domain (https://healthdex.netlify.com/). The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code.
 
-  #### `src/assets/`
+## Design
 
-  Contains the necessary assets including all the types images logo etc.
+The entire application follows the **Material design** standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
 
-  #### `src/common/`
+## Directory structure
 
-  Contains a number of reusable components that are shared across the application
+#### `src/assets/`
 
-  #### `src/common/menu`
+Contains the necessary assets including all the types images logo etc.
 
-  Contains the components related to rendering the main menu, including the autosuggest and filter options
+#### `src/common/`
 
-  #### `src/common/pokemon`
+Contains a number of reusable components that are shared across the application
 
-  Contains the Pokémon component which is the integral part of the application and other reusable components specific to displaying the Pokémon
+#### `src/common/menu`
 
-  #### `src/pages/`
+Contains the components related to rendering the main menu, including the autosuggest and filter options
 
-  Contains the components that acts as the skeleton of the application. The common components are imported into pages to display the content based on the page type.
+#### `src/common/pokemon`
 
-  #### `src/stylesheets/`
+Contains the Pokémon component which is the integral part of the application and other reusable components specific to displaying the Pokémon
 
-  Contains application stylesheets.
+#### `src/pages/`
 
-  ## Pages
+Contains the components that acts as the skeleton of the application. The common components are imported into pages to display the content based on the page type.
 
-  The application follows a page wise approach to display the content. The pages are routed in an SPA fashion using React-router. Following are the list of pages in the application
-  - Home
-  - Listing
-  - Description
+#### `src/stylesheets/`
 
-  ## Home
+Contains application stylesheets.
 
-  The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
+## Pages
 
-  ![alt text](/docs/Home.jpg "Design")
+The application follows a page wise approach to display the content. The pages are routed in an SPA fashion using React-router. Following are the list of pages in the application
 
-  - The user may use the **filter** button to the top right to filter Pokémon based on their types.![alt text](/docs/Filterbutton.jpg "Design")
+- Home
+- Listing
+- Description
 
-  ![alt text](/docs/Filter.jpg "Design")
+## Home
 
-  - The user may click on the hamburger icon to the top left to open up the side navigation.
+The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
 
-  - There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p align="center"><img src="/docs/Randomise.jpg"></p>
+![alt text](/docs/Home.jpg "Design")
 
-  **Following is a code snippet related to the functionality**
-  ```js
-  calculateRand = (e) => {
-      let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
-      this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle});
-      this.handleClose()
-    };
-  ```
-  - When scrolled to the bottom the application automatically fetches the next list of Pokémon and appends it over the page.
+- The user may use the **filter** button to the top right to filter Pokémon based on their types.![alt text](/docs/Filterbutton.jpg "Design")
 
-  **Load more results when scrolled to the bottom**
-  ```js
-  isBottom(el) {
-      return el.getBoundingClientRect().bottom - 1 <= window.innerHeight;
-    }
+![alt text](/docs/Filter.jpg "Design")
 
-    trackScrolling = () => {
-      const wrappedElement = document.body;
-      if (this.isBottom(wrappedElement)) {
-        if (!this.state.randomized) {
-          let initArr = Array.from(Array(this.state.pokeArr.length + 12).keys(), (x) => x + 1);
-          this.setState({ pokeArr: initArr });
-        } else {
-          let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
-          this.setState({ pokeArr: this.state.pokeArr.concat(arr) });
-        }
+- The user may click on the hamburger icon to the top left to open up the side navigation.
+
+- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p align="center"><img src="/docs/Randomise.jpg"></p>
+
+**Following is a code snippet related to the functionality**
+
+```js
+calculateRand = e => {
+  let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
+  this.setState({
+    pokeArr: arr,
+    randomized: true,
+    randToggle: !this.state.randToggle
+  });
+  this.handleClose();
+};
+```
+
+- When scrolled to the bottom the application automatically fetches the next list of Pokémon and appends it over the page.
+
+**Load more results when scrolled to the bottom**
+
+```js
+isBottom(el) {
+    return el.getBoundingClientRect().bottom - 1 <= window.innerHeight;
+  }
+
+  trackScrolling = () => {
+    const wrappedElement = document.body;
+    if (this.isBottom(wrappedElement)) {
+      if (!this.state.randomized) {
+        let initArr = Array.from(Array(this.state.pokeArr.length + 12).keys(), (x) => x + 1);
+        this.setState({ pokeArr: initArr });
+      } else {
+        let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
+        this.setState({ pokeArr: this.state.pokeArr.concat(arr) });
       }
-    };
-  ```
-  ## Listing
+    }
+  };
+```
 
-  The listing pages follow the following url: */results/(type)* where type may be any of the following.
+## Listing
+
+The listing pages follow the following url: _/results/(type)_ where type may be any of the following.
 
   <table align="center">
     <tr>
@@ -156,86 +172,88 @@
       </tr>
   </table>
 
-  ![alt text](/docs/Listing.jpg "Design")
+![alt text](/docs/Listing.jpg "Design")
 
-  ## Description
+## Description
 
-  The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
-  - Pokémon **name, number and image**
-  - Pokémon **height and weight** information
-  - Pokémon **stats and attributes**
-  - Pokémon **sprites** (default and shiny)
-  - **Evolution** information
-  - **Moves**
+The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
 
-  ![alt text](/docs/Description.jpg "Design")
+- Pokémon **name, number and image**
+- Pokémon **height and weight** information
+- Pokémon **stats and attributes**
+- Pokémon **sprites** (default and shiny)
+- **Evolution** information
+- **Moves**
 
-  The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
+![alt text](/docs/Description.jpg "Design")
 
-  - Stats
-  - Evolution
-  - Moves
+The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 
-  There is a tab navigation affixed to the bottom of the page that helps us switch between the tabs.
+- Stats
+- Evolution
+- Moves
 
-  **Recursive component rendering for Evolutions**
-  ```js
-  <React.Fragment>
-          <Grid xs={12 / props.stages} item className={classes.pokemon}>
-            <Pokemon
-              first={props.first}
-              number={getNumber(props.evolution.species.url)}
-              evolution={true}
-              descriptionPage={false}
-              page={"evolution"}
-              evolutionData={props.evolution}
-              color={props.color}
-            />
-          </Grid>
-          {props.evolution.evolves_to.length > 1 && (
-            <Grid>
-              {props.evolution.evolves_to.map(function(val, i) {
-                return (
-                  <Evolution
-                    key={i}
-                    evolution={val}
-                    first={false}
-                    color={props.color}
-                  />
-                );
-              })}
-            </Grid>
-          )}
+There is a tab navigation affixed to the bottom of the page that helps us switch between the tabs.
 
-          {props.evolution.evolves_to.length === 1 &&
-            props.evolution.evolves_to.map(function(val, i) {
-              return (
-                <Evolution
-                  key={i}
-                  evolution={val}
-                  first={false}
-                  color={props.color}
-                  stages={props.stages}
-                />
-              );
-            })}
-        </React.Fragment>
-  ``` 
-  ![alt text](/docs/Evolution.jpg "Design")
+**Recursive component rendering for Evolutions**
 
-  ## Search
+```js
+<React.Fragment>
+  <Grid xs={12 / props.stages} item className={classes.pokemon}>
+    <Pokemon
+      first={props.first}
+      number={getNumber(props.evolution.species.url)}
+      evolution={true}
+      descriptionPage={false}
+      page={"evolution"}
+      evolutionData={props.evolution}
+      color={props.color}
+    />
+  </Grid>
+  {props.evolution.evolves_to.length > 1 && (
+    <Grid>
+      {props.evolution.evolves_to.map(function(val, i) {
+        return (
+          <Evolution
+            key={i}
+            evolution={val}
+            first={false}
+            color={props.color}
+          />
+        );
+      })}
+    </Grid>
+  )}
 
-  Although there is no specific search results page, the search bar provides an intuitive experience to the user looking for a specific Pokémon. The search bar provides **autosuggest** to help the user easily find the Pokémon that they are looking for. The suggestion list provides the name number and image of the Pokémon.
+  {props.evolution.evolves_to.length === 1 &&
+    props.evolution.evolves_to.map(function(val, i) {
+      return (
+        <Evolution
+          key={i}
+          evolution={val}
+          first={false}
+          color={props.color}
+          stages={props.stages}
+        />
+      );
+    })}
+</React.Fragment>
+```
 
-  ![alt text](/docs/Suggestion.jpg "Design")
+![alt text](/docs/Evolution.jpg "Design")
 
-  ## 404
+## Search
 
-  Unmatched routes are taken to the 404 page. 
+Although there is no specific search results page, the search bar provides an intuitive experience to the user looking for a specific Pokémon. The search bar provides **autosuggest** to help the user easily find the Pokémon that they are looking for. The suggestion list provides the name number and image of the Pokémon.
 
-  ![alt text](/docs/404.jpg "Design")
+![alt text](/docs/Suggestion.jpg "Design")
 
-  ## Credits
+## 404
 
-  A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project wouldn’t be possible.
-  
+Unmatched routes are taken to the 404 page.
+
+![alt text](/docs/404.jpg "Design")
+
+## Credits
+
+A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project wouldn’t be possible.
