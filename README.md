@@ -111,39 +111,27 @@ The listing pages follow the follwing url: */results/(type)* where type may be a
 
 <table>
   <tr>
-    <td colspan="3">Type</td>
+    <td colspan="3" align="19">Type</td>
   </tr>
   <tr>
     <td>Fire</td>
     <td>Water</td>
     <td>Grass</td>
-  </tr>
-    <tr>
     <td>Fire</td>
     <td>Water</td>
     <td>Grass</td>
-  </tr>
-    <tr>
     <td>electric</td>
     <td>fighting</td>
     <td>psychic</td>
-  </tr>
-    <tr>
     <td>normal</td>
     <td>steel</td>
     <td>dark</td>
-  </tr>
-    <tr>
     <td>dragon</td>
     <td>fairy</td>
     <td>poison</td>
-  </tr>
-  <tr>
     <td>ghost</td>
     <td>ice</td>
     <td>rock</td>
-  </tr>
-  <tr>
     <td>ground</td>
   </tr>
 </table>
