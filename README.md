@@ -1,4 +1,4 @@
-# Healthdex
+# Healthdex [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)] [Build Status](https://img.shields.io/travis/rexxars/react-markdown/master.svg?style=flat-square)]
 
 An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
 
@@ -229,5 +229,7 @@ Unmatched routes are taken to the 404 page.
 
 ![alt text](/docs/404.jpg "Design")
 
+## Credits
 
+A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project would'nt be possible. 
 
