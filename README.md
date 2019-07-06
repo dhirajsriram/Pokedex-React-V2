@@ -1,6 +1,6 @@
 # Healthdex
 
-An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end. 
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) served as the backend, delivering information onto the front-end.  
 
 **https://healthdex.netlify.com/**
 
@@ -178,7 +178,7 @@ The listing pages follow the following url: _/results/(type)_ where type may be 
 
 ## Description
 
-The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
+The description page gives the user a detailed description of the Pokémon. Following are the details available in the description page
 
 - Pokémon **name, number and image**
 - Pokémon **height and weight** information
