@@ -1,4 +1,4 @@
-# Healthdex [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)] [Build Status](https://img.shields.io/travis/rexxars/react-markdown/master.svg?style=flat-square)]
+# Healthdex 
 
 An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
 
@@ -6,7 +6,7 @@ An application designed to provide information regarding the various species of 
 
 A high level **architecture** diagram of the application is given below.
 
-<p aling="center"><img src="/docs/Architecture.jpg"></p>
+<p align="center"><img src="/docs/Architecture.jpg"></p>
 
 
 ## Installation
@@ -111,40 +111,35 @@ The listing pages follow the follwing url: */results/(type)* where type may be a
 
 <table>
   <tr>
-    <td colspan="3">Type</td>
+    <td colspan="5" align="center">Type</td>
   </tr>
   <tr>
     <td>Fire</td>
     <td>Water</td>
     <td>Grass</td>
-  </tr>
-    <tr>
     <td>Fire</td>
     <td>Water</td>
-    <td>Grass</td>
-  </tr>
+    </tr>
     <tr>
+    <td>Grass</td>
     <td>electric</td>
     <td>fighting</td>
     <td>psychic</td>
-  </tr>
-    <tr>
     <td>normal</td>
+    </tr>
+    <tr>
     <td>steel</td>
     <td>dark</td>
-  </tr>
-    <tr>
     <td>dragon</td>
     <td>fairy</td>
     <td>poison</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>ghost</td>
     <td>ice</td>
     <td>rock</td>
-  </tr>
-  <tr>
     <td>ground</td>
+    </tr>
   </tr>
 </table>
 
