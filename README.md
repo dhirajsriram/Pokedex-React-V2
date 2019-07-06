@@ -6,7 +6,7 @@ An application designed to provide information regarding the various species of 
 
 ## Architecture
 
-A high level **architecture** diagram of the application is given below.
+A high-level **architecture** diagram of the application is given below.
 
   <p align="center"><img src="/docs/Architecture.jpg"></p>
 
@@ -54,11 +54,11 @@ yarn global add serve
 serve -s build
 ```
 
-- The build folder already has all the assets (JavaScript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may in turn serve the files over the web.
+- The build folder already has all the assets (JavaScript, CSS) minified and transpiled. You may also choose to deploy the build folder directly onto your server which may in turn serve the files over the web.
 
 ### Deployment Strategy
 
-The application has been deployed in the following domain (https://healthdex.netlify.com/). The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code.
+The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code.
 
 ## Design
 
@@ -195,46 +195,50 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
 **Recursive component rendering for Evolutions**
 
 ```js
-<React.Fragment>
-  <Grid xs={12 / props.stages} item className={classes.pokemon}>
-    <Pokemon
-      first={props.first}
-      number={getNumber(props.evolution.species.url)}
-      evolution={true}
-      descriptionPage={false}
-      page={"evolution"}
-      evolutionData={props.evolution}
-      color={props.color}
-    />
-  </Grid>
-  {props.evolution.evolves_to.length > 1 && (
-    <Grid>
-      {props.evolution.evolves_to.map(function(val, i) {
-        return (
-          <Evolution
-            key={i}
-            evolution={val}
-            first={false}
+const Evolution = props => {
+    return (
+      <React.Fragment>
+        <Grid xs={12 / props.stages} item className={classes.pokemon}>
+          <Pokemon
+            first={props.first}
+            number={getNumber(props.evolution.species.url)}
+            evolution={true}
+            descriptionPage={false}
+            page={"evolution"}
+            evolutionData={props.evolution}
             color={props.color}
           />
-        );
-      })}
-    </Grid>
-  )}
+        </Grid>
+        {props.evolution.evolves_to.length > 1 && (
+          <Grid>
+            {props.evolution.evolves_to.map(function(val, i) {
+              return (
+                <Evolution
+                  key={i}
+                  evolution={val}
+                  first={false}
+                  color={props.color}
+                />
+              );
+            })}
+          </Grid>
+        )}
 
-  {props.evolution.evolves_to.length === 1 &&
-    props.evolution.evolves_to.map(function(val, i) {
-      return (
-        <Evolution
-          key={i}
-          evolution={val}
-          first={false}
-          color={props.color}
-          stages={props.stages}
-        />
-      );
-    })}
-</React.Fragment>
+        {props.evolution.evolves_to.length === 1 &&
+          props.evolution.evolves_to.map(function(val, i) {
+            return (
+              <Evolution
+                key={i}
+                evolution={val}
+                first={false}
+                color={props.color}
+                stages={props.stages}
+              />
+            );
+          })}
+      </React.Fragment>
+    );
+  };
 ```
 
 ## Search
