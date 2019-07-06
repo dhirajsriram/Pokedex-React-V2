@@ -1,6 +1,6 @@
 # Healthdex 
 
-An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end.
 
 ## Architecture
 
@@ -34,15 +34,15 @@ Run `ng run test` to execute the unit tests.
 
 ### Build
 
-Run `npm run build` to create a production optimized build of the application. We can approch deployment in two ways.
+Run `npm run build` to create a production optimized build of the application. We can approach deployment in two ways.
 - You can serve the build folder with a static server by doing the following commands from the root directory.
 ```
 yarn global add serve
 serve -s build
 ```
-- The build folder already has all the assets (Javascript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may inturn serve the files over the web.
+- The build folder already has all the assets (JavaScript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may in turn serve the files over the web.
 
-### Deployment Stratergy
+### Deployment Strategy
 
 The application has been deployed in the following domain (https://healthdex.netlify.com/). The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
 
@@ -54,11 +54,11 @@ The entire application follows the **Material design** standards. [Material-ui](
 
 #### `src/assets/`
 
-Contains the necessary aassets including all the types images logo etc
+Contains the necessary assets including all the types images logo etc.
 
 #### `src/common/`
 
-Contains a number of reuable components that are shared across the application
+Contains a number of reusable components that are shared across the application
 
 #### `src/common/menu`
 
@@ -66,7 +66,7 @@ Contains the components related to rendering the main menu, including the autosu
 
 #### `src/common/pokemon`
 
-Contains the Pokemon component which is the integral part of the application and other resuable components specific to displaying the pokemon
+Contains the Pokémon component which is the integral part of the application and other reusable components specific to displaying the Pokémon
 
 #### `src/pages/`
 
@@ -85,11 +85,11 @@ The application follows a page wise approach to display the content. The pages a
 
 ### Home
 
-The home page gives us a list view of all the pokemon sorted in an ascending order based on their number. Following are the features it provides
+The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
 
 ![alt text](/docs/Home.jpg "Design")
 
-The user may use the **filter** button to the top right to filter pokemon based on their types.
+The user may use the **filter** button to the top right to filter Pokémon based on their types.
 
 ![alt text](/docs/Filter.jpg "Design")
 
@@ -97,7 +97,7 @@ The user may click on the hamburger icon to the top left to open up the side nav
 
 <p align="center"><img src="/docs/Sidenav.jpg"></p>
 
-There is also a **randomise** button at the bottom of the page which randomises the result based on their numbers.
+There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers.
 
 <p align="center"><img src="/docs/Randomise.jpg"></p>
 
@@ -109,7 +109,7 @@ calculateRand = (e) => {
 		this.handleClose()
 	};
 ```
-- When scrolled to the bottom the application automatically fetches the next list of pokemon and appends it over the page.
+- When scrolled to the bottom the application automatically fetches the next list of Pokémon and appends it over the page.
 
 **Load more results when scrolled to the bottom**
 ```js
@@ -132,7 +132,7 @@ isBottom(el) {
 ```
 ### Listing
 
-The listing pages follow the follwing url: */results/(type)* where type may be any of the following
+The listing pages follow the following url: */results/(type)* where type may be any of the following
 
 <table align="center">
   <tr>
@@ -170,21 +170,21 @@ The listing pages follow the follwing url: */results/(type)* where type may be a
 
 ![alt text](/docs/Listing.jpg "Design")
 
-The user may also clear the type filter by using the close icon at the end of the filter menu.The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
+The user may also clear the type filter by using the close icon at the end of the filter menu. The design and functionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
 ### Description
 
-The description page gives the user the a detailed description of the pokemon. Following are the details available in the description page
-- Pokemon **name, number and image**
-- Pokemon **height and weight** information
-- Pokemon **stats and attributes**
-- Pokemon **sprites** (default and shiny)
+The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
+- Pokémon **name, number and image**
+- Pokémon **height and weight** information
+- Pokémon **stats and attributes**
+- Pokémon **sprites** (default and shiny)
 - **Evolution** information
 - **Moves**
 
 ![alt text](/docs/Description.jpg "Design")
 
-The description page is split entirely into induvidual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
+The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 - Stats
 - Evolution
 - Moves
@@ -239,7 +239,7 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
 
 ### Search
 
-Although there is no specific search results page, the search bar provides an inutive experience to the user looking for a specific pokemon. The search bar provides **autosuggest** to help the user easly find the pokemon that they are looking for. The suggestion list provides the name number and image of the pokemon.
+Although there is no specific search results page, the search bar provides an intuitive experience to the user looking for a specific Pokémon. The search bar provides **autosuggest** to help the user easily find the Pokémon that they are looking for. The suggestion list provides the name number and image of the Pokémon.
 
 ![alt text](/docs/Suggestion.jpg "Design")
 
@@ -251,5 +251,4 @@ Unmatched routes are taken to the 404 page.
 
 ## Credits
 
-A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project would'nt be possible. 
-
+A huge shout out to [Pokeapi](https://pokeapi.co/api/v2/) without which the project wouldn’t be possible. 
