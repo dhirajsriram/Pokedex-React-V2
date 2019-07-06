@@ -107,7 +107,7 @@ isBottom(el) {
 ```
 ### Listing
 
-The listing pages follow the follwing url: /results/(type) where type may be any of the following
+The listing pages follow the follwing url: */results/(type)* where type may be any of the following
 
 <table>
   <tr>
@@ -124,62 +124,52 @@ The listing pages follow the follwing url: /results/(type) where type may be any
     <td>Grass</td>
   </tr>
     <tr>
-    <td>Fire</td>
-    <td>Water</td>
-    <td>Grass</td>
+    <td>electric</td>
+    <td>fighting</td>
+    <td>psychic</td>
   </tr>
     <tr>
-    <td>Fire</td>
-    <td>Water</td>
-    <td>Grass</td>
+    <td>normal</td>
+    <td>steel</td>
+    <td>dark</td>
   </tr>
     <tr>
-    <td>Fire</td>
-    <td>Water</td>
-    <td>Grass</td>
+    <td>dragon</td>
+    <td>fairy</td>
+    <td>poison</td>
+  </tr>
+  <tr>
+    <td>ghost</td>
+    <td>ice</td>
+    <td>rock</td>
+  </tr>
+  <tr>
+    <td>ground</td>
   </tr>
 </table>
-| Type        | 
-| ------------- |
-| Fire      | 
-| Water      | 
-| grass |
-| electric      | 
-| fighting      | 
-| psychic      | 
-| normal      | 
-| steel      | 
-| dark      | 
-| dragon      | 
-| fairy      | 
-| poison      | 
-| ghost      | 
-| ice      | 
-| rock      | 
-| ground      | 
-
-The user may also clear the type filter by using the close icon at the end of the filter menu.The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
 ![alt text](/docs/Listing.jpg "Design")
+
+The user may also clear the type filter by using the close icon at the end of the filter menu.The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
 ### Description
 
 The description page gives the user the a detailed description of the pokemon. Following are the details available in the description page
-- Pokemon name, number and image
-- Pokemon height and weight information
-- Pokemon stats and attributes
-- Pokemon sprites (default and shiny)
-- Evolution information
-- Moves
+- Pokemon **name, number and image**
+- Pokemon **height and weight** information
+- Pokemon **stats and attributes**
+- Pokemon **sprites** (default and shiny)
+- **Evolution** information
+- **Moves**
+
+![alt text](/docs/Description.jpg "Design")
 
 The description page is split entirely into induvidual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 - Stats
 - Evolution
 - Moves
 
-There is a tab navigation affixed to the bottom of the page that helps us to switch between the tabs.
-
-![alt text](/docs/Description.jpg "Design")
+There is a tab navigation affixed to the bottom of the page that helps us switch between the tabs.
 
 **Recursive component rendering for Evolutions**
 ```js
@@ -229,7 +219,7 @@ There is a tab navigation affixed to the bottom of the page that helps us to swi
 
 ### Search
 
-Although there is no specific search results page, the search bar provides an inutive experience to the user looking for a specific pokemon. The search bar provides autosuggest to help the user easly find the pokemon that they are looking for. The suggestion list provides the name number and image of the pokemon.
+Although there is no specific search results page, the search bar provides an inutive experience to the user looking for a specific pokemon. The search bar provides **autosuggest** to help the user easly find the pokemon that they are looking for. The suggestion list provides the name number and image of the pokemon.
 
 ![alt text](/docs/Suggestion.jpg "Design")
 
