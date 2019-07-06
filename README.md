@@ -111,7 +111,7 @@ The listing pages follow the follwing url: */results/(type)* where type may be a
 
 <table>
   <tr>
-    <td colspan="3" align="19">Type</td>
+    <td colspan="5" align="center">Type</td>
   </tr>
   <tr>
     <td>Fire</td>
@@ -119,20 +119,27 @@ The listing pages follow the follwing url: */results/(type)* where type may be a
     <td>Grass</td>
     <td>Fire</td>
     <td>Water</td>
+    </tr>
+    <tr>
     <td>Grass</td>
     <td>electric</td>
     <td>fighting</td>
     <td>psychic</td>
     <td>normal</td>
+    </tr>
+    <tr>
     <td>steel</td>
     <td>dark</td>
     <td>dragon</td>
     <td>fairy</td>
     <td>poison</td>
+    </tr>
+    <tr>
     <td>ghost</td>
     <td>ice</td>
     <td>rock</td>
     <td>ground</td>
+    </tr>
   </tr>
 </table>
 
