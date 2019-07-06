@@ -1,6 +1,6 @@
 # Healthdex
 
-An application designed to provide information regarding the various species of pokemon. (https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion to the front-end
+An application designed to provide information regarding the various species of pokemon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch inforamtion onto the front-end.
 
 ## Installation
 
@@ -22,6 +22,25 @@ Run `npm start` to host the application locally. Navigate to `http://localhost:3
 
 Run `ng run test` to execute the unit tests.
 
+## Build & Deployment
+
+### Build
+
+Run `npm run build` to create a production optimized build of the application. We can approch deployment in two ways.
+- You can serve the build folder with a static server by doing the following commands from the root directory.
+```
+yarn global add serve
+serve -s build
+```
+- The build folder already has all the assets (Javascript, CSS) minified and transpiled. You may also choose to deploy the build directory directly onto your server which may inturn serve the files over the web.
+
+### Deployment Stratergy
+
+- The application has been deployed in the following domain (https://healthdex.netlify.com/)
+- 
+
+
+
 ## Description
 
 The application works over the following pages
@@ -30,9 +49,13 @@ The application works over the following pages
 - Lising
 - Description
 
+## Design
+
+The entire application follows the 
+
 ### Home
 
-Used to search for a branch corresponding to the city. Kindly type into the search feild to begin. The search feild also has autocomplete enabled to help the user to look for a specific city name. Once the user has typed into the field the seach button gets enabled which when clicked, displays a list of branches specific to the city name.
+The home page gives us a list view of all the pokemon sorted in an ascending order based on their number. There is also an All types button on the top right corner that helps us filter the pokemon based on their types.
 
 **Following is a code snippet related to the functionality**
 ```js
