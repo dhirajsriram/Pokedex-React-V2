@@ -6,7 +6,7 @@ An application designed to provide information regarding the various species of 
 
 A high level **architecture** diagram of the application is given below.
 
-<p aling="center"><img src="/docs/Architecture.jpg"></p>
+<p align="center"><img src="/docs/Architecture.jpg"></p>
 
 
 ## Installation
