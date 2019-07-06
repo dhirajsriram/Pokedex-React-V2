@@ -74,7 +74,7 @@ The home page gives us a list view of all the pokemon sorted in an ascending ord
 
 - There is also a **randomise** button at the bottom of the page which randomises the result based on their numbers.
 
-![alt text](/docs/Randomise.jpg "Design")
+<p align="center"><img src="/docs/Randomise.jpg"></p>
 
 **Following is a code snippet related to the functionality**
 ```js
@@ -109,7 +109,7 @@ isBottom(el) {
 
 The listing pages follow the follwing url: */results/(type)* where type may be any of the following
 
-<table>
+<table align="center">
   <tr>
     <td colspan="5" align="center">Type</td>
   </tr>
