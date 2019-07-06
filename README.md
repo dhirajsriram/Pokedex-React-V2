@@ -89,17 +89,13 @@ The home page gives us a list view of all the Pokémon sorted in an ascending or
 
 ![alt text](/docs/Home.jpg "Design")
 
-The user may use the **filter** button to the top right to filter Pokémon based on their types.
+- The user may use the **filter** button to the top right to filter Pokémon based on their types.![alt text](/docs/Filterbutton.jpg "Design")
 
 ![alt text](/docs/Filter.jpg "Design")
 
-The user may click on the hamburger icon to the top left to open up the side navigation.
+- The user may click on the hamburger icon to the top left to open up the side navigation.
 
-<p align="center"><img src="/docs/Sidenav.jpg"></p>
-
-There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers.
-
-<p align="center"><img src="/docs/Randomise.jpg"></p>
+- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p align="center"><img src="/docs/Randomise.jpg"></p>
 
 **Following is a code snippet related to the functionality**
 ```js
@@ -132,7 +128,7 @@ isBottom(el) {
 ```
 ### Listing
 
-The listing pages follow the following url: */results/(type)* where type may be any of the following
+The listing pages follow the following url: */results/(type)* where type may be any of the following.
 
 <table align="center">
   <tr>
@@ -170,8 +166,6 @@ The listing pages follow the following url: */results/(type)* where type may be 
 
 ![alt text](/docs/Listing.jpg "Design")
 
-The user may also clear the type filter by using the close icon at the end of the filter menu. The design and functionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
-
 ### Description
 
 The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
@@ -185,6 +179,7 @@ The description page gives the user the a detailed description of the Pokémon. 
 ![alt text](/docs/Description.jpg "Design")
 
 The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
+
 - Stats
 - Evolution
 - Moves
@@ -234,7 +229,6 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
           })}
       </React.Fragment>
 ``` 
-
 ![alt text](/docs/Evolution.jpg "Design")
 
 ### Search
