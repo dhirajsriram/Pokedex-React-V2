@@ -56,54 +56,117 @@ The application follows a page wise approach to display the content. The pages a
 The home page gives us a list view of all the pokemon sorted in an ascending order based on their number. Following are the features it provides
 - The user may use the filter button to the top right to filter pokemon based on their types.
 - The user may click on the hamburger icon to the top left to open up the side navigation.
-- 
+- There is also a randomise button at the bottom of the page which randomises the result based on their numbers.
 
 **Following is a code snippet related to the functionality**
 ```js
-searchByCity(){
-    let results = this.brandData.Branch.filter(a=>a.PostalAddress.TownName == this.city.toUpperCase())
-    this.searchTerm = this.city;
-    this.searchResults = results;
-  }
+calculateRand = (e) => {
+		let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
+		this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle});
+		this.handleClose()
+	};
 ```
+- When scrolled to the bottom the application automatically fetches the next list of pokemon and appends it over the page.
 
-**Autocomplete for Search bar - Produces a list of unique city names**
+**Load more results when scrolled to the bottom**
 ```js
-private getCityNames(){
-    if(this.branchData){
-    for(let bank in this.branchData.data){
-      for(let brand in this.branchData.data[bank].Brand){
-        this.brandData = this.branchData.data[bank].Brand[brand]
-        let result = this.brandData.Branch.map(a => a.PostalAddress.TownName);
-        let bankaddress = [...result];
-        this.bankAddress= Array.from(new Set(bankaddress));
-        }
-      }
-    }
-}
+isBottom(el) {
+		return el.getBoundingClientRect().bottom - 1 <= window.innerHeight;
+	}
+
+	trackScrolling = () => {
+		const wrappedElement = document.body;
+		if (this.isBottom(wrappedElement)) {
+			if (!this.state.randomized) {
+				let initArr = Array.from(Array(this.state.pokeArr.length + 12).keys(), (x) => x + 1);
+				this.setState({ pokeArr: initArr });
+			} else {
+				let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
+				this.setState({ pokeArr: this.state.pokeArr.concat(arr) });
+			}
+		}
+  };
 ```
+### Listing
 
-### Branch list component
+- The listing pages follow the follwing url ; /results/(type) where type may be any of the following
+    - fire,
+    - water,
+    - grass,
+    - electric,
+    - fighting,
+    - psychic,
+    - normal,
+    - steel,
+    - dark,
+    - dragon,
+    - fairy,
+    - poison,
+    - ghost,
+    - ice,
+    - rock,
+    - ground,
+    - reset
+- The user may also clear the type filter by using the close icon at the end of the filter menu.
+- The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
-Used to display a list of all the branches of a brand. The app first fetches the branch list as follows
+### Description
 
-### app.component.ts
+The description page gives the user the a detailed description of the pokemon. Following are the details available in the description page
+- Pokemon name, number and image
+- Pokemon height and weight information
+- Pokemon stats and attributes
+- Pokemon sprites (default and shiny)
+- Evolution information
+- Moves
+
+The description page is split entirely into induvidual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
+- Stats
+- Evolution
+- Moves
+
+There is a tab navigation affixed to the bottom of the page that helps us to switch between the tabs.
+
+**Recursive component rendering for Evolutions**
 ```js
-getBranches(){
-    this.BankService.branches(this.branches).subscribe(data=>{
-      this.branchData = data;
-    })
-  }
- ```
-### bank.service.ts
-```js
-branches(branches: string): Observable<any> {
-    return this.http.get(this.baseurl + branches);
-  }
+<React.Fragment>
+        <Grid xs={12 / props.stages} item className={classes.pokemon}>
+          <Pokemon
+            first={props.first}
+            number={getNumber(props.evolution.species.url)}
+            evolution={true}
+            descriptionPage={false}
+            page={"evolution"}
+            evolutionData={props.evolution}
+            color={props.color}
+          />
+        </Grid>
+        {props.evolution.evolves_to.length > 1 && (
+          <Grid>
+            {props.evolution.evolves_to.map(function(val, i) {
+              return (
+                <Evolution
+                  key={i}
+                  evolution={val}
+                  first={false}
+                  color={props.color}
+                />
+              );
+            })}
+          </Grid>
+        )}
+
+        {props.evolution.evolves_to.length === 1 &&
+          props.evolution.evolves_to.map(function(val, i) {
+            return (
+              <Evolution
+                key={i}
+                evolution={val}
+                first={false}
+                color={props.color}
+                stages={props.stages}
+              />
+            );
+          })}
+      </React.Fragment>
 ```
-The data that has been subscribed to is then passed onto the branch-list component which is then being retained locally. The list is then iterated through and every single branch element in the list is a seperate Branch component.
-
-**Kindly refer this image for the architecture**
-
-![alt text](/Aavri-bank.png)
-
