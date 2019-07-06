@@ -44,8 +44,7 @@ serve -s build
 
 ### Deployment Stratergy
 
-- The application has been deployed in the following domain (https://healthdex.netlify.com/)
-- The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
+The application has been deployed in the following domain (https://healthdex.netlify.com/). The server follows **continuous deployment**. Netlify is linked to the github repo. Any commits made the repo triggers the build command on the server and serves the latest version of the code. 
 
 ## Design
 
@@ -64,15 +63,15 @@ The home page gives us a list view of all the pokemon sorted in an ascending ord
 
 ![alt text](/docs/Home.jpg "Design")
 
-- The user may use the **filter** button to the top right to filter pokemon based on their types.
+The user may use the **filter** button to the top right to filter pokemon based on their types.
 
 ![alt text](/docs/Filter.jpg "Design")
 
-- The user may click on the hamburger icon to the top left to open up the side navigation.
+The user may click on the hamburger icon to the top left to open up the side navigation.
 
 <p align="center"><img src="/docs/Sidenav.jpg"></p>
 
-- There is also a **randomise** button at the bottom of the page which randomises the result based on their numbers.
+There is also a **randomise** button at the bottom of the page which randomises the result based on their numbers.
 
 <p align="center"><img src="/docs/Randomise.jpg"></p>
 
