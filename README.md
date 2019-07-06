@@ -97,7 +97,7 @@ The home page gives us a list view of all the Pokémon sorted in an ascending or
 
 ![alt text](/docs/Home.jpg "Design")
 
-- The user may use the **filter** button to the top right to filter Pokémon based on their types.![alt text](/docs/Filterbutton.jpg "Design")
+- The user may use the **filter** button to the top right to filter Pokémon based on their types. ![alt text](/docs/Filterbutton.jpg "Design")
 
 ![alt text](/docs/Filter.jpg "Design")
 
