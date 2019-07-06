@@ -1,6 +1,8 @@
 # Healthdex
 
-An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end.
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end. 
+
+**`https://healthdex.netlify.com/`**
 
 ## Architecture
 
@@ -95,15 +97,13 @@ The application follows a page wise approach to display the content. The pages a
 
 The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
 
-![alt text](/docs/Home.jpg "Design")
-
 - The user may use the **filter** button to the top right to filter Pokémon based on their types. ![alt text](/docs/Filterbutton.jpg "Design")
 
 ![alt text](/docs/Filter.jpg "Design")
 
 - The user may click on the hamburger icon to the top left to open up the side navigation.
 
-- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p align="center"><img src="/docs/Randomise.jpg"></p>
+- There is also a **randomize** button at the bottom of the page which randomizes the result based on their numbers. <p><img src="/docs/Randomise.jpg"></p>
 
 **Following is a code snippet related to the functionality**
 
@@ -172,8 +172,6 @@ The listing pages follow the following url: _/results/(type)_ where type may be 
       </tr>
   </table>
 
-![alt text](/docs/Listing.jpg "Design")
-
 ## Description
 
 The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
@@ -184,8 +182,6 @@ The description page gives the user the a detailed description of the Pokémon. 
 - Pokémon **sprites** (default and shiny)
 - **Evolution** information
 - **Moves**
-
-![alt text](/docs/Description.jpg "Design")
 
 The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 
@@ -240,19 +236,13 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
 </React.Fragment>
 ```
 
-![alt text](/docs/Evolution.jpg "Design")
-
 ## Search
 
 Although there is no specific search results page, the search bar provides an intuitive experience to the user looking for a specific Pokémon. The search bar provides **autosuggest** to help the user easily find the Pokémon that they are looking for. The suggestion list provides the name number and image of the Pokémon.
 
-![alt text](/docs/Suggestion.jpg "Design")
-
 ## 404
 
 Unmatched routes are taken to the 404 page.
-
-![alt text](/docs/404.jpg "Design")
 
 ## Credits
 
