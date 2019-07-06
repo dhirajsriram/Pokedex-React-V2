@@ -63,7 +63,7 @@ The home page gives us a list view of all the pokemon sorted in an ascending ord
 
 - The user may click on the hamburger icon to the top left to open up the side navigation.
 
-<div style="text-align:center"><img src="/docs/Sidenav.jpg"></div>
+<p align="center"><img src="/docs/Sidenav.jpg"></p>
 
 - There is also a randomise button at the bottom of the page which randomises the result based on their numbers.
 
