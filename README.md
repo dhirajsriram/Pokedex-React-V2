@@ -93,6 +93,7 @@ The application follows a page wise approach to display the content. The pages a
 **`Home`**
 **`Listing`**
 **`Description`**
+**`404`**
 
 ## Home
 
