@@ -43,6 +43,7 @@ serve -s build
 ## Design
 
 The entire application follows the material design standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
+![alt text](/docs/Home.jpg "Design")
 
 ## Pages
 
@@ -89,26 +90,25 @@ isBottom(el) {
 ```
 ### Listing
 
-- The listing pages follow the follwing url ; /results/(type) where type may be any of the following
-    - fire,
-    - water,
-    - grass,
-    - electric,
-    - fighting,
-    - psychic,
-    - normal,
-    - steel,
-    - dark,
-    - dragon,
-    - fairy,
-    - poison,
-    - ghost,
-    - ice,
-    - rock,
-    - ground,
-    - reset
-- The user may also clear the type filter by using the close icon at the end of the filter menu.
-- The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
+The listing pages follow the follwing url: /results/(type) where type may be any of the following
+- fire,
+- water,
+- grass,
+- electric,
+- fighting,
+- psychic,
+- normal,
+- steel,
+- dark,
+- dragon,
+- fairy,
+- poison,
+- ghost,
+- ice,
+- rock,
+- ground,
+- reset
+The user may also clear the type filter by using the close icon at the end of the filter menu.The design and funtionality mimic that of the home page, and support load-more when scrolled to the bottom of the page
 
 ### Description
 
@@ -169,4 +169,12 @@ There is a tab navigation affixed to the bottom of the page that helps us to swi
             );
           })}
       </React.Fragment>
-```
+``` 
+### Search
+
+Although there is no specific search results page, the search bar provides an inutive experience to the user looking for a specific pokemon. The search bar provides autosuggest to help the user easly find the pokemon that they are looking for. The suggestion list provides the name number and image of the pokemon.
+
+### 404
+
+Unmatched routes are taken to the 404 page. 
+
