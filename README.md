@@ -109,6 +109,36 @@ isBottom(el) {
 
 The listing pages follow the follwing url: /results/(type) where type may be any of the following
 
+<table>
+  <tr>
+    <td colspan="3">Type</td>
+  </tr>
+  <tr>
+    <td>Fire</td>
+    <td>Water</td>
+    <td>Grass</td>
+  </tr>
+    <tr>
+    <td>Fire</td>
+    <td>Water</td>
+    <td>Grass</td>
+  </tr>
+    <tr>
+    <td>Fire</td>
+    <td>Water</td>
+    <td>Grass</td>
+  </tr>
+    <tr>
+    <td>Fire</td>
+    <td>Water</td>
+    <td>Grass</td>
+  </tr>
+    <tr>
+    <td>Fire</td>
+    <td>Water</td>
+    <td>Grass</td>
+  </tr>
+</table>
 | Type        | 
 | ------------- |
 | Fire      | 
