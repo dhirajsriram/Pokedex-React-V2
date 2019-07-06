@@ -10,14 +10,6 @@ export default function Abilities(props) {
     card: {
       minWidth: 275
     },
-    bullet: {
-      display: "inline-block",
-      margin: "0 2px",
-      transform: "scale(0.8)"
-    },
-    title: {
-      fontSize: 14
-    },
     border: {
       border: "1.5px solid " + props.color,
       padding: 5,
@@ -25,21 +17,13 @@ export default function Abilities(props) {
       borderRadius: "10px",
       textTransform: "capitalize"
     },
-    hidden:{
-        background: props.color,
-        color: "#ffffff",
-        borderRadius: "20px",
-        textTransform: "capitalize",
-        margin: "-38px -10px",
-        position:"absolute"
-    },
   });
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography variant="h6" align="center" className={classes.heading}>
+        <Typography variant="h6" align="center">
           Abilities
         </Typography>
         <Grid container>
