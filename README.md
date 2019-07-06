@@ -50,6 +50,32 @@ The application has been deployed in the following domain (https://healthdex.net
 
 The entire application follows the **Material design** standards. [Material-ui](https://material-ui.com/) was used as the default design framework.
 
+## Directory structure
+
+#### `src/assets/`
+
+Contains the necessary aassets including all the types images logo etc
+
+#### `src/common/`
+
+Contains a number of reuable components that are shared across the application
+
+#### `src/common/menu`
+
+Contains the components related to rendering the main menu, including the autosuggest and filter options
+
+#### `src/common/pokemon`
+
+Contains the Pokemon component which is the integral part of the application and other resuable components specific to displaying the pokemon
+
+#### `src/pages/`
+
+Contains the components that acts as the skeleton of the application. The common components are imported into pages to display the content based on the page type.
+
+#### `src/stylesheets/`
+
+Contains application stylesheets.
+
 ## Pages
 
 The application follows a page wise approach to display the content. The pages are routed in an SPA fashion using React-router. Following are the list of pages in the application
