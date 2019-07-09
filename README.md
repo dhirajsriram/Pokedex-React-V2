@@ -1,6 +1,6 @@
 # Healthdex
 
-An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) was used to make api calls to fetch information onto the front-end. 
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) served as the backend, delivering information onto the front-end.  
 
 **https://healthdex.netlify.com/**
 
@@ -99,6 +99,8 @@ The application follows a page wise approach to display the content. The pages a
 
 The home page gives us a list view of all the Pokémon sorted in an ascending order based on their number. Following are the features it provides
 
+<p align="center"><img src="/docs/Home.jpg"></p>
+
 - The user may use the **filter** button to the top right to filter Pokémon based on their types. ![alt text](/docs/Filterbutton.jpg "Design")
 
 ![alt text](/docs/Filter.jpg "Design")
@@ -176,7 +178,7 @@ The listing pages follow the following url: _/results/(type)_ where type may be 
 
 ## Description
 
-The description page gives the user the a detailed description of the Pokémon. Following are the details available in the description page
+The description page gives the user a detailed description of the Pokémon. Following are the details available in the description page
 
 - Pokémon **name, number and image**
 - Pokémon **height and weight** information
@@ -184,6 +186,8 @@ The description page gives the user the a detailed description of the Pokémon. 
 - Pokémon **sprites** (default and shiny)
 - **Evolution** information
 - **Moves**
+
+<p align="center"><img src="/docs/Description.jpg"></p>
 
 The description page is split entirely into individual modules. Each module handles a segment of the page as mentioned above. The modules in the page are grouped up into three tabs.
 
