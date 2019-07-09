@@ -43,7 +43,7 @@ class Home extends React.Component {
 
 	calculateRand = (e) => {
 		let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
-		this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle});
+		this.setState({pokeArr:[]},() =>{this.setState({ pokeArr: arr, randomized: true , randToggle: !this.state.randToggle})});
 		this.handleClose()
 	};
 
