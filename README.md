@@ -1,6 +1,6 @@
 # Healthdex
 
-An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) served as the backend, delivering information onto the front-end.  
+An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) served as the backend, delivering information onto the front-end.
 
 **https://healthdex.netlify.com/**
 
@@ -19,7 +19,7 @@ A high-level **architecture** diagram of the application is given below.
 
 ### Installing
 
-Kindly do an npm install to install the required packages for the web application. 
+Kindly do an npm install to install the required packages for the web application.
 
 ```
 npm install
@@ -114,10 +114,12 @@ The home page gives us a list view of all the Pokémon sorted in an ascending or
 ```js
 calculateRand = e => {
   let arr = Array.from({ length: 12 }, () => Math.floor(Math.random() * 808));
-  this.setState({
-    pokeArr: arr,
-    randomized: true,
-    randToggle: !this.state.randToggle
+  this.setState({ pokeArr: [] }, () => {
+    this.setState({
+      pokeArr: arr,
+      randomized: true,
+      randToggle: !this.state.randToggle
+    });
   });
   this.handleClose();
 };
@@ -201,49 +203,49 @@ There is a tab navigation affixed to the bottom of the page that helps us switch
 
 ```js
 const Evolution = props => {
-    return (
-      <React.Fragment>
-        <Grid xs={12 / props.stages} item className={classes.pokemon}>
-          <Pokemon
-            first={props.first}
-            number={getNumber(props.evolution.species.url)}
-            evolution={true}
-            descriptionPage={false}
-            page={"evolution"}
-            evolutionData={props.evolution}
-            color={props.color}
-          />
-        </Grid>
-        {props.evolution.evolves_to.length > 1 && (
-          <Grid>
-            {props.evolution.evolves_to.map(function(val, i) {
-              return (
-                <Evolution
-                  key={i}
-                  evolution={val}
-                  first={false}
-                  color={props.color}
-                />
-              );
-            })}
-          </Grid>
-        )}
-
-        {props.evolution.evolves_to.length === 1 &&
-          props.evolution.evolves_to.map(function(val, i) {
+  return (
+    <React.Fragment>
+      <Grid xs={12 / props.stages} item className={classes.pokemon}>
+        <Pokemon
+          first={props.first}
+          number={getNumber(props.evolution.species.url)}
+          evolution={true}
+          descriptionPage={false}
+          page={"evolution"}
+          evolutionData={props.evolution}
+          color={props.color}
+        />
+      </Grid>
+      {props.evolution.evolves_to.length > 1 && (
+        <Grid>
+          {props.evolution.evolves_to.map(function(val, i) {
             return (
               <Evolution
                 key={i}
                 evolution={val}
                 first={false}
                 color={props.color}
-                stages={props.stages}
               />
             );
           })}
-      </React.Fragment>
-    );
-  };
+        </Grid>
+      )}
+
+      {props.evolution.evolves_to.length === 1 &&
+        props.evolution.evolves_to.map(function(val, i) {
+          return (
+            <Evolution
+              key={i}
+              evolution={val}
+              first={false}
+              color={props.color}
+              stages={props.stages}
+            />
+          );
+        })}
+    </React.Fragment>
+  );
+};
 ```
 
 ## Search
