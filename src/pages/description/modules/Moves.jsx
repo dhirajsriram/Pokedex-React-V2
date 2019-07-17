@@ -24,7 +24,7 @@ export default function Abilities(props) {
     <Card className={classes.card}>
       <CardContent>
         <Typography variant="h6" align="center">
-          Abilities
+          Moves
         </Typography>
         <Grid container>
           {props.pokemonData.moves.map(function(val, i) {
