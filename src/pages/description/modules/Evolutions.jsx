@@ -55,7 +55,7 @@ const Evolutions = withRouter((props) =>{
           />
         </Grid>
         {props.evolution.evolves_to.length > 1 && (
-          <Grid>
+          <Grid xs={12 / props.stages}>
             {props.evolution.evolves_to.map(function(val, i) {
               return (
                 <Evolution
