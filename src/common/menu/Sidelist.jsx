@@ -44,7 +44,7 @@ const sideList = props => (
       </List>
       <Divider />  
       <List>
-           <a className="default-text" href={"https://github.com/dhirajsriram/Healthdex"}>
+           <a className="default-text" href={"https://github.com/dhirajsriram/Pokedex-React-V2"}>
           <ListItem button>
             <ListItemIcon><InfoIcon/></ListItemIcon>
             <ListItemText primary={"About"} />

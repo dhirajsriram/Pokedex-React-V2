@@ -1,8 +1,8 @@
-# Healthdex
+# Pokédex
 
 An application designed to provide information regarding the various species of Pokémon. [Pokeapi](https://pokeapi.co/api/v2/) served as the backend, delivering information onto the front-end.
 
-**https://healthdex.netlify.com/**
+**https://pokedex-info.netlify.com/**
 
 ## Architecture
 

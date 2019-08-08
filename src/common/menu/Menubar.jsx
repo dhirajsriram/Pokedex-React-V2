@@ -83,7 +83,7 @@ const Menubar = withRouter(props => {
           <Typography className={classes.title}>
             <Link to="/" className="default-text">
               <img
-                src={require("../../assets/healthdex.png")}
+                src={require("../../assets/Pokedex.png")}
                 alt="logo"
                 className="logo"
               />

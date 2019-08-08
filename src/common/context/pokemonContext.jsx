@@ -24,13 +24,13 @@ export const findTypeColorLighter = function(type) {
     case "poison":
       return "#E5CFEB";
     case "ground":
-      return "#CFC7C2";
+      return "#efdfb3";
     case "rock":
       return "#CFC7C2";
     case "ghost":
       return "#CAC1D9";
     case "steel":
-      return "#B8B8D0";
+      return "#dbdbe7";
     case "fire":
       return "#febe91";
     case "water":
@@ -45,7 +45,7 @@ export const findTypeColorLighter = function(type) {
     case "psychic":
       return "#FDC1D3";
     case "dragon":
-      return "#B8A038";
+      return "#dbcf9b";
     case "dark":
       return "#B5B5B5";
     case "fairy":
