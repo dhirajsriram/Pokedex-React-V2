@@ -51,7 +51,7 @@ const Pokemon = withRouter((props, context) => {
       transition: "all 1s ease"
     },
     pokemonImage: {
-      width: "20%",
+      width: 150,
       position: "absolute",
       right: "0px",
       top: "0px",
@@ -107,9 +107,6 @@ const Pokemon = withRouter((props, context) => {
       position: "absolute"
     },
     "@media (max-width: 800px)": {
-      pokemonImage: {
-        width: "40%"
-      },
       skeletonText: {
         width: "60%"
       },

@@ -13,6 +13,7 @@ import Icon from "@material-ui/core/Icon";
 import TabContainer from "./modules/TabContainer";
 import Evolutions from "./modules/Evolutions";
 import Moves from "./modules/Moves";
+import Cards from "./modules/Cards";
 import FourZeroFour from "../404/FourZeroFour";
 import fetch from 'isomorphic-fetch';
 
@@ -187,6 +188,11 @@ export default function Description(props) {
               <Moves pokemonData={pokemonData} color={returnType()} />
             </TabContainer>
           )}
+          {value === 3 && (
+            <TabContainer dir={theme.direction}>
+              <Cards pokemonData={pokemonData} color={returnType()} />
+            </TabContainer>
+          )}
           <footer>
             <Tabs
               className={classes.BottomNavigation}
@@ -214,6 +220,12 @@ export default function Description(props) {
                 label="Moves"
                 classes={{ selected: classes.selected }}
                 icon={<Icon>list</Icon>}
+              />
+              <Tab
+                className={classes.tabs}
+                label="Cards"
+                classes={{ selected: classes.selected }}
+                icon={<Icon>casino</Icon>}
               />
             </Tabs>
           </footer>
