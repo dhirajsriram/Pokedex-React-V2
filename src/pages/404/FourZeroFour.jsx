@@ -6,7 +6,7 @@ import Icon from "@material-ui/core/Icon";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 
-export default function FourZeroFour() {
+export default function FourZeroFour(props) {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -16,7 +16,7 @@ export default function FourZeroFour() {
             <div className="loader-dizzy" />
           </div>
           <Typography component="div" align="center" variant="h3">
-            404
+            {props.type}
           </Typography>
           <br />
           <Typography component="div" align="center" variant="h6">

@@ -14,15 +14,19 @@ export default function Cards(props) {
   });
   const classes = useStyles();
   const [cards, setCards] = React.useState({});
-  useEffect(()=>{
+  useEffect(() => {
     fetchCardData();
-  },[])
+  }, [])
 
   async function fetchCardData(number) {
-    let response = await fetch("https://api.pokemontcg.io/v1/cards?name=" + props.pokemonData.species.name)
-    if(response.status === 200){
-    response = await response.json();
-    setCards(response);}
+    try {
+      let response = await fetch("https://api.pokemontcg.io/v1/cards?name=" + props.pokemonData.species.name)
+      response = await response.json();
+      setCards(response);
+    }
+    catch (e) {
+      console.error("ERROR - " + e);
+    }
   }
 
   return (
@@ -31,9 +35,8 @@ export default function Cards(props) {
         <Typography variant="h6" align="center">
           Cards
         </Typography>
-        {console.log(cards)}
         <Grid container>
-          {cards && cards.cards && cards.cards.map(function(val, i) {
+          {cards && cards.cards && cards.cards.map(function (val, i) {
             return (
               <Grid
                 item

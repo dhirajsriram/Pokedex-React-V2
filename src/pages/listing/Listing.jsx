@@ -58,7 +58,8 @@ class Listing extends React.Component {
         fullArr: initArr,
         index: this.state.index + 12
       });
-    } catch (err) {
+    } catch (e) {
+      console.error("ERROR - "+e);
       this.setState({pokeArr : {error:"true"}}) // TypeError: failed to fetch
     }
   }
@@ -67,7 +68,7 @@ class Listing extends React.Component {
     return (
       <React.Fragment>
 		  { !this.state.pokeArr.error ?
-        <Results pokeArr={this.state.pokeArr} />: <FourZeroFour></FourZeroFour>}
+        <Results pokeArr={this.state.pokeArr} />: <FourZeroFour type={"Network Error"}></FourZeroFour>}
       </React.Fragment>
     );
   }

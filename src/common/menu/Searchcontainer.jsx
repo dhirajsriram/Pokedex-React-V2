@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
-    textTransform:"capitalize",
+    textTransform: "capitalize",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: 200,
@@ -69,18 +69,24 @@ const SearchContainer = withRouter((props, context) => {
   }, []);
 
   async function fetchPokemonList() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=811");
-    response = await response.json();
-    setPokemonList(response.results);
+    try {
+      let response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=99999999");
+      response = await response.json();
+      setPokemonList(response.results);
+    }
+    catch (e) {
+      console.error("ERROR - " + e)
+    }
   }
 
   function getSuggestions(value, pokemonlist, { showEmpty = false } = {}) {
-    const inputValue = deburr(value.trim()).toLowerCase();
-    const inputLength = inputValue.length;
-    let count = 0;
-    return inputLength === 0 && !showEmpty
-      ? []
-      : pokemonlist.filter(suggestion => {
+    if (pokemonList) {
+      const inputValue = deburr(value.trim()).toLowerCase();
+      const inputLength = inputValue.length;
+      let count = 0;
+      return inputLength === 0 && !showEmpty
+        ? []
+        : pokemonlist.filter(suggestion => {
           const keep =
             count < 5 &&
             suggestion.name.slice(0, inputLength).toLowerCase() === inputValue;
@@ -89,6 +95,7 @@ const SearchContainer = withRouter((props, context) => {
           }
           return keep;
         });
+    }
   }
 
   function handleForm(e) {
@@ -99,7 +106,7 @@ const SearchContainer = withRouter((props, context) => {
 
   return (
     <React.Fragment>
-      { (
+      {(
         <Downshift id="downshift-simple">
           {({
             getInputProps,
@@ -126,7 +133,7 @@ const SearchContainer = withRouter((props, context) => {
                 <div {...getMenuProps()}>
                   {isOpen ? (
                     <Paper className={classes.paper} square>
-                      {getSuggestions(inputValue, pokemonList).map(
+                      {getSuggestions(inputValue, pokemonList) && getSuggestions(inputValue, pokemonList).map(
                         (suggestion, index) =>
                           <Suggestion key={index} suggestion={suggestion} index={index} itemProps={getItemProps({ item: suggestion.name })} highlightedIndex={highlightedIndex}></Suggestion>
                       )}

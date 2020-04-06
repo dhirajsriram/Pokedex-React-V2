@@ -18,8 +18,8 @@ export default function Sprites(props) {
     }
   });
   const SpriteArr = [
-    { type: "Normal", array: ["","/back/"] },
-    { type: "Shiny", array: ["/shiny/","/shiny/back/"] }
+    { type: "Normal", array: ["normal/", "back-normal/"] },
+    { type: "Shiny", array: ["shiny/", "back-shiny/"] }
   ];
 
   const useStyles = makeStyles(theme => ({
@@ -55,7 +55,7 @@ export default function Sprites(props) {
   };
 
   const classes = useStyles();
-  const Spritebase = "http://www.pokestadium.com/sprites/xy/";
+  const Spritebase = "https://img.pokemondb.net/sprites/black-white/anim/";
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.card}>

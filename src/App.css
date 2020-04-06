@@ -4,6 +4,10 @@
 .logo {
   width: 125px;
 }
+.logo:hover{
+  width:130px;
+  transition: all 0.2s ease;
+}
 .main-container {
   margin-top: 60px;
 }

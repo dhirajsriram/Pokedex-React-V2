@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 function TabContainer({ children, dir }) {
   const useStyles = makeStyles({
     pokemon: {
-      width: "50%",
+      width: "75%",
       margin: "auto",
       display: "block",
       marginBottom:"90px"

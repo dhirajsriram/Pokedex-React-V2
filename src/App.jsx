@@ -34,7 +34,7 @@ class App extends Component {
 							<Route exact path="/" render={(props) => <Home {...props} />} />
 							<Route exact path="/results/:id" render={(props) => <Listing {...props} />} />
 							<Route exact path="/description/:id" render={(props) => <Description {...props} />} />
-							<Route render={(props) => <FourZeroFour {...props} />} />
+							<Route render={(props) => <FourZeroFour {...props} type={"404"} />} />
 						</Switch>
 					</React.Suspense>
 				</div>

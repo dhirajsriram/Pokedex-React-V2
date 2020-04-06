@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Drawer from "./Drawer";
 import { Link } from "react-router-dom";
 import Searchcontainer from "./Searchcontainer";
 import { withRouter } from "react-router";
-import Button from "@material-ui/core/Button";
 import MainMenu from "./MainMenu";
 import MobileMenu from "./MobileMenu";
-import Icon from "@material-ui/core/Icon";
-import { findTypeColor } from "../context/pokemonContext";
 
 const Menubar = withRouter(props => {
   const useStyles = makeStyles(theme => ({
@@ -42,30 +38,12 @@ const Menubar = withRouter(props => {
     }
   }));
   const classes = useStyles();
-  const [pokemonType, setpokemonType] = React.useState("All Types");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  useEffect(() => {
-    let results = "/results/";
-    if (window.location.pathname.indexOf("/results/") > -1) {
-      setpokemonType(window.location.pathname.replace(results, ""));
-    } else {
-      setpokemonType("All types");
-    }
-  }, [window.location.pathname]);
-
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget);
-  }
 
   function handleMenuClose() {
     setAnchorEl(null);
     handleMobileMenuClose();
-  }
-
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
   }
 
   function handleMobileMenuClose() {
@@ -90,31 +68,6 @@ const Menubar = withRouter(props => {
             </Link>
           </Typography>
           <Searchcontainer />
-          <div className={classes.sectionDesktop}>
-            <Button
-              edge="end"
-              aria-label="Sort by types"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              variant="contained"
-              style={{ backgroundColor: findTypeColor(pokemonType) }}
-              className={pokemonType !== "All types" ? classes.typeTheme : ""}
-            >
-              {pokemonType}
-            </Button>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="Show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <Icon>invert_colors</Icon>
-            </IconButton>
-          </div>
         </Toolbar>
       </AppBar>
       <MainMenu

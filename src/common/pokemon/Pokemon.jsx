@@ -66,7 +66,8 @@ const Pokemon = withRouter((props, context) => {
     },
     skeletonText: {
       display: "inline-block",
-      width: "80%"
+      width: "80%",
+      paddingTop: 3
     },
     evolutionImage: {
       objectFit: "scale-down",
@@ -96,9 +97,15 @@ const Pokemon = withRouter((props, context) => {
       textTransform: "capitalize"
     },
     arrow: {
-      color: "#3a3a3a",
       position: "absolute",
-      top: "25%"
+      top: "25%",
+      fontSize:40
+    },
+    arrow2:{
+      position: "absolute",
+      top: "25%",
+      left:"3%",
+      fontSize:40
     },
     skeletonImage: {
       width: "8%",
@@ -148,10 +155,13 @@ const Pokemon = withRouter((props, context) => {
   }, [props]);
 
   async function fetchPokemonData(number) {
+    try{
     let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number)
-    if(response.status === 200){
     response = await response.json();
     setPokemon(response);}
+    catch(e){
+      console.error("ERROR - "+ e)
+    }
   }
 
   function handleImageLoaded(e) {
@@ -229,7 +239,11 @@ const Pokemon = withRouter((props, context) => {
                 {props.evolution ? (
                   <React.Fragment>
                     {!props.first && (
-                      <Icon className={classes.arrow}>arrow_forward</Icon>
+                      <div>
+                      <Icon className={classes.arrow} style={{ color: returnType(context) }}>keyboard_arrow_right
+                      </Icon>
+                      <Icon className={classes.arrow2} style={{ color: returnType(context) }}>keyboard_arrow_right
+                      </Icon></div>
                     )}
                     {/* Display Evolution data */}
                     <DisplayEvolution

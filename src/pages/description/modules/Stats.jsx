@@ -1,16 +1,14 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import { ThemeProvider } from '@material-ui/styles';
 
 export default function Stats(props) {
-	const [maxvalue,setmaxValue] = useState(0)
-	const [totalValue,setTotalValue] = useState(0)
+	const [maxvalue, setmaxValue] = useState(0);
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
@@ -20,7 +18,7 @@ export default function Stats(props) {
 			secondary: { A400: '#ffffff', contrastText: props.color } // custom color in hex
 		}
 	});
- 
+
 	const useStyles = makeStyles((theme) => ({
 		filledChip: {
 			margin: theme.spacing(1),
@@ -29,8 +27,11 @@ export default function Stats(props) {
 			borderTopRightRadius: 0,
 			borderBottomRightRadius: 0
 		},
+		card: {
+			padding: "0px 20px"
+		},
 		heading: {
-			padding:4
+			padding: 4
 		},
 		statsValue: {
 			margin: '8px 0px',
@@ -44,22 +45,17 @@ export default function Stats(props) {
 
 	const classes = useStyles();
 
-	useEffect(()=>{
-		var maxval =Math.max.apply(Math, props.pokemonData.stats.map(function(o) { return o.base_stat; }))
-		setmaxValue(maxval)
-		var totalVal = props.pokemonData.stats.reduce((a, b) => a + (b["base_stat"] || 0), 0);
-		setTotalValue(totalVal)
-		},[props.pokemonData.id])
+	useEffect(() => {
+		var maxval = Math.max.apply(Math, props.pokemonData.stats.map(function (o) { return o.base_stat; }))
+		setmaxValue(maxval);
+	}, [props.pokemonData.id])
 
 	return (
 		<ThemeProvider theme={theme}>
 			<Card className={classes.card}>
 				<CardContent>
-					<Typography variant="h6" align="center" className={classes.heading}>
-						Base Stats
-					</Typography>
 					<Grid container>
-						{props.pokemonData.stats.map(function(val, i) {
+						{props.pokemonData.stats.map(function (val, i) {
 							return (
 								<React.Fragment key={i}>
 									<Grid item xs={4} sm={2}>
@@ -68,7 +64,7 @@ export default function Stats(props) {
 									<Grid item xs={8} sm={10}>
 										<Chip
 											className={classes.statsValue + ' transform'}
-											style={{ width: ((val.base_stat/maxvalue) * 100) + "%" , minWidth : "10%" }}
+											style={{ width: ((val.base_stat / maxvalue) * 100) + "%", minWidth: "10%" }}
 											label={val.base_stat}
 											color="primary"
 											align="right"
@@ -79,9 +75,6 @@ export default function Stats(props) {
 							);
 						})}
 					</Grid>
-					<Typography variant="subtitle2" align="center" className={classes.heading}>
-						Total: {totalValue}
-					</Typography>
 				</CardContent>
 			</Card>
 		</ThemeProvider>

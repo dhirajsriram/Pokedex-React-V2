@@ -45,13 +45,13 @@ export default function Description(props) {
       backgroundColor: pokemonData.types ? returnType : "white"
     },
     pokemon: {
-      width: "50%",
+      width: "75%",
       margin: "auto",
       display: "block"
     },
     BottomNavigation: {
       width: "100%",
-      height: "69px",
+      height: "64px",
       position: "fixed",
       bottom: "0",
       left: "0",
@@ -89,7 +89,8 @@ export default function Description(props) {
       );
       response = await response.json();
       setPokemonData(response);
-    } catch (err) {
+    } catch (e) {
+      console.error("ERROR - "+ e)
       setPokemonData({ error: "true" }); // TypeError: failed to fetch
     }
   }
@@ -116,6 +117,7 @@ export default function Description(props) {
   }
 
   async function fetchSpeciesData(number) {
+    try{
     let response = await fetch(
       "https://pokeapi.co/api/v2/pokemon-species/" + number
     );
@@ -124,7 +126,10 @@ export default function Description(props) {
     evolutionResponse = await evolutionResponse.json();
     printValues(evolutionResponse);
     setstages(stagesCount);
-    setEveolutionData(evolutionResponse);
+    setEveolutionData(evolutionResponse);}
+    catch(e){
+      console.error("ERROR - " + e)
+    }
   }
 
   function printValues(obj) {
@@ -233,7 +238,7 @@ export default function Description(props) {
       ) : (
         <React.Fragment>
           {pokemonData.error ? (
-            <FourZeroFour />
+            <FourZeroFour type={"Network error"} />
           ) : (
             <div className="loader-container loader-background">
               <div className="loader" />
