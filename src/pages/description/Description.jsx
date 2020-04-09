@@ -226,12 +226,12 @@ export default function Description(props) {
                 classes={{ selected: classes.selected }}
                 icon={<Icon>list</Icon>}
               />
-              <Tab
+              {/* <Tab
                 className={classes.tabs}
                 label="Cards"
                 classes={{ selected: classes.selected }}
                 icon={<Icon>casino</Icon>}
-              />
+              /> */}
             </Tabs>
           </footer>
         </Container>

@@ -114,3 +114,18 @@ export const Types = [
   "ground",
   "reset"
 ];
+
+export const mapTypes = function(type){
+  switch(type){
+    case "Colorless":
+      return "normal"
+    case "Darkness":
+      return "dark"
+    case "Lightning":
+      return "electric"
+    case "Metal":
+      return "steel"
+    default:
+      return type.toLowerCase()
+  }
+}

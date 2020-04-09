@@ -36,9 +36,10 @@ const Suggestion = function(suggestionProps) {
         >
           <img
             className={classes.image}
+            
             src={
-              "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-              numberPadding(number, 3) +
+              "https://img.pokemondb.net/sprites/home/normal/" +
+              suggestion.name +
               ".png"
             }
             alt={suggestion.name + " image"}
