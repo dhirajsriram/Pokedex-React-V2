@@ -29,7 +29,7 @@ class App extends Component {
 			<ThemeProvider theme={theme}>
 				<Menubar />
 				<div className="main-container">
-					<React.Suspense fallback={<div></div>}>
+					<React.Suspense fallback={<div>Loading...</div>}>
 						<Switch>
 							<Route exact path="/" render={(props) => <Home {...props} />} />
 							<Route exact path="/results/:id" render={(props) => <Listing {...props} />} />
